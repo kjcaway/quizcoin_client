@@ -1,0 +1,5 @@
+@font-face { font-family: 'CookieRun Bold'; src: url(./fonts/CookieRunBold.ttf) format('truetype'); }
+
+body {
+  font-family: "CookieRun Bold"
+}
