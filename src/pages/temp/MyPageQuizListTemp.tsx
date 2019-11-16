@@ -5,11 +5,11 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
-import { Container, CssBaseline, Link, Box, Card, CardMedia, CardContent, Chip } from '@material-ui/core';
+import { Container, CssBaseline, Link, Box, Card, CardMedia, CardContent, Chip, Paper, ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails } from '@material-ui/core';
 import EmojiEventsIcon from '@material-ui/icons/EmojiEvents';
 import AddIcon from '@material-ui/icons/Add';
 import VpnKeyOutlinedIcon from '@material-ui/icons/VpnKeyOutlined';
-
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 function Copyright() {
   return (
@@ -93,24 +93,27 @@ const useStyles = makeStyles((theme: Theme) =>
     chip: {
       margin: theme.spacing(0.5),
     },
-    linkText: {
-      color: '#ec1b1b',
-      fontSize: '24px',
+    paperRoot: {
+      padding: theme.spacing(3, 2),
+    },
+    quizTitle: {
+      fontSize: theme.typography.pxToRem(15),
+      fontWeight: theme.typography.fontWeightRegular,
+      flexGrow: 1
+    },
+    quizAnswer: {
+      color: '#2ec11c'
+    },
+    quizContent: {
+      marginBottom: theme.spacing(2)
+    },
+    extpRoot: {
+      backgroundColor: '#f0f1f1'
     }
   }),
 );
 
-const chipData = [
-  { key: 0, label: 'Angular' },
-  { key: 1, label: 'jQuery' },
-  { key: 2, label: 'Polymer' },
-  { key: 3, label: 'React' },
-  { key: 4, label: 'Vue.js' },
-]
-
-const handleDelete = () => {
-  console.info('You clicked the delete icon.');
-};
+const list = [1, 2, 3, 4];
 
 const MainPageTemp = () => {
   const classes = useStyles();
@@ -188,75 +191,27 @@ const MainPageTemp = () => {
           </Card>
 
           <Card className={classes.card}>
-            <div className={classes.details}>
-              <CardContent className={classes.content}>
-                <Box className={classes.textLabel}>
-                  <Typography component="h4">
-                    나의 문제 수 : 
-                  </Typography>
-                  <Typography className={classes.textValue}>
-                    <Link href="#" onClick={preventDefault} className={classes.linkText}>
-                      4
-                    </Link>
-                  </Typography>
-                  <Button
-                    type="button"
-                    variant="outlined"
-                    color="primary"
-                    className={classes.btnMake}
-                  >
-                    문제 만들기
-                    <AddIcon className={classes.rightIcon} />
-                  </Button>
-                </Box>
-                <Box className={classes.textLabel}>
-                  <Typography component="h4">
-                    획득 점수 : 
-                  </Typography>
-                  <Typography className={classes.textValue}>
-                    80
-                  </Typography>
-                </Box>
-                <Box className={classes.textLabel}>
-                  <Typography component="h4">
-                    인기도 : 
-                  </Typography>
-                  <Typography className={classes.textValue}>
-                    21
-                  </Typography>
-                </Box>
-                <Box className={classes.textLabel}>
-                  <Typography component="h4">
-                    태그 : 
-                  </Typography>
-                  <Typography className={classes.textValue}>
-                    {chipData.map(data => {
-                      let icon;
-
-                      return (
-                        <Chip
-                          key={data.key}
-                          icon={icon}
-                          label={data.label}
-                          onDelete={handleDelete}
-                          className={classes.chip}
-                        />
-                      );
-                    })}
-                  </Typography>
-                  <Button
-                    type="button"
-                    variant="outlined"
-                    color="primary"
-                    className={classes.btnMake}
-                  >
-                    태그 추가
-                    <AddIcon className={classes.rightIcon} />
-                  </Button>
-                </Box>
-                
-              </CardContent>
-            </div>
+            <CardContent className={classes.content}>
+              {list.map(obj => (
+                <div className={classes.quizContent}>
+                  <ExpansionPanel className={classes.extpRoot}>
+                    <ExpansionPanelSummary
+                      expandIcon={<ExpandMoreIcon />}
+                      aria-controls="panel1a-content"
+                      id="panel1a-header"
+                    >
+                      <Typography className={classes.quizTitle}>이 세상에서 가장 큰 동물은?</Typography>
+                      <Typography className={classes.quizAnswer}>코끼리</Typography>
+                    </ExpansionPanelSummary>
+                    <ExpansionPanelDetails>
+                      <Typography color="textSecondary">
+                        정답자 확인 기능 추가 예정
+                      </Typography>
+                    </ExpansionPanelDetails>
+                  </ExpansionPanel>  
+                </div>
+              ))}
+            </CardContent>
           </Card>
         </div>
         <Box mt={8}>
