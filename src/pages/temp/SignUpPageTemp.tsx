@@ -121,7 +121,7 @@ const MainPageTemp = () => {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            회원가입
           </Typography>
           <form className={classes.form} noValidate>
             <TextField
@@ -146,6 +146,29 @@ const MainPageTemp = () => {
               id="password"
               autoComplete="current-password"
             />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="password_again"
+              label="Password Again"
+              type="password"
+              id="password_again"
+              autoComplete="current-password"
+            />
+            
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="name"
+              label="이름"
+              name="name"
+              autoComplete="name"
+              autoFocus
+            />
             
             <Button
               type="submit"
@@ -154,12 +177,12 @@ const MainPageTemp = () => {
               color="primary"
               className={classes.submit}
             >
-              Sign In
+              가입하기
             </Button>
             <Grid container>
               <Grid item>
                 <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
+                  {"이미 계정이 있습니까? 로그인 페이지로 이동"}
                 </Link>
               </Grid>
             </Grid>
