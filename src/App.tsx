@@ -6,6 +6,7 @@ import MainPage from './pages/temp/MainPageTemp';
 import SignInPage from './pages/temp/SignInPageTemp';
 import SignUpPage from './pages/temp/SignUpPageTemp';
 import MyPage from './pages/temp/MyPageTemp';
+import CreateQuiz from './pages/temp/CreateQuizTemp';
 
 const App: React.FC = () => {
   return (
@@ -16,6 +17,7 @@ const App: React.FC = () => {
         <Route exact path="/temp/signin" component={SignInPage}></Route>
         <Route exact path="/temp/signup" component={SignUpPage}></Route>
         <Route exact path="/temp/:userId" component={MyPage}></Route>
+        <Route exact path="/temp/:userId/create" component={CreateQuiz}></Route>
       </Switch>
     </Router>
   );
