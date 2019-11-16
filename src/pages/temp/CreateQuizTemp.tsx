@@ -5,9 +5,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
-import { Container, CssBaseline, Link, Box, Card, CardMedia, CardContent, Chip, FormControl, InputLabel, Select, MenuItem, FormHelperText, Grid, TextField, ListItem, ListItemIcon, Checkbox, ListItemText, List } from '@material-ui/core';
+import { Container, CssBaseline, Link, Box, FormControl, InputLabel, Select, MenuItem, FormHelperText, Grid, TextField, ListItem, ListItemIcon, Checkbox, ListItemText, List } from '@material-ui/core';
 import EmojiEventsIcon from '@material-ui/icons/EmojiEvents';
-import AddIcon from '@material-ui/icons/Add';
 import VpnKeyOutlinedIcon from '@material-ui/icons/VpnKeyOutlined';
 
 
@@ -32,10 +31,10 @@ const useStyles = makeStyles((theme: Theme) =>
       paddingRight: 0,
     },
     appBarRoot: {
-      flexGrow: 10,
+      flexGrow: 8,
     },
     linkRoot: {
-      flexGrow: 9,
+      flexGrow: 7,
     },
     menuButton: {
       marginRight: theme.spacing(1),

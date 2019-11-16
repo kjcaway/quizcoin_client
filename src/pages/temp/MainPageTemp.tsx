@@ -32,10 +32,10 @@ const useStyles = makeStyles((theme: Theme) =>
       paddingRight: 0,
     },
     appBarRoot: {
-      flexGrow: 10,
+      flexGrow: 8,
     },
     linkRoot: {
-      flexGrow: 9,
+      flexGrow: 7,
     },
     menuButton: {
       marginRight: theme.spacing(1),
