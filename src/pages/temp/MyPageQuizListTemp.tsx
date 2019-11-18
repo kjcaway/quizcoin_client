@@ -5,9 +5,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
-import { Container, CssBaseline, Link, Box, Card, CardMedia, CardContent, Chip, Paper, ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails } from '@material-ui/core';
+import { Container, CssBaseline, Link, Box, Card, CardMedia, CardContent, ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails } from '@material-ui/core';
 import EmojiEventsIcon from '@material-ui/icons/EmojiEvents';
-import AddIcon from '@material-ui/icons/Add';
 import VpnKeyOutlinedIcon from '@material-ui/icons/VpnKeyOutlined';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 

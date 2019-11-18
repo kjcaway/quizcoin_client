@@ -9,11 +9,17 @@ import MyPage from './pages/temp/MyPageTemp';
 import MyPageQuizList from './pages/temp/MyPageQuizListTemp';
 import CreateQuiz from './pages/temp/CreateQuizTemp';
 
+import LoginPage from './pages/auth/LoginPage';
+import JoinPage from './pages/auth/JoinPage';
+
 const App: React.FC = () => {
   return (
     <Router history={history}>
       <Switch>
         <Route exact path="/" component={() => <div>Hellod</div>}></Route>
+        <Route exact path="/signin" component={LoginPage}></Route>
+        <Route exact path="/signup" component={JoinPage}></Route>
+
         <Route exact path="/temp/" component={MainPage}></Route>
         <Route exact path="/temp/signin" component={SignInPage}></Route>
         <Route exact path="/temp/signup" component={SignUpPage}></Route>
