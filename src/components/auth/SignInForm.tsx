@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const SignInForm = () => {
+const SignInForm = (props: any) => {
   const classes = useStyles();
 
   return (
@@ -38,17 +38,18 @@ const SignInForm = () => {
           <Typography component="h1" variant="h5">
             로그인
           </Typography>
-          <form className={classes.form} noValidate>
+          <form className={classes.form}>
             <TextField
               variant="outlined"
               margin="normal"
               required
               fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
+              id="userId"
+              label="ID"
+              name="userId"
+              autoComplete="userId"
               autoFocus
+              onChange={props.handleInputChange}
             />
             <TextField
               variant="outlined"
@@ -60,14 +61,17 @@ const SignInForm = () => {
               type="password"
               id="password"
               autoComplete="current-password"
+              onChange={props.handleInputChange}
+
             />
             
             <Button
-              type="submit"
+              type="button"
               fullWidth
               variant="contained"
               color="primary"
               className={classes.submit}
+              onClick={props.handleSubmit}
             >
               로그인
             </Button>
