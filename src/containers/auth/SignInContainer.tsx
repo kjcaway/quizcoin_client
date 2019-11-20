@@ -31,7 +31,8 @@ class SignInContainer extends Component<Props, State> {
     });
   }
   
-  handleSubmit = () => {
+  handleSubmit = (e: any) => {
+    e.preventDefault();
     this.props.fetchSignIn({
       userId : this.state.userId,
       password : this.state.password

@@ -38,7 +38,7 @@ const SignInForm = (props: any) => {
           <Typography component="h1" variant="h5">
             로그인
           </Typography>
-          <form className={classes.form}>
+          <form className={classes.form} onSubmit={props.handleSubmit}>
             <TextField
               variant="outlined"
               margin="normal"
@@ -66,7 +66,7 @@ const SignInForm = (props: any) => {
             />
             
             <Button
-              type="button"
+              type="submit"
               fullWidth
               variant="contained"
               color="primary"
