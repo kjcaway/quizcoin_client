@@ -1,7 +1,7 @@
 import * as auth from '../actions/authActions'
 
 const initialState = {
-  status: 'INIT'
+  isLogged: false
 }
 
 export const reducer = (state=initialState, action: auth.SignInAction) => {
@@ -9,20 +9,24 @@ export const reducer = (state=initialState, action: auth.SignInAction) => {
     case auth.SIGNIN:
       return {
         ...state,
-        status: 'WAIT',
         payload: action.payload
       }
     case auth.SIGNIN_SUCCESS:
       return {
         ...state,
-        status: 'SUCCESS',
+        isLogged: true,
         data: action.data
       }
     case auth.SIGNIN_FAIL:
       return {
         ...state,
-        status: 'FAIL',
+        isLogged: false,
         error: action.error
+      }
+    case auth.TEMP_LOGIN:
+      return {
+        ...state,
+        isLogged: true,
       }
     default:
       return state;

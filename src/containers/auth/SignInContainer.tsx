@@ -5,7 +5,7 @@ import * as auth from '../../store/actions/authActions'
 import SignInForm from '../../components/auth/SignInForm';
 
 interface Props {
-  authStatus: string;
+  isLogged: boolean;
   fetchSignIn: (payload: auth.SignInPayload) => void;
 }
 interface State {
@@ -52,7 +52,7 @@ class SignInContainer extends Component<Props, State> {
 export default connect(
   (state: any) => {
     return {
-      authStatus: state.auth.status
+      isLogged: state.auth.isLogged
     }
   },
   (dispatch) => {

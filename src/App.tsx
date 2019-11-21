@@ -11,7 +11,7 @@ import CreateQuiz from './pages/temp/CreateQuizTemp';
 
 import LoginPage from './pages/auth/LoginPage';
 import JoinPage from './pages/auth/JoinPage';
-
+import Base from './containers/common/Base';
 const App: React.FC = () => {
   return (
     <Router history={history}>
@@ -27,6 +27,7 @@ const App: React.FC = () => {
         <Route exact path="/temp/:userId/list" component={MyPageQuizList}></Route>
         <Route exact path="/temp/:userId/create" component={CreateQuiz}></Route>
       </Switch>
+      <Base />
     </Router>
   );
 }

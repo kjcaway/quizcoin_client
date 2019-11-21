@@ -61,10 +61,15 @@ const MenuBar = (props: any) => {
             </Link>
           </div>
 
-          <Button color="inherit" onClick={props.onClickLogin}>
-            <VpnKeyOutlinedIcon className={classes.leftIcon} />
-            로그인
-          </Button>
+          {
+            props.isLogged?
+            <div>로그아웃</div>
+            :
+            <Button color="inherit" onClick={props.onClickLogin}>
+              <VpnKeyOutlinedIcon className={classes.leftIcon} />
+              로그인
+            </Button>
+          }
         </Toolbar>
       </AppBar>
     </div>
