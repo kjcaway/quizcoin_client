@@ -4,8 +4,8 @@ const initialState = {
   isLogged: false
 }
 
-export const reducer = (state=initialState, action: auth.SignInAction) => {
-  switch(action.type){
+export const reducer = (state = initialState, action: auth.ActionType) => {
+  switch (action.type) {
     case auth.SIGNIN:
       return {
         ...state,
@@ -27,6 +27,27 @@ export const reducer = (state=initialState, action: auth.SignInAction) => {
       return {
         ...state,
         isLogged: true,
+      }
+    case auth.LOGOUT:
+      return {
+        ...state,
+        isLogged: false,
+      }
+    case auth.SIGNUP:
+      return {
+        ...state,
+        payload: action.payload
+      }
+    case auth.SIGNUP_SUCCESS:
+      return {
+        ...state,
+        data: action.data
+      }
+    case auth.SIGNUP_FAIL:
+      return {
+        ...state,
+        isLogged: false,
+        error: action.error
       }
     default:
       return state;

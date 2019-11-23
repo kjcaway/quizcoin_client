@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {connect } from 'react-redux';
 import * as auth from '../../store/actions/authActions'
-
 import SignInForm from '../../components/auth/SignInForm';
 
 interface Props {

@@ -38,17 +38,18 @@ const SignUpForm = (props: any) => {
       <Typography component="h1" variant="h5">
         회원가입
           </Typography>
-      <form className={classes.form} noValidate>
+      <form className={classes.form} onSubmit={props.handleSubmit}>
         <TextField
           variant="outlined"
           margin="normal"
           required
           fullWidth
-          id="email"
-          label="Email Address"
-          name="email"
-          autoComplete="email"
+          id="userId"
+          label="ID"
+          name="userId"
+          autoComplete="userId"
           autoFocus
+          onChange={props.handleInputChange}
         />
         <TextField
           variant="outlined"
@@ -60,17 +61,19 @@ const SignUpForm = (props: any) => {
           type="password"
           id="password"
           autoComplete="current-password"
+          onChange={props.handleInputChange}
         />
         <TextField
           variant="outlined"
           margin="normal"
           required
           fullWidth
-          name="password_again"
+          name="passwordAgain"
           label="Password Again"
           type="password"
-          id="password_again"
+          id="passwordAgain"
           autoComplete="current-password"
+          onChange={props.handleInputChange}
         />
 
         <TextField
@@ -78,10 +81,11 @@ const SignUpForm = (props: any) => {
           margin="normal"
           required
           fullWidth
-          id="name"
+          id="userName"
           label="이름"
-          name="name"
-          autoComplete="name"
+          name="userName"
+          autoComplete="userName"
+          onChange={props.handleInputChange}
           autoFocus
         />
 
@@ -91,6 +95,7 @@ const SignUpForm = (props: any) => {
           variant="contained"
           color="primary"
           className={classes.submit}
+          onClick={props.handleSubmit}
         >
           가입하기
             </Button>

@@ -8,6 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 import { Link } from '@material-ui/core';
 import EmojiEventsIcon from '@material-ui/icons/EmojiEvents';
 import VpnKeyOutlinedIcon from '@material-ui/icons/VpnKeyOutlined';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -63,9 +64,12 @@ const MenuBar = (props: any) => {
 
           {
             props.isLogged?
-            <div>로그아웃</div>
+            <Button color="inherit" onClick={props.handleLogout}>
+              <ExitToAppIcon className={classes.leftIcon} />
+              로그아웃
+            </Button>
             :
-            <Button color="inherit" onClick={props.onClickLogin}>
+            <Button color="inherit" onClick={props.handleLogin}>
               <VpnKeyOutlinedIcon className={classes.leftIcon} />
               로그인
             </Button>
