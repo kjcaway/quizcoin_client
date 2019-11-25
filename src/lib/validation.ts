@@ -3,7 +3,7 @@ export function isValidUserId(str: string){
   const eng = str.search(/[a-z]/ig);
   const spc = /[~!@#$%^&*()_+|<>?:{}]/;
 
-  if( ((eng > 0) ||  num > 0) && str.length >= 4 && !spc.test(str)){
+  if( ((eng >= 0) ||  num > 0) && str.length >= 4 && !spc.test(str)){
     return true;
   } else {
     return false;
