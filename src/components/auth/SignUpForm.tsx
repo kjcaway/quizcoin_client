@@ -47,8 +47,10 @@ const SignUpForm = (props: any) => {
           id="userId"
           label="ID"
           name="userId"
-          autoComplete="userId"
           autoFocus
+          helperText={props.errorMessages.userId}
+          error={props.errorMessages.userId?true:false}
+          onBlur={props.handleValidErrorMsg}
           onChange={props.handleInputChange}
         />
         <TextField
@@ -60,7 +62,9 @@ const SignUpForm = (props: any) => {
           label="Password"
           type="password"
           id="password"
-          autoComplete="current-password"
+          helperText={props.errorMessages.password}
+          error={props.errorMessages.password?true:false}
+          onBlur={props.handleValidErrorMsg}
           onChange={props.handleInputChange}
         />
         <TextField
@@ -72,7 +76,9 @@ const SignUpForm = (props: any) => {
           label="Password Again"
           type="password"
           id="passwordAgain"
-          autoComplete="current-password"
+          helperText={props.errorMessages.passwordAgain}
+          error={props.errorMessages.passwordAgain?true:false}
+          onBlur={props.handleValidErrorMsg}
           onChange={props.handleInputChange}
         />
 
@@ -84,13 +90,14 @@ const SignUpForm = (props: any) => {
           id="userName"
           label="이름"
           name="userName"
-          autoComplete="userName"
+          helperText={props.errorMessages.userName}
+          error={props.errorMessages.userName?true:false}
+          onBlur={props.handleValidErrorMsg}
           onChange={props.handleInputChange}
-          autoFocus
         />
 
         <Button
-          type="submit"
+          type="button"
           fullWidth
           variant="contained"
           color="primary"
