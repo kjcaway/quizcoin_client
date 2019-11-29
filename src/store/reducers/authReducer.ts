@@ -49,6 +49,20 @@ export const reducer = (state = initialState, action: auth.ActionType) => {
         isLogged: false,
         error: action.error
       }
+    case auth.CHECK_TOKEN:
+      return {
+        ...state,
+      }
+    case auth.CHECK_TOKEN_SUCCESS:
+      return {
+        ...state,
+        isLogged: true
+      }
+    case auth.CHECK_TOKEN_FAIL:
+      return {
+        ...state,
+        isLogged: false,
+      }
     default:
       return state;
   }

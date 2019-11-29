@@ -8,6 +8,10 @@ export const SIGNUP = 'SIGNUP';
 export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
 export const SIGNUP_FAIL = 'SIGNUP_FAIL';
 
+export const CHECK_TOKEN = 'CHECK_TOKEN';
+export const CHECK_TOKEN_SUCCESS = 'CHECK_TOKEN_SUCCESS';
+export const CHECK_TOKEN_FAIL = 'CHECK_TOKEN_FAIL';
+
 export interface SignInPayload{
   userId: string;
   password: string;
@@ -81,5 +85,23 @@ export function signUpFail(error: any){
   return {
     type: SIGNIN_FAIL,
     error
+  }
+}
+
+export function checkToken(){
+  return {
+    type: CHECK_TOKEN,
+  }
+}
+
+export function checkTokenSuccess(){
+  return {
+    type: CHECK_TOKEN_SUCCESS
+  }
+}
+
+export function checkTokenFail(){
+  return {
+    type: CHECK_TOKEN_FAIL
   }
 }

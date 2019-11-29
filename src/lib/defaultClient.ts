@@ -1,5 +1,16 @@
 import axios from 'axios';
 
+function authHeader() {
+  // return authorization header with jwt token
+  const token = localStorage.getItem('access_token');
+
+  if (token) {
+      return { 'Authorization': token };
+  } else {
+      return {};
+  }
+}
+
 const baseURL = (() => {
   if (process.env.NODE_ENV === 'development') {
     return 'http://localhost:3001/'
@@ -12,11 +23,7 @@ const baseURL = (() => {
 
 const defaultClient = axios.create({
   baseURL,
-  headers: {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json; charset=utf-8',
-  }
-  
+  headers: authHeader()
 })
 
 defaultClient.defaults.timeout = 3000;

@@ -4,6 +4,7 @@ import * as auth from '../../store/actions/authActions';
 
 interface Props {
   tempLogin: () => void;
+  checkToken: () => void;
 }
 
 class Base extends Component<Props> {
@@ -12,6 +13,8 @@ class Base extends Component<Props> {
       this.props.tempLogin();
     }
     // checkToken valid action need!
+    this.props.checkToken();
+
   }
 
   componentDidMount(){
@@ -30,6 +33,9 @@ export default connect(
     return {
       tempLogin: () => {
         dispatch({type: auth.TEMP_LOGIN})
+      },
+      checkToken: () => {
+        dispatch({type: auth.CHECK_TOKEN})
       }
     }
   }

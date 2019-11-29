@@ -1,4 +1,4 @@
-import { call, put, takeEvery } from "redux-saga/effects";
+import { call, put, takeEvery, delay } from "redux-saga/effects";
 import defaultClient from "../../lib/defaultClient";
 import * as auth from "../actions/authActions";
 import * as alertMsg from "../actions/alertMsgActions";
@@ -18,6 +18,8 @@ function* fetchSignInSaga(action: auth.ActionType) {
         message: CONSTANTS.MSG_SIGNIN_SUCCESS,
         category: 'success'
       }))
+      yield delay(1000);
+      window.location.href = "/"
     } else {
       yield put(auth.signInFail('No Access Token.'));
       yield put(alertMsg.pushMessage({
@@ -50,6 +52,8 @@ function* fetchSignUpSaga(action: auth.ActionType){
         message: CONSTANTS.MSG_SIGNUP_SUCCESS,
         category: 'success'
       }))
+      yield delay(1000);
+      window.location.href = "/signin"
     } else{
       yield put(auth.signUpFail('Unknown'));
       yield put(alertMsg.pushMessage({
@@ -67,7 +71,23 @@ function* fetchSignUpSaga(action: auth.ActionType){
   }
 }
 
+function* fetchCheckTokenSaga(action: auth.ActionType){
+  try{
+    const response = yield call([defaultClient, 'post'], '/api/user/checkToken');
+    if(response.status === 200){
+      yield put(auth.checkTokenSuccess());
+    } else{
+      localStorage.removeItem('access_token');
+      yield put(auth.checkTokenFail());
+    }
+  } catch(error){
+    localStorage.removeItem('access_token');
+    yield put(auth.checkTokenFail());
+  }
+}
+
 export default function* watchAuth() {
   yield takeEvery(auth.SIGNIN, fetchSignInSaga);
   yield takeEvery(auth.SIGNUP, fetchSignUpSaga);
+  yield takeEvery(auth.CHECK_TOKEN, fetchCheckTokenSaga);
 }

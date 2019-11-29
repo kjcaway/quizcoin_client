@@ -24,7 +24,7 @@ export function isValidPassword(str: string){
 export function isValidName(str: string){
   const spc = /[~!@#$%^&*()_+|<>?:{}]/;
 
-  if( str.length >= 3 && !spc.test(str)){
+  if( str.length >= 2 && !spc.test(str)){
     return true;
   } else {
     return false;
