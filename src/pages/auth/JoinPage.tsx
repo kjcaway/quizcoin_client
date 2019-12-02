@@ -6,7 +6,7 @@ import CommonTemplate from '../../components/CommonTemplate';
 const LoginPage = () => {
   return (
     <CommonTemplate>
-      <SignUpContainer/>
+      <SignUpContainer />
     </CommonTemplate>
   )
 }

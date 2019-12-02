@@ -63,15 +63,15 @@ const MenuBar = (props: any) => {
           </div>
 
           {
-            props.isLogged?
-            <Button color="inherit" onClick={props.handleLogout}>
-              <ExitToAppIcon className={classes.leftIcon} />
-              로그아웃
+            props.isLogged ?
+              <Button color="inherit" onClick={props.handleLogout}>
+                <ExitToAppIcon className={classes.leftIcon} />
+                로그아웃
             </Button>
-            :
-            <Button color="inherit" onClick={props.handleLogin}>
-              <VpnKeyOutlinedIcon className={classes.leftIcon} />
-              로그인
+              :
+              <Button color="inherit" onClick={props.handleLogin}>
+                <VpnKeyOutlinedIcon className={classes.leftIcon} />
+                로그인
             </Button>
           }
         </Toolbar>

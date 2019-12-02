@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {connect } from 'react-redux';
+import { connect } from 'react-redux';
 import * as auth from '../../store/actions/authActions'
 import SignUpForm from '../../components/auth/SignUpForm';
 import {
@@ -12,11 +12,11 @@ interface Props {
   fetchSignUp: (payload: auth.SignUpPayload) => void;
 }
 interface State {
-  [key:string]: any
+  [key: string]: any
 }
 
 class SignUpContainer extends Component<Props, State>  {
-  constructor(props: Props){
+  constructor(props: Props) {
     super(props);
     this.state = {
       userId: '',
@@ -44,17 +44,17 @@ class SignUpContainer extends Component<Props, State>  {
 
   handleSubmit = (e: any) => {
     e.preventDefault();
-    if(!this.state.validErrors.userId
+    if (!this.state.validErrors.userId
       && !this.state.validErrors.password
       && !this.state.validErrors.passwordAgain
-      && !this.state.validErrors.userName){
+      && !this.state.validErrors.userName) {
 
-        this.props.fetchSignUp({
-          userId : this.state.userId,
-          password : this.state.password,
-          userName: this.state.userName
-        })
-    } else{
+      this.props.fetchSignUp({
+        userId: this.state.userId,
+        password: this.state.password,
+        userName: this.state.userName
+      })
+    } else {
       alert('입력 폼이 유효하지않습니다.')
     }
   }
@@ -66,21 +66,21 @@ class SignUpContainer extends Component<Props, State>  {
     let message = this.state.validErrors;
 
     switch (name) {
-      case 'userId': 
+      case 'userId':
         message.userId = !isValidUserId(value) && MSG.MSG_HELP_USERID
         break;
-      case 'password': 
+      case 'password':
         message.password = !isValidPassword(value) && MSG.MSG_HELP_PASSWORD
         break;
-      case 'passwordAgain': 
+      case 'passwordAgain':
         const { password, passwordAgain } = this.state;
-        if(password !== passwordAgain){
+        if (password !== passwordAgain) {
           message.passwordAgain = MSG.MSG_HELP_PASSWORD_AGAIN;
-        } else{
+        } else {
           message.passwordAgain = false;
         }
         break;
-      case 'userName': 
+      case 'userName':
         message.userName = !isValidName(value) && MSG.MSG_HELP_NAME
         break;
       default:
@@ -97,7 +97,7 @@ class SignUpContainer extends Component<Props, State>  {
   render() {
     const { validErrors } = this.state;
     return (
-      <SignUpForm 
+      <SignUpForm
         errorMessages={validErrors}
         handleValidErrorMsg={this.handleValidErrorMsg}
         handleInputChange={this.handleInputChange}
@@ -116,7 +116,7 @@ export default connect(
   (dispatch) => {
     return {
       fetchSignUp: (payload: auth.SignUpPayload) => {
-        dispatch({type: auth.SIGNUP, payload: payload})
+        dispatch({ type: auth.SIGNUP, payload: payload })
       }
     }
   }

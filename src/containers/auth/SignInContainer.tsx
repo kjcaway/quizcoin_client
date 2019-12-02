@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
-import {connect } from 'react-redux';
+import { connect } from 'react-redux';
 import * as auth from '../../store/actions/authActions'
 import SignInForm from '../../components/auth/SignInForm';
-import {history} from '../../store/configureStore';
+import { history } from '../../store/configureStore';
 
 interface Props {
   isLogged: boolean;
   fetchSignIn: (payload: auth.SignInPayload) => void;
 }
 interface State {
-  [key:string]: string
+  [key: string]: string
 }
 
 class SignInContainer extends Component<Props, State> {
-  constructor(props: Props){
+  constructor(props: Props) {
     super(props);
     this.state = {
       userId: '',
@@ -30,12 +30,12 @@ class SignInContainer extends Component<Props, State> {
       [name]: value
     });
   }
-  
+
   handleSubmit = (e: any) => {
     e.preventDefault();
     this.props.fetchSignIn({
-      userId : this.state.userId,
-      password : this.state.password
+      userId: this.state.userId,
+      password: this.state.password
     })
   }
 
@@ -58,7 +58,7 @@ export default connect(
   (dispatch) => {
     return {
       fetchSignIn: (payload: auth.SignInPayload) => {
-        dispatch({type: auth.SIGNIN, payload: payload})
+        dispatch({ type: auth.SIGNIN, payload: payload })
       }
     }
   }

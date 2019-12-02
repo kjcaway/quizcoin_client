@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import {history} from '../../store/configureStore';
-import {connect } from 'react-redux';
+import { history } from '../../store/configureStore';
+import { connect } from 'react-redux';
 import MenuBar from '../../components/common/MenuBar';
 import * as auth from '../../store/actions/authActions';
 
@@ -17,7 +17,7 @@ class MenuBarContainer extends Component<Props>{
     this.props.logout();
   }
   render() {
-    const {isLogged} = this.props;
+    const { isLogged } = this.props;
     return (
       <MenuBar
         handleLogin={this.handleLogin}
@@ -37,8 +37,8 @@ export default connect(
   (dispatch: any) => {
     return {
       logout: () => {
-        dispatch({type: auth.LOGOUT})
-      } 
+        dispatch({ type: auth.LOGOUT })
+      }
     }
   }
 )(MenuBarContainer);

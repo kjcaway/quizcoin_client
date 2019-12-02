@@ -9,7 +9,7 @@ interface Props {
 
 class Base extends Component<Props> {
   initialize = () => {
-    if(localStorage.getItem('access_token')){
+    if (localStorage.getItem('access_token')) {
       this.props.tempLogin();
     }
     // checkToken valid action need!
@@ -17,7 +17,7 @@ class Base extends Component<Props> {
 
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.initialize();
   }
   render() {
@@ -32,10 +32,10 @@ export default connect(
   (dispatch) => {
     return {
       tempLogin: () => {
-        dispatch({type: auth.TEMP_LOGIN})
+        dispatch({ type: auth.TEMP_LOGIN })
       },
       checkToken: () => {
-        dispatch({type: auth.CHECK_TOKEN})
+        dispatch({ type: auth.CHECK_TOKEN })
       }
     }
   }

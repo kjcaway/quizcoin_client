@@ -49,7 +49,7 @@ const SignUpForm = (props: any) => {
           name="userId"
           autoFocus
           helperText={props.errorMessages.userId}
-          error={props.errorMessages.userId?true:false}
+          error={props.errorMessages.userId ? true : false}
           onBlur={props.handleValidErrorMsg}
           onChange={props.handleInputChange}
         />
@@ -63,7 +63,7 @@ const SignUpForm = (props: any) => {
           type="password"
           id="password"
           helperText={props.errorMessages.password}
-          error={props.errorMessages.password?true:false}
+          error={props.errorMessages.password ? true : false}
           onBlur={props.handleValidErrorMsg}
           onChange={props.handleInputChange}
         />
@@ -77,7 +77,7 @@ const SignUpForm = (props: any) => {
           type="password"
           id="passwordAgain"
           helperText={props.errorMessages.passwordAgain}
-          error={props.errorMessages.passwordAgain?true:false}
+          error={props.errorMessages.passwordAgain ? true : false}
           onBlur={props.handleValidErrorMsg}
           onChange={props.handleInputChange}
         />
@@ -91,7 +91,7 @@ const SignUpForm = (props: any) => {
           label="이름"
           name="userName"
           helperText={props.errorMessages.userName}
-          error={props.errorMessages.userName?true:false}
+          error={props.errorMessages.userName ? true : false}
           onBlur={props.handleValidErrorMsg}
           onChange={props.handleInputChange}
         />

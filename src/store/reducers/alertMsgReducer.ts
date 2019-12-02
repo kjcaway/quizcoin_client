@@ -6,8 +6,8 @@ const initialState = {
   category: ''
 }
 
-export const reducer = (state=initialState, action: alertMsg.AlertMessageAction) => {
-  switch(action.type){
+export const reducer = (state = initialState, action: alertMsg.AlertMessageAction) => {
+  switch (action.type) {
     case alertMsg.PUSH_MESSAGE:
       return {
         ...state,
@@ -23,7 +23,7 @@ export const reducer = (state=initialState, action: alertMsg.AlertMessageAction)
         category: '',
       }
     default:
-      return{
+      return {
         ...state
       }
   }

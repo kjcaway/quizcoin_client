@@ -37,16 +37,16 @@ function* fetchSignInSaga(action: auth.ActionType) {
   }
 }
 
-function* fetchSignUpSaga(action: auth.ActionType){
-  try{
-    const {userId, password, userName} = action.payload;
+function* fetchSignUpSaga(action: auth.ActionType) {
+  try {
+    const { userId, password, userName } = action.payload;
     const { data } = yield call([defaultClient, 'post'], '/api/user/signup', {
       userId,
       password,
       userName
     });
 
-    if(data.status === 'Success'){
+    if (data.status === 'Success') {
       yield put(auth.signUpSuccess(data));
       yield put(alertMsg.pushMessage({
         message: CONSTANTS.MSG_SIGNUP_SUCCESS,
@@ -54,33 +54,33 @@ function* fetchSignUpSaga(action: auth.ActionType){
       }))
       yield delay(1000);
       window.location.href = "/signin"
-    } else{
+    } else {
       yield put(auth.signUpFail('Unknown'));
       yield put(alertMsg.pushMessage({
         message: CONSTANTS.MSG_SIGNUP_FAIL,
         category: 'error'
       }))
     }
-  } catch(error){
+  } catch (error) {
     const message = error.response || 'Unknown'
     yield put(auth.signUpFail(message));
-      yield put(alertMsg.pushMessage({
-        message: CONSTANTS.MSG_SIGNUP_FAIL,
-        category: 'error'
-      }))
+    yield put(alertMsg.pushMessage({
+      message: CONSTANTS.MSG_SIGNUP_FAIL,
+      category: 'error'
+    }))
   }
 }
 
-function* fetchCheckTokenSaga(action: auth.ActionType){
-  try{
+function* fetchCheckTokenSaga(action: auth.ActionType) {
+  try {
     const response = yield call([defaultClient, 'post'], '/api/user/checkToken');
-    if(response.status === 200){
+    if (response.status === 200) {
       yield put(auth.checkTokenSuccess());
-    } else{
+    } else {
       localStorage.removeItem('access_token');
       yield put(auth.checkTokenFail());
     }
-  } catch(error){
+  } catch (error) {
     localStorage.removeItem('access_token');
     yield put(auth.checkTokenFail());
   }

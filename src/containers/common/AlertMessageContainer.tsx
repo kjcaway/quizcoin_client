@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {connect } from 'react-redux';
+import { connect } from 'react-redux';
 import AlertMessageBox from '../../components/common/AlertMessageBox';
 import * as alertMsg from '../../store/actions/alertMsgActions'
 
@@ -15,7 +15,7 @@ interface State {
 class AlertMessageContainer extends Component<Props, State> {
   render() {
     return (
-      <AlertMessageBox 
+      <AlertMessageBox
         category={this.props.category}
         message={this.props.message}
         isOpen={this.props.isOpen}
@@ -36,7 +36,7 @@ export default connect(
   (dispatch) => {
     return {
       onClose: () => {
-        dispatch({type: alertMsg.HIDE_MESSAGE})
+        dispatch({ type: alertMsg.HIDE_MESSAGE })
       }
     }
   }

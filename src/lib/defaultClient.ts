@@ -5,9 +5,9 @@ function authHeader() {
   const token = localStorage.getItem('access_token');
 
   if (token) {
-      return { 'Authorization': token };
+    return { 'Authorization': token };
   } else {
-      return {};
+    return {};
   }
 }
 

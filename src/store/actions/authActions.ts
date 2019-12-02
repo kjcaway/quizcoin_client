@@ -12,95 +12,95 @@ export const CHECK_TOKEN = 'CHECK_TOKEN';
 export const CHECK_TOKEN_SUCCESS = 'CHECK_TOKEN_SUCCESS';
 export const CHECK_TOKEN_FAIL = 'CHECK_TOKEN_FAIL';
 
-export interface SignInPayload{
+export interface SignInPayload {
   userId: string;
   password: string;
 }
 
-export interface SignUpPayload{
+export interface SignUpPayload {
   userId: string;
   password: string;
   userName: string;
 }
 
-export interface SignInData{
-  data : {};
+export interface SignInData {
+  data: {};
 }
 
-export interface ActionType{
+export interface ActionType {
   type: string;
   payload: SignInPayload & SignUpPayload;
   data?: SignInData;
   error?: any;
 }
 
-export function signIn(payload: SignInPayload){
+export function signIn(payload: SignInPayload) {
   return {
     type: SIGNIN,
     payload
   }
 }
 
-export function signInSuccess(data: SignInData){
+export function signInSuccess(data: SignInData) {
   return {
     type: SIGNIN_SUCCESS,
     data
   }
 }
 
-export function signInFail(error: any){
+export function signInFail(error: any) {
   return {
     type: SIGNIN_FAIL,
     error
   }
 }
 
-export function tempLogin(){
+export function tempLogin() {
   return {
     type: TEMP_LOGIN,
   }
 }
 
-export function logout(){
+export function logout() {
   return {
     type: LOGOUT,
   }
 }
 
-export function signUp(payload: SignUpPayload){
+export function signUp(payload: SignUpPayload) {
   return {
     type: SIGNIN,
     payload
   }
 }
 
-export function signUpSuccess(data: any){
+export function signUpSuccess(data: any) {
   return {
     type: SIGNIN_SUCCESS,
     data
   }
 }
 
-export function signUpFail(error: any){
+export function signUpFail(error: any) {
   return {
     type: SIGNIN_FAIL,
     error
   }
 }
 
-export function checkToken(){
+export function checkToken() {
   return {
     type: CHECK_TOKEN,
   }
 }
 
-export function checkTokenSuccess(){
+export function checkTokenSuccess() {
   return {
     type: CHECK_TOKEN_SUCCESS
   }
 }
 
-export function checkTokenFail(){
+export function checkTokenFail() {
   return {
     type: CHECK_TOKEN_FAIL
   }

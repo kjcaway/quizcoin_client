@@ -1,6 +1,6 @@
 import React from 'react';
-import {Router, Route, Switch} from 'react-router-dom';
-import {history} from './store/configureStore';
+import { Router, Route, Switch } from 'react-router-dom';
+import { history } from './store/configureStore';
 
 import MainPage from './pages/temp/MainPageTemp';
 import SignInPage from './pages/temp/SignInPageTemp';

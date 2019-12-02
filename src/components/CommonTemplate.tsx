@@ -13,7 +13,7 @@ const CommonTemplate = ({ children }: Props) => {
   return (
     <Container
       maxWidth="xl"
-      style={{paddingLeft: 0, paddingRight: 0}}
+      style={{ paddingLeft: 0, paddingRight: 0 }}
     >
       <CssBaseline />
       <MenuBarContainer />
