@@ -13,7 +13,7 @@ interface Props {
 
 const UserInfoPage = ({ match }: Props) => {
   return (
-    <CommonTemplate>
+    <CommonTemplate maxWidth='lg'>
       <UserInfoContainer userId={match.params.userId} />
     </CommonTemplate>
   )

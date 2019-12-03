@@ -5,7 +5,7 @@ import CommonTemplate from '../../components/CommonTemplate';
 
 const LoginPage = () => {
   return (
-    <CommonTemplate>
+    <CommonTemplate maxWidth='xs'>
       <SignInContainer />
     </CommonTemplate>
   )

@@ -6,10 +6,11 @@ import AlertMessageContainer from '../containers/common/AlertMessageContainer';
 import Footer from './common/Footer';
 
 interface Props {
-  children: ReactChild
+  children: ReactChild,
+  maxWidth: "xs" | "sm" | "md" | "lg" | "xl"
 }
 
-const CommonTemplate = ({ children }: Props) => {
+const CommonTemplate = ({ children, maxWidth }: Props) => {
   return (
     <Container
       maxWidth="xl"
@@ -18,7 +19,7 @@ const CommonTemplate = ({ children }: Props) => {
       <CssBaseline />
       <MenuBarContainer />
       <AlertMessageContainer />
-      <Container component="main" maxWidth="lg">
+      <Container component="main" maxWidth={maxWidth}>
         {children}
         <Box mt={8}>
           <Footer />
