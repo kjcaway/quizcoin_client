@@ -23,6 +23,7 @@ const App: React.FC = () => {
         <Route path="/signin" component={LoginPage}></Route>
         <Route path="/signup" component={JoinPage}></Route>
         <Route exact path="/@:userId" component={UserInfoPage}></Route>
+        <Route component={NotFound}></Route>
 
         <Route exact path="/temp/" component={MainPage}></Route>
         <Route path="/temp/signin" component={SignInPage}></Route>
@@ -30,7 +31,6 @@ const App: React.FC = () => {
         <Route path="/temp/:userId" component={MyPage}></Route>
         <Route path="/temp/:userId/list" component={MyPageQuizList}></Route>
         <Route path="/temp/:userId/create" component={CreateQuiz}></Route>
-        <Route component={NotFound}></Route>
       </Switch>
       <Base />
     </Router>

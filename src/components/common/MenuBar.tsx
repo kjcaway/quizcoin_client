@@ -9,6 +9,7 @@ import { Link } from '@material-ui/core';
 import EmojiEventsIcon from '@material-ui/icons/EmojiEvents';
 import VpnKeyOutlinedIcon from '@material-ui/icons/VpnKeyOutlined';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -33,12 +34,18 @@ const useStyles = makeStyles((theme: Theme) =>
       fontSize: '18px',
       fontStyle: 'italic'
     },
+    linkM: {
+      margin: theme.spacing(1.5),
+      fontSize: '12px',
+      fontStyle: 'italic'
+    },
   }),
 );
 
 const MenuBar = (props: any) => {
   const classes = useStyles();
   const preventDefault = (event: React.SyntheticEvent) => event.preventDefault();
+  const isDesktop = useMediaQuery('(min-width:600px)');
 
   return (
     <div className={classes.appBarRoot}>
@@ -48,16 +55,16 @@ const MenuBar = (props: any) => {
             <EmojiEventsIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            QuizCoin
+            {isDesktop && 'QuizCoin'}
           </Typography>
           <div className={classes.linkRoot}>
-            <Link href="#" onClick={preventDefault} color="inherit" className={classes.link}>
+            <Link href="#" onClick={preventDefault} color="inherit" className={isDesktop?classes.link:classes.linkM}>
               모아보기
             </Link>
-            <Link href="#" onClick={preventDefault} color="inherit" className={classes.link}>
+            <Link href="#" onClick={preventDefault} color="inherit" className={isDesktop?classes.link:classes.linkM}>
               최근퀴즈
             </Link>
-            <Link href="#" onClick={preventDefault} color="inherit" className={classes.link}>
+            <Link href="#" onClick={preventDefault} color="inherit" className={isDesktop?classes.link:classes.linkM}>
               나의점수
             </Link>
           </div>
@@ -66,12 +73,12 @@ const MenuBar = (props: any) => {
             props.isLogged ?
               <Button color="inherit" onClick={props.handleLogout}>
                 <ExitToAppIcon className={classes.leftIcon} />
-                로그아웃
+                {isDesktop && '로그아웃'}
             </Button>
               :
               <Button color="inherit" onClick={props.handleLogin}>
                 <VpnKeyOutlinedIcon className={classes.leftIcon} />
-                로그인
+                {isDesktop && '로그인'}
             </Button>
           }
         </Toolbar>
