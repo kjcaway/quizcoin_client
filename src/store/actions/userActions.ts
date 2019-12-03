@@ -32,14 +32,14 @@ export function getUserInfo(payload: UserInfoPayload) {
 
 export function getUserInfoSuccess(data: UserInfoData) {
   return {
-    type: GET_USER_INFO,
+    type: GET_USER_INFO_SUCCESS,
     data
   }
 }
 
 export function getUserInfoFail(error: any) {
   return {
-    type: GET_USER_INFO,
+    type: GET_USER_INFO_FAIL,
     error
   }
 }

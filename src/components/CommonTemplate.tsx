@@ -18,7 +18,7 @@ const CommonTemplate = ({ children }: Props) => {
       <CssBaseline />
       <MenuBarContainer />
       <AlertMessageContainer />
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="lg">
         {children}
         <Box mt={8}>
           <Footer />

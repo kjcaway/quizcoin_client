@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as auth from '../../store/actions/authActions'
 import SignInForm from '../../components/auth/SignInForm';
-import { history } from '../../store/configureStore';
 
 interface Props {
   isLogged: boolean;

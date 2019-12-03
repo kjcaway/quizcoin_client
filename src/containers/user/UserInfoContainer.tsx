@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import * as user from '../../store/actions/userActions'
 import UserInfoProfile from '../../components/user/UserInfoProfile'
 import UserInfoActivity from '../../components/user/UserInfoActivity'
+import { convertToFromNow } from '../../lib/utils';
+import defaultImage from '../../static/images/default_profile.png';
 
 interface Props {
   userId: any;
@@ -14,23 +16,36 @@ interface State {
 
 export class UserInfoContainer extends Component<Props, State> {
   componentDidMount() {
-    this.props.fetchUserInfo(this.props.userId)
+    this.props.fetchUserInfo({
+      userId: this.props.userId
+    })
   }
+
+  defaultToProfile = (path: string) => {
+    if(path === ''){
+      return defaultImage
+    } else {
+      return path;
+    }
+  }
+
   render() {
     return (
       <>
-        <UserInfoProfile 
-          userId={this.props.userInfo.userId}
+        <UserInfoProfile
+          userId={this.props.userInfo.user_id}
           name={this.props.userInfo.name}
+          profile={this.defaultToProfile(this.props.userInfo.profile)}
+          createdTime={convertToFromNow(this.props.userInfo.created_time)}
         />
-          <UserInfoActivity 
+        <UserInfoActivity
           quizCnt={this.props.userInfo.quizcnt}
           score={this.props.userInfo.score}
           popular={this.props.userInfo.popular}
-          tags={this.props.userInfo.tags || []}
+          tags={this.props.userInfo.tags}
         />
       </>
-    )
+    );
   }
 }
 

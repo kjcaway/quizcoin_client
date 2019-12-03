@@ -3,10 +3,18 @@ import React from 'react'
 import UserInfoContainer from '../../containers/user/UserInfoContainer';
 import CommonTemplate from '../../components/CommonTemplate';
 
-const UserInfoPage = (props: any) => {
+interface Props {
+  match: {
+    params: {
+      userId: string;
+    }
+  }
+}
+
+const UserInfoPage = ({ match }: Props) => {
   return (
     <CommonTemplate>
-      <UserInfoContainer userId={props.match.param}/>
+      <UserInfoContainer userId={match.params.userId} />
     </CommonTemplate>
   )
 }

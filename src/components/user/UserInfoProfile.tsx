@@ -7,7 +7,7 @@ const useStyles = makeStyles((theme: Theme) =>
     //card
     card: {
       display: 'flex',
-      paddingTop: theme.spacing(8),
+      marginTop: theme.spacing(8),
 
     },
     content: {
@@ -43,7 +43,7 @@ function UserInfoProfile(props: any) {
     <Card className={classes.card}>
       <CardMedia
         className={classes.cover}
-        image="https://source.unsplash.com/random"
+        image={props.profile}
         title="프로필사진"
       />
       <div className={classes.details}>
@@ -65,6 +65,14 @@ function UserInfoProfile(props: any) {
             </Typography>
             <Typography className={classes.textValue}>
               {props.name}
+            </Typography>
+          </Box>
+          <Box className={classes.textLabel}>
+            <Typography component="h4">
+              가입일 :
+            </Typography>
+            <Typography className={classes.textValue}>
+              {props.createdTime}
             </Typography>
           </Box>
         </CardContent>

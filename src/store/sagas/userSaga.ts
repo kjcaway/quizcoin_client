@@ -1,4 +1,4 @@
-import { call, put, takeEvery, delay } from "redux-saga/effects";
+import { call, put, takeEvery } from "redux-saga/effects";
 import defaultClient from "../../lib/defaultClient";
 import * as user from "../actions/userActions";
 
