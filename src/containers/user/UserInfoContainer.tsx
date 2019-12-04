@@ -10,6 +10,7 @@ interface Props {
   userId: any;
   userInfo: any;
   fetchUserInfo: (payload: user.UserInfoPayload) => void;
+  openAddTagDlg: () => void;
 }
 interface State {
 }
@@ -22,7 +23,7 @@ export class UserInfoContainer extends Component<Props, State> {
   }
 
   defaultToProfile = (path: string) => {
-    if(path === ''){
+    if (path === '') {
       return defaultImage
     } else {
       return path;
@@ -43,6 +44,7 @@ export class UserInfoContainer extends Component<Props, State> {
           score={this.props.userInfo.score}
           popular={this.props.userInfo.popular}
           tags={this.props.userInfo.tags}
+          handleAddTagClick={this.props.openAddTagDlg}
         />
       </>
     );
@@ -60,6 +62,9 @@ export default connect(
     return {
       fetchUserInfo: (payload: user.UserInfoPayload) => {
         dispatch({ type: user.GET_USER_INFO, payload: payload })
+      },
+      openAddTagDlg: () => {
+        dispatch({ type: user.ADD_TAG_MODAL_OPEN })
       }
     }
   }

@@ -32,7 +32,7 @@ function* fetchSignInSaga(action: auth.ActionType) {
     const message = error.response || 'Unknown'
     yield put(auth.signInFail(message));
     yield put(alertMsg.pushMessage({
-      message: CONSTANTS.MSG_SIGNIN_FAIL,
+      message: CONSTANTS.MSG_API_FAIL,
       category: 'error'
     }))
   }
@@ -66,7 +66,7 @@ function* fetchSignUpSaga(action: auth.ActionType) {
     const message = error.response || 'Unknown'
     yield put(auth.signUpFail(message));
     yield put(alertMsg.pushMessage({
-      message: CONSTANTS.MSG_SIGNUP_FAIL,
+      message: CONSTANTS.MSG_API_FAIL,
       category: 'error'
     }))
   }

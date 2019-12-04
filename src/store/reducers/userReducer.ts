@@ -12,7 +12,8 @@ const initialState = {
     popular: -1,
     quizcnt: -1,
     tags: [] as string[]
-  }
+  },
+  addTagModalOpen: false
 }
 
 export const reducer = (state = initialState, action: user.ActionType) => {
@@ -38,6 +39,16 @@ export const reducer = (state = initialState, action: user.ActionType) => {
       return {
         ...state,
         error: action.error
+      }
+    case user.ADD_TAG_MODAL_OPEN:
+      return {
+        ...state,
+        addTagModalOpen: true
+      }
+    case user.ADD_TAG_MODAL_CLOSE:
+      return {
+        ...state,
+        addTagModalOpen: false
       }
     default:
       return state

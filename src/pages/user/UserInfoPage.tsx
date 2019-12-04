@@ -1,6 +1,7 @@
 import React from 'react'
 
 import UserInfoContainer from '../../containers/user/UserInfoContainer';
+import AddTagDialogContainer from '../../containers/user/AddTagDialogContainer'
 import CommonTemplate from '../../components/CommonTemplate';
 
 interface Props {
@@ -14,7 +15,10 @@ interface Props {
 const UserInfoPage = ({ match }: Props) => {
   return (
     <CommonTemplate maxWidth='lg'>
-      <UserInfoContainer userId={match.params.userId} />
+      <>
+        <UserInfoContainer userId={match.params.userId} />
+        <AddTagDialogContainer />
+      </>
     </CommonTemplate>
   )
 }

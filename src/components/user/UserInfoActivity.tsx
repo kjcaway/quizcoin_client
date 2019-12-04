@@ -124,6 +124,7 @@ function UserInfoActivity(props: any) {
               variant="outlined"
               color="primary"
               className={classes.btnMake}
+              onClick={props.handleAddTagClick}
             >
               태그 추가
               <AddIcon className={classes.rightIcon} />
