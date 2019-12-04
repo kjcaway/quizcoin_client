@@ -3,6 +3,7 @@ import defaultClient from "../../lib/defaultClient";
 import * as auth from "../actions/authActions";
 import * as alertMsg from "../actions/alertMsgActions";
 import * as CONSTANTS from "../../lib/constants";
+import { history } from '../configureStore';
 
 function* fetchSignInSaga(action: auth.ActionType) {
   try {
@@ -19,7 +20,7 @@ function* fetchSignInSaga(action: auth.ActionType) {
         category: 'success'
       }))
       yield delay(1000);
-      window.location.href = "/"
+      yield call(() => history.push("/"))
     } else {
       yield put(auth.signInFail('No Access Token.'));
       yield put(alertMsg.pushMessage({
@@ -52,8 +53,8 @@ function* fetchSignUpSaga(action: auth.ActionType) {
         message: CONSTANTS.MSG_SIGNUP_SUCCESS,
         category: 'success'
       }))
-      yield delay(1000);
-      window.location.href = "/signin"
+      yield delay(2000);
+      yield call(() => history.push("/signin"))
     } else {
       yield put(auth.signUpFail('Unknown'));
       yield put(alertMsg.pushMessage({
