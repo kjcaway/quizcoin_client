@@ -5,8 +5,15 @@ export const GET_USER_INFO_FAIL = 'GET_USER_INFO_FAIL';
 export const ADD_TAG_MODAL_OPEN = "ADD_TAG_MODAL_OPEN";
 export const ADD_TAG_MODAL_CLOSE = "ADD_TAG_MODAL_CLOSE";
 
+export const SET_TAG = 'SET_TAG';
+export const SET_TAG_SUCCESS = 'SET_TAG_SUCCESS';
+
 export interface UserInfoPayload {
   userId: string;
+}
+
+export interface TagPayload {
+  tagName: string;
 }
 
 export interface UserInfoData {
@@ -21,8 +28,8 @@ export interface UserInfoData {
 
 export interface ActionType {
   type: string;
-  payload: UserInfoPayload;
-  data?: UserInfoData;
+  payload: UserInfoPayload & TagPayload;
+  data?: UserInfoData & string;
   error?: any;
 }
 
@@ -47,13 +54,26 @@ export function getUserInfoFail(error: any) {
   }
 }
 
-export function addTagModalOpen(){
+export function addTagModalOpen() {
   return {
     type: ADD_TAG_MODAL_OPEN
   }
 }
-export function addTagModalClose(){
+export function addTagModalClose() {
   return {
     type: ADD_TAG_MODAL_CLOSE
+  }
+}
+
+export function setTag(payload: TagPayload) {
+  return {
+    type: SET_TAG,
+    payload
+  }
+}
+export function setTagSuccess(data: string) {
+  return {
+    type: SET_TAG_SUCCESS,
+    data
   }
 }

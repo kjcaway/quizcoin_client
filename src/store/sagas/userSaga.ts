@@ -6,20 +6,12 @@ import * as CONSTANTS from "../../lib/constants";
 
 function* fetchUserInfo(action: user.ActionType) {
   try {
-    const {userId} = action.payload
+    const { userId } = action.payload
     const response = yield call([defaultClient, 'post'], '/api/user/', {
       userId
     });
-    const {data} = response;
-    if (response.status === 200 && data.length === 1) {
-      yield put(user.getUserInfoSuccess(data[0]));
-    } else {
-      yield put(user.getUserInfoFail(response));
-      yield put(alertMsg.pushMessage({
-        message: CONSTANTS.MSG_NO_USER,
-        category: 'error'
-      }))
-    }
+    const { data } = response;
+    yield put(user.getUserInfoSuccess(data[0]));
   } catch (error) {
     yield put(user.getUserInfoFail(error));
     yield put(alertMsg.pushMessage({
@@ -29,7 +21,24 @@ function* fetchUserInfo(action: user.ActionType) {
   }
 }
 
+function* fetchSetTag(action: user.ActionType) {
+  try {
+    const { tagName } = action.payload
+    yield call([defaultClient, 'post'], '/api/user/tag', {
+      tagName
+    });
+    yield put(user.setTagSuccess(tagName));
+    yield put(user.addTagModalClose());
+  } catch (error) {
+    yield put(alertMsg.pushMessage({
+      message: CONSTANTS.MSG_NEED_LOGIN,
+      category: 'error'
+    }))
+    yield put(user.addTagModalClose());
+  }
+}
 
 export default function* watchUser() {
   yield takeEvery(user.GET_USER_INFO, fetchUserInfo);
+  yield takeEvery(user.SET_TAG, fetchSetTag);
 }

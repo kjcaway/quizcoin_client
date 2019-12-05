@@ -50,6 +50,14 @@ export const reducer = (state = initialState, action: user.ActionType) => {
         ...state,
         addTagModalOpen: false
       }
+    case user.SET_TAG:
+      return {
+        ...state,
+      }
+    case user.SET_TAG_SUCCESS:
+        return produce(state, draft => {
+          draft.data.tags.push(_.get(action, 'data', ''))
+        })
     default:
       return state
   }

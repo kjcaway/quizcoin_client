@@ -15,7 +15,6 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     card: {
       display: 'flex',
-
     },
     content: {
       flex: '1 0 auto',
@@ -104,21 +103,19 @@ function UserInfoActivity(props: any) {
             <Typography component="h4">
               태그 :
             </Typography>
-            <Typography className={classes.textValue}>
-              {props.tags.map((tag: string, idx: number) => {
-                let icon;
+            {props.tags.map((tag: string, idx: number) => {
+              let icon = <div></div>;
 
-                return (
-                  <Chip
-                    key={idx}
-                    icon={icon}
-                    label={tag}
-                    onDelete={undefined}
-                    className={classes.chip}
-                  />
-                );
-              })}
-            </Typography>
+              return (
+                <Chip
+                  key={idx}
+                  icon={icon}
+                  label={tag}
+                  onDelete={() => null}
+                  className={classes.chip}
+                />
+              );
+            })}
             <Button
               type="button"
               variant="outlined"

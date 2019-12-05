@@ -10,6 +10,7 @@ import * as MSG from '../../lib/constants'
 interface Props {
   modalOpen: boolean;
   closeAddTagDlg: () => void;
+  setTag: (payload: user.TagPayload) => void;
 }
 interface State {
   [key: string]: any
@@ -56,7 +57,7 @@ export class AddTagDialogContainer extends Component<Props, State> {
   handleSubmit = (e: any) => {
     e.preventDefault();
     if (!this.state.validErrors.inputTag) {
-      //! fetch 코드 추가 
+      this.props.setTag({tagName : this.state.inputTag})
     } else {
       alert('입력 폼이 유효하지않습니다.')
     }
@@ -87,6 +88,9 @@ export default connect(
     return {
       closeAddTagDlg: () => {
         dispatch({ type: user.ADD_TAG_MODAL_CLOSE })
+      },
+      setTag: (payload: user.TagPayload) => {
+        dispatch({ type: user.SET_TAG, payload : payload })
       }
     }
   }

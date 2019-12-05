@@ -12,3 +12,4 @@ export const MSG_HELP_NAME = "2자 이상 이름을 입력하세요."
 export const MSG_HELP_TAG = "2자 이상 태그를 입력하세요."
 
 export const MSG_NO_USER = "존재하지않는 사용자입니다."
+export const MSG_NEED_LOGIN = "로그인이 필요합니다."

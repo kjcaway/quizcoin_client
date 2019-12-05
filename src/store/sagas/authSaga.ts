@@ -29,10 +29,9 @@ function* fetchSignInSaga(action: auth.ActionType) {
       }))
     }
   } catch (error) {
-    const message = error.response || 'Unknown'
-    yield put(auth.signInFail(message));
+    yield put(auth.signInFail(error));
     yield put(alertMsg.pushMessage({
-      message: CONSTANTS.MSG_API_FAIL,
+      message: CONSTANTS.MSG_SIGNIN_FAIL,
       category: 'error'
     }))
   }
@@ -63,10 +62,9 @@ function* fetchSignUpSaga(action: auth.ActionType) {
       }))
     }
   } catch (error) {
-    const message = error.response || 'Unknown'
-    yield put(auth.signUpFail(message));
+    yield put(auth.signUpFail(error));
     yield put(alertMsg.pushMessage({
-      message: CONSTANTS.MSG_API_FAIL,
+      message: CONSTANTS.MSG_SIGNUP_FAIL,
       category: 'error'
     }))
   }
