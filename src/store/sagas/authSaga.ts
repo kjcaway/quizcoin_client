@@ -73,6 +73,7 @@ function* fetchSignUpSaga(action: auth.ActionType) {
 function* fetchCheckTokenSaga(action: auth.ActionType) {
   try {
     const response = yield call([defaultClient, 'post'], '/api/user/checkToken');
+
     if (response.status === 200) {
       yield put(auth.checkTokenSuccess());
     } else {

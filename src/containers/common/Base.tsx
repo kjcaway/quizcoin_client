@@ -14,7 +14,6 @@ class Base extends Component<Props> {
     }
     // checkToken valid action need!
     this.props.checkToken();
-
   }
 
   componentDidMount() {

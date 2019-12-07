@@ -14,6 +14,7 @@ import LoginPage from './pages/auth/LoginPage';
 import JoinPage from './pages/auth/JoinPage';
 import UserInfoPage from './pages/user/UserInfoPage';
 import NotFound from './pages/errors/NotFound';
+import ProtectedRoute from './components/hoc/ProtectedRoute';
 
 const App: React.FC = () => {
   return (
@@ -22,8 +23,7 @@ const App: React.FC = () => {
         <Route exact path="/" component={() => <div>Hellod</div>}></Route>
         <Route path="/signin" component={LoginPage}></Route>
         <Route path="/signup" component={JoinPage}></Route>
-        <Route exact path="/@:userId" component={UserInfoPage}></Route>
-        <Route component={NotFound}></Route>
+        <ProtectedRoute exact path="/@:userId" component={UserInfoPage}></ProtectedRoute>
 
         <Route exact path="/temp/" component={MainPage}></Route>
         <Route path="/temp/signin" component={SignInPage}></Route>
@@ -31,6 +31,7 @@ const App: React.FC = () => {
         <Route path="/temp/:userId" component={MyPage}></Route>
         <Route path="/temp/:userId/list" component={MyPageQuizList}></Route>
         <Route path="/temp/:userId/create" component={CreateQuiz}></Route>
+        <Route component={NotFound}></Route>
       </Switch>
       <Base />
     </Router>

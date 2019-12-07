@@ -1,7 +1,9 @@
 import * as auth from '../actions/authActions'
+import _ from 'lodash';
 
 const initialState = {
-  isLogged: false
+  isLogged: false,
+  userId: ''
 }
 
 export const reducer = (state = initialState, action: auth.ActionType) => {
@@ -15,7 +17,7 @@ export const reducer = (state = initialState, action: auth.ActionType) => {
       return {
         ...state,
         isLogged: true,
-        data: action.data
+        userId: _.get(action, 'data.userId', '')
       }
     case auth.SIGNIN_FAIL:
       return {
