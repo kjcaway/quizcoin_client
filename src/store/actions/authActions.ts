@@ -27,6 +27,10 @@ export interface SignInData {
   data: {};
 }
 
+export interface CheckTokenData {
+  tokenInfo: {};
+}
+
 export interface ActionType {
   type: string;
   payload: SignInPayload & SignUpPayload;
@@ -94,9 +98,10 @@ export function checkToken() {
   }
 }
 
-export function checkTokenSuccess() {
+export function checkTokenSuccess(data: any) {
   return {
-    type: CHECK_TOKEN_SUCCESS
+    type: CHECK_TOKEN_SUCCESS,
+    data: data
   }
 }
 

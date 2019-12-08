@@ -2,6 +2,7 @@ import * as auth from '../actions/authActions'
 import _ from 'lodash';
 
 const initialState = {
+  isCheckingToken: true,
   isLogged: false,
   userId: ''
 }
@@ -34,6 +35,7 @@ export const reducer = (state = initialState, action: auth.ActionType) => {
       return {
         ...state,
         isLogged: false,
+        userId: ''
       }
     case auth.SIGNUP:
       return {
@@ -54,16 +56,20 @@ export const reducer = (state = initialState, action: auth.ActionType) => {
     case auth.CHECK_TOKEN:
       return {
         ...state,
+        isCheckingToken: true
       }
     case auth.CHECK_TOKEN_SUCCESS:
       return {
         ...state,
-        isLogged: true
+        isLogged: true,
+        isCheckingToken: false,
+        userId: _.get(action, 'data.tokenInfo.userId', '')
       }
     case auth.CHECK_TOKEN_FAIL:
       return {
         ...state,
         isLogged: false,
+        isCheckingToken: false
       }
     default:
       return state;

@@ -13,6 +13,10 @@ function* fetchSignInSaga(action: auth.ActionType) {
       password
     });
     if (data.token) {
+      /**
+       * 로그인 성공 시
+       * 토큰저장 -> 메시지 출력 -> 1초 대기 -> index 라우팅
+       */
       localStorage.setItem('access_token', data.token);
       yield put(auth.signInSuccess(data));
       yield put(alertMsg.pushMessage({
@@ -75,7 +79,15 @@ function* fetchCheckTokenSaga(action: auth.ActionType) {
     const response = yield call([defaultClient, 'post'], '/api/user/checkToken');
 
     if (response.status === 200) {
-      yield put(auth.checkTokenSuccess());
+      yield put(auth.checkTokenSuccess(response.data));
+      yield call(() => {
+        //todo 로그인 상태에서 로그인페이지 또는 회원가입 페이지 접근시 index로 라우팅
+        const pathname = history.location.pathname;
+
+        if(pathname === '/signin' || pathname === '/signup'){
+          history.push("/");
+        }
+      })
     } else {
       localStorage.removeItem('access_token');
       yield put(auth.checkTokenFail());
