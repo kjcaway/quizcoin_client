@@ -50,21 +50,13 @@ function* fetchSignUpSaga(action: auth.ActionType) {
       userName
     });
 
-    if (data.status === 'Success') {
-      yield put(auth.signUpSuccess(data));
-      yield put(alertMsg.pushMessage({
-        message: CONSTANTS.MSG_SIGNUP_SUCCESS,
-        category: 'success'
-      }))
-      yield delay(2000);
-      yield call(() => history.push("/signin"))
-    } else {
-      yield put(auth.signUpFail('Unknown'));
-      yield put(alertMsg.pushMessage({
-        message: CONSTANTS.MSG_SIGNUP_FAIL,
-        category: 'error'
-      }))
-    }
+    yield put(auth.signUpSuccess(data));
+    yield put(alertMsg.pushMessage({
+      message: CONSTANTS.MSG_SIGNUP_SUCCESS,
+      category: 'success'
+    }))
+    yield delay(2000);
+    yield call(() => history.push("/signin"))
   } catch (error) {
     yield put(auth.signUpFail(error));
     yield put(alertMsg.pushMessage({

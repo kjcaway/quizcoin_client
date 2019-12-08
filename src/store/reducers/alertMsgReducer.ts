@@ -23,8 +23,6 @@ export const reducer = (state = initialState, action: alertMsg.AlertMessageActio
         category: '',
       }
     default:
-      return {
-        ...state
-      }
+      return state
   }
 }

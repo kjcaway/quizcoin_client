@@ -3,6 +3,7 @@ import defaultClient from "../../lib/defaultClient";
 import * as user from "../actions/userActions";
 import * as alertMsg from "../actions/alertMsgActions";
 import * as CONSTANTS from "../../lib/constants";
+import { history } from '../configureStore';
 
 function* fetchUserInfo(action: user.ActionType) {
   try {
@@ -35,6 +36,8 @@ function* fetchSetTag(action: user.ActionType) {
       category: 'error'
     }))
     yield put(user.addTagModalClose());
+    yield call(() => { localStorage.removeItem('access_token'); })
+    yield call(() => { history.replace("/signin") })
   }
 }
 

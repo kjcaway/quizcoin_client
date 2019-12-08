@@ -10,6 +10,7 @@ import MyPageQuizList from './pages/temp/MyPageQuizListTemp';
 import CreateQuiz from './pages/temp/CreateQuizTemp';
 
 import Base from './containers/common/Base';
+import UsersPage from './pages/main/UsersPage'
 import LoginPage from './pages/auth/LoginPage';
 import JoinPage from './pages/auth/JoinPage';
 import UserInfoPage from './pages/user/UserInfoPage';
@@ -20,7 +21,7 @@ const App: React.FC = () => {
   return (
     <Router history={history}>
       <Switch>
-        <Route exact path="/" component={() => <div>Hellod</div>}></Route>
+        <Route exact path="/" component={UsersPage}></Route>
         <Route path="/signin" component={LoginPage}></Route>
         <Route path="/signup" component={JoinPage}></Route>
         <ProtectedRoute exact path="/@:userId" component={UserInfoPage}></ProtectedRoute>
