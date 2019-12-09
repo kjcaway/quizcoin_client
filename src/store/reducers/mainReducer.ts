@@ -1,6 +1,7 @@
 import * as main from '../actions/mainActions';
 import { produce } from 'immer';
 import _ from 'lodash';
+import {defaultToProfile} from '../../lib/utils';
 
 const initialState = {
   status : 'INIT',
@@ -17,8 +18,14 @@ export const reducer = (state = initialState, action: main.ActionType) => {
       }
     case main.GET_USERS_SUCCESS:
       return produce(state, draft => {
+        let userList = action.data;
+        userList.forEach((user: any) => {
+          user.userId = user.user_id;
+          user.tags = user.tags.split(',').filter((str: string) => str !== '');
+          user.profile = defaultToProfile(user.profile)
+        });
         draft.status = 'SUCCESS'
-        draft.userList = action.data
+        draft.userList = userList
       })
     case main.GET_USERS_FAIL:
       return {

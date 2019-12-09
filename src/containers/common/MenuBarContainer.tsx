@@ -6,8 +6,21 @@ import * as auth from '../../store/actions/authActions';
 
 interface Props {
   isLogged: boolean;
+  userId: string;
   logout: () => void;
 }
+
+const menus = [
+  {
+    name: '출제자들',
+    path: '/'
+  },
+  {
+    name: '최근퀴즈',
+    path: '/latest'
+  },
+]
+
 class MenuBarContainer extends Component<Props>{
   handleLogin = () => {
     history.push('/signin')
@@ -23,6 +36,8 @@ class MenuBarContainer extends Component<Props>{
         handleLogin={this.handleLogin}
         handleLogout={this.handleLogout}
         isLogged={isLogged}
+        menus={menus}
+        userId={this.props.userId}
       />
     )
   }
@@ -31,7 +46,8 @@ class MenuBarContainer extends Component<Props>{
 export default connect(
   (state: any) => {
     return {
-      isLogged: state.auth.isLogged
+      isLogged: state.auth.isLogged,
+      userId: state.auth.userId || 'anonymous'
     }
   },
   (dispatch: any) => {

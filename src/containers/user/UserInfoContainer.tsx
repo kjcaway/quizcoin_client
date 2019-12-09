@@ -4,7 +4,8 @@ import * as user from '../../store/actions/userActions'
 import UserInfoProfile from '../../components/user/UserInfoProfile'
 import UserInfoActivity from '../../components/user/UserInfoActivity'
 import { convertToFromNow } from '../../lib/utils';
-import defaultImage from '../../static/images/default_profile.png';
+import {defaultToProfile} from '../../lib/utils';
+
 
 interface Props {
   userId: any;
@@ -22,21 +23,13 @@ export class UserInfoContainer extends Component<Props, State> {
     })
   }
 
-  defaultToProfile = (path: string) => {
-    if (path === '') {
-      return defaultImage
-    } else {
-      return path;
-    }
-  }
-
   render() {
     return (
       <>
         <UserInfoProfile
           userId={this.props.userInfo.user_id}
           name={this.props.userInfo.name}
-          profile={this.defaultToProfile(this.props.userInfo.profile)}
+          profile={defaultToProfile(this.props.userInfo.profile)}
           createdTime={convertToFromNow(this.props.userInfo.created_time)}
         />
         <UserInfoActivity

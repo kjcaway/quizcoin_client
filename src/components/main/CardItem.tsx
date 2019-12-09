@@ -62,7 +62,7 @@ function CardItem(props: Props) {
     <Card className={classes.card}>
       <CardMedia
         className={classes.cardMedia}
-        image="https://source.unsplash.com/random"
+        image={props.profile}
         title="Image title"
       />
       <CardContent className={classes.cardContent}>
@@ -88,12 +88,11 @@ function CardItem(props: Props) {
       </CardContent>
       <div className={classes.tags}>
         {
-          props.tags
-          // .map(tag => {
-          //   return (
-          //     <Chip size="small" label={tag} />
-          //   )
-          // })
+          props.tags.map((tag, idx) => {
+            return (
+              <Chip key={idx} size="small" label={tag} />
+            )
+          })
         }
       </div>
       <CardActions>

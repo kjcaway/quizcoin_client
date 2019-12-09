@@ -27,11 +27,11 @@ const App: React.FC = () => {
         <ProtectedRoute exact path="/@:userId" component={UserInfoPage}></ProtectedRoute>
 
         <Route exact path="/temp/" component={MainPage}></Route>
-        <Route path="/temp/signin" component={SignInPage}></Route>
-        <Route path="/temp/signup" component={SignUpPage}></Route>
-        <Route path="/temp/:userId" component={MyPage}></Route>
-        <Route path="/temp/:userId/list" component={MyPageQuizList}></Route>
-        <Route path="/temp/:userId/create" component={CreateQuiz}></Route>
+        <Route exact path="/temp/signin" component={SignInPage}></Route>
+        <Route exact path="/temp/signup" component={SignUpPage}></Route>
+        <Route exact path="/temp/:userId" component={MyPage}></Route>
+        <Route exact path="/temp/:userId/list" component={MyPageQuizList}></Route>
+        <Route exact path="/temp/:userId/create" component={CreateQuiz}></Route>
         <Route component={NotFound}></Route>
       </Switch>
       <Base />

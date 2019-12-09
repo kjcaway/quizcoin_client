@@ -44,7 +44,6 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const MenuBar = (props: any) => {
   const classes = useStyles();
-  const preventDefault = (event: React.SyntheticEvent) => event.preventDefault();
   const isDesktop = useMediaQuery('(min-width:600px)');
 
   return (
@@ -58,13 +57,16 @@ const MenuBar = (props: any) => {
             {isDesktop && 'QuizCoin'}
           </Typography>
           <div className={classes.linkRoot}>
-            <Link href="#" onClick={preventDefault} color="inherit" className={isDesktop?classes.link:classes.linkM}>
-              모아보기
-            </Link>
-            <Link href="#" onClick={preventDefault} color="inherit" className={isDesktop?classes.link:classes.linkM}>
-              최근퀴즈
-            </Link>
-            <Link href="#" onClick={preventDefault} color="inherit" className={isDesktop?classes.link:classes.linkM}>
+            {
+              props.menus.map((obj: {path: string; name: string}, idx: number) => {
+                return (
+                <Link key={idx} href={obj.path} color="inherit" className={isDesktop?classes.link:classes.linkM}>
+                  {obj.name}
+                </Link>
+                )
+              })
+            }
+            <Link href={'/@' + props.userId} color="inherit" className={isDesktop?classes.link:classes.linkM}>
               나의점수
             </Link>
           </div>

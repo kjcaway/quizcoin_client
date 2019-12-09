@@ -13,7 +13,7 @@ const initialState = {
     quizcnt: -1,
     tags: [] as string[]
   },
-  addTagModalOpen: false
+  addTagModalOpen: false,
 }
 
 export const reducer = (state = initialState, action: user.ActionType) => {
