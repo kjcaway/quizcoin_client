@@ -2,7 +2,7 @@ import React from 'react'
 import { Grid } from '@material-ui/core'
 import TextField from '@material-ui/core/TextField';
 
-function AnswerForm() {
+function AnswerForm(props: any) {
   return (
     <Grid item xs={6}>
       <TextField
@@ -14,6 +14,7 @@ function AnswerForm() {
         label="정답"
         name="answer"
         autoComplete="answer"
+        onChange={props.handleInputChange}
       />
     </Grid>
   )

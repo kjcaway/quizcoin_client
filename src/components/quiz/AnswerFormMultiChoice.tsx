@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme: Theme) =>
     }
   }),
 );
-function AnswerFormMultiChoice() {
+function AnswerFormMultiChoice(props: any) {
   const classes = useStyles();
 
   return (

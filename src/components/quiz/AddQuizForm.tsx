@@ -25,8 +25,16 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
+interface Props {
+  question: string;
+  answer: string;
+  questionType: 1 | 2;
+  handleSubmit: () => void;
+  handleInputChange: (e: any) => void;
+  handleClose: () => void;
+}
 
-function AddQuizForm() {
+function AddQuizForm(props: Props) {
   const classes = useStyles();
 
   return (
@@ -38,11 +46,12 @@ function AddQuizForm() {
             <Select
               labelId="target-label"
               id="target"
-              value={undefined}
-              onChange={undefined}
+              value={props.questionType}
+              name="questionType"
+              onChange={props.handleInputChange}
             >
-              <MenuItem value={'1'}>객관식</MenuItem>
-              <MenuItem value={'2'}>주관식</MenuItem>
+              <MenuItem value={1}>객관식</MenuItem>
+              <MenuItem value={2}>주관식</MenuItem>
             </Select>
             <FormHelperText>필수입력</FormHelperText>
           </FormControl>
@@ -56,31 +65,40 @@ function AddQuizForm() {
             id="question"
             label="문제"
             name="question"
+            value={props.question}
+            onChange={props.handleInputChange}
             autoComplete="question"
           />
         </Grid>
-        <AnswerFormMultiChoice />
-        
-
+        {
+          props.questionType === 1?
+          <AnswerFormMultiChoice 
+            handleInputChange={props.handleInputChange}
+          />
+          :
+          <AnswerForm 
+            handleInputChange={props.handleInputChange}
+          />
+        }
       </Grid>
       <div className={classes.btnDiv}>
         <Button
-          type="submit"
+          type="button"
           fullWidth
           variant="contained"
           color="primary"
           className={classes.btnDivBtn}
+          onClick={props.handleSubmit}
         >
           만들기
         </Button>
-
         <Button
           type="button"
           fullWidth
           variant="outlined"
           color="primary"
           className={classes.btnDivBtn}
-
+          onClick={props.handleClose}
         >
           취소
         </Button>

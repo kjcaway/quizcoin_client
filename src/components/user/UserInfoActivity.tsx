@@ -78,6 +78,7 @@ function UserInfoActivity(props: any) {
               variant="outlined"
               color="primary"
               className={classes.btnMake}
+              onClick={props.handleAddQuizClick}
             >
               문제 만들기
               <AddIcon className={classes.rightIcon} />

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import * as user from '../../store/actions/userActions'
+import * as quiz from '../../store/actions/quizActions'
 import UserInfoProfile from '../../components/user/UserInfoProfile'
 import UserInfoActivity from '../../components/user/UserInfoActivity'
 import { convertToFromNow } from '../../lib/utils';
@@ -12,6 +13,7 @@ interface Props {
   userInfo: any;
   fetchUserInfo: (payload: user.UserInfoPayload) => void;
   openAddTagDlg: () => void;
+  openAddQuizDlg: () => void;
 }
 interface State {
 }
@@ -38,6 +40,7 @@ export class UserInfoContainer extends Component<Props, State> {
           popular={this.props.userInfo.popular}
           tags={this.props.userInfo.tags}
           handleAddTagClick={this.props.openAddTagDlg}
+          handleAddQuizClick={this.props.openAddQuizDlg}
         />
       </>
     );
@@ -58,6 +61,9 @@ export default connect(
       },
       openAddTagDlg: () => {
         dispatch({ type: user.ADD_TAG_MODAL_OPEN })
+      },
+      openAddQuizDlg: () => {
+        dispatch({ type: quiz.OPEN_QUIZ_MODAL})
       }
     }
   }

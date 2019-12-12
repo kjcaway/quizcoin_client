@@ -5,9 +5,19 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import { Typography } from '@material-ui/core';
 import AddQuizForm from './AddQuizForm';
 
-function AddQuizDialog() {
+interface Props {
+  open: boolean;
+  question: string;
+  answer: string;
+  questionType: 1 | 2;
+  handleSubmit: () => void;
+  handleInputChange: (e: any) => void;
+  handleClose: () => void;
+}
+
+function AddQuizDialog(props: Props) {
   return (
-    <Dialog open={true} onClose={undefined} aria-labelledby="form-title">
+    <Dialog open={props.open} aria-labelledby="form-title">
       <DialogTitle id="form-title">
         <Typography component="h2" variant="h2" align="center" color="textPrimary" gutterBottom>
           퀴즈 생성
@@ -17,7 +27,14 @@ function AddQuizDialog() {
         </Typography>
       </DialogTitle>
       <DialogContent>
-        <AddQuizForm />
+        <AddQuizForm 
+          question={props.question}
+          answer={props.answer}
+          questionType={props.questionType}
+          handleSubmit={props.handleSubmit}
+          handleInputChange={props.handleInputChange}
+          handleClose={props.handleClose}
+        />
       </DialogContent>
     </Dialog>
   )
