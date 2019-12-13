@@ -4,10 +4,12 @@ import { useSelector, shallowEqual, useDispatch } from 'react-redux'
 import * as quiz from '../../store/actions/quizActions'
 
 function AddQuizDialogContainer() {
-  const modalOpen = useSelector((store: any) => store.quiz.modalOpen, shallowEqual)
-  const question = useSelector((store: any) => store.quiz.question, shallowEqual)
-  const answer = useSelector((store: any) => store.quiz.answer, shallowEqual)
-  const questionType = useSelector((store: any) => store.quiz.questionType, shallowEqual)
+  const modalOpen = useSelector((store: any) => store.quiz.modalOpen)
+  const question = useSelector((store: any) => store.quiz.question)
+  const answer = useSelector((store: any) => store.quiz.answer)
+  const questionType = useSelector((store: any) => store.quiz.questionType)
+  const multiAnswerSheet = useSelector((store: any) => store.quiz.multiAnswerSheet)
+  const multiAnswerItems = useSelector((store: any) => store.quiz.multiAnswerItems, shallowEqual)
   const dispatch = useDispatch();
 
   const createQuiz = () => {
@@ -25,25 +27,51 @@ function AddQuizDialogContainer() {
 
   const updateInput = (event: any) => {
     const target = event.target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const value = target.value;
     const name = target.name;
 
-    dispatch({ type: quiz.UPDATE_INPUT, 
-      payload: {
-        key: name,
-        value: value
-      } });
+    if (name === 'chkItem') {
+      dispatch({
+        type: quiz.UPDATE_INPUT,
+        payload: {
+          key: "answer",
+          value: value
+        }
+      });
+
+    } else {
+      dispatch({
+        type: quiz.UPDATE_INPUT,
+        payload: {
+          key: name,
+          value: value
+        }
+      });
+
+    }
   };
 
+  const addItem = () => {
+    dispatch({ type: quiz.ADD_QUIZ_ITEM, payload: multiAnswerSheet });
+  }
+
+  const deleteItem = () => {
+    dispatch({ type: quiz.DEL_QUIZ_ITEM, payload: answer });
+  }
+
   return (
-    <AddQuizDialog 
+    <AddQuizDialog
       open={modalOpen}
       question={question}
       answer={answer}
       questionType={questionType}
+      multiAnswerSheet={multiAnswerSheet}
+      multiAnswerItems={multiAnswerItems || []}
       handleSubmit={createQuiz}
       handleInputChange={updateInput}
       handleClose={close}
+      handleAddItemClick={addItem}
+      handleDelItemClick={deleteItem}
     />
   )
 }

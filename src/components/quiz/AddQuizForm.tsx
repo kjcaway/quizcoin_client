@@ -25,16 +25,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-interface Props {
-  question: string;
-  answer: string;
-  questionType: 1 | 2;
-  handleSubmit: () => void;
-  handleInputChange: (e: any) => void;
-  handleClose: () => void;
-}
-
-function AddQuizForm(props: Props) {
+function AddQuizForm(props: any) {
   const classes = useStyles();
 
   return (
@@ -74,10 +65,16 @@ function AddQuizForm(props: Props) {
           props.questionType === 1?
           <AnswerFormMultiChoice 
             handleInputChange={props.handleInputChange}
+            multiAnswerSheet={props.multiAnswerSheet}
+            multiAnswerItems={props.multiAnswerItems}
+            handleAddItemClick={props.handleAddItemClick}
+            handleDelItemClick={props.handleDelItemClick}
+            answer={props.answer}
           />
           :
           <AnswerForm 
             handleInputChange={props.handleInputChange}
+            answer={props.answer}
           />
         }
       </Grid>

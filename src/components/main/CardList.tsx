@@ -28,6 +28,7 @@ function CardList(props: Props) {
             profile={user.profile}
             score={user.score}
             popular={user.popular}
+            quizcnt={user.quizcnt}
             tags={user.tags}
           />
         </Grid>

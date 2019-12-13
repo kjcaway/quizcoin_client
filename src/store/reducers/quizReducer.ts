@@ -10,7 +10,10 @@ const initialState: State = {
   question : '',
   answer: '',
   questionType : 1,
-  modalOpen: false
+  modalOpen: false,
+  multiAnswerSheet: '',
+  multiAnswerItems: [],
+  multiChecked : '',
 }
 
 export const reducer = (state = initialState, action: quiz.ActionType) => {
@@ -34,16 +37,31 @@ export const reducer = (state = initialState, action: quiz.ActionType) => {
       return produce(state, draft => {
         draft[key] = value;
       })
+    case quiz.INIT_INPUT:
+      return {
+        ...initialState,
+        modalOpen: true
+      }
+    case quiz.ADD_QUIZ_ITEM:
+      return produce(state, draft => {
+        draft.multiAnswerItems.push(action.payload);
+        draft.multiAnswerSheet = '';
+      })
+    case quiz.DEL_QUIZ_ITEM:
+      return produce(state, draft => {
+        draft.multiAnswerItems.splice(
+          draft.multiAnswerItems.findIndex((value:string) => value === _.get(action, 'payload', '')),
+          1
+        );
+        draft.anwser = '';
+      })
     case quiz.OPEN_QUIZ_MODAL:
       return {
         ...state,
         modalOpen: true
       }
     case quiz.CLOSE_QUIZ_MODAL:
-      return {
-        ...state,
-        modalOpen: false
-      }
+      return initialState
     default:
       return state
   }

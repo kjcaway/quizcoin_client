@@ -14,6 +14,7 @@ function AnswerForm(props: any) {
         label="정답"
         name="answer"
         autoComplete="answer"
+        value={props.answer}
         onChange={props.handleInputChange}
       />
     </Grid>

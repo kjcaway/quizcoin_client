@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme: Theme) =>
       display: 'flex',
       justifyContent: 'left',
       alignItems: 'baseline',
-      marginBottom: theme.spacing(2),
+      marginBottom: theme.spacing(1),
     },
     pointNum: {
       fontStyle: 'bold',
@@ -50,8 +50,8 @@ export interface Props {
   score : number;
   popular : number;
   profile : string;
+  quizcnt : number;
   tags : [];
-
 }
 
 function CardItem(props: Props) {
@@ -70,7 +70,7 @@ function CardItem(props: Props) {
           {props.name} ({props.userId})
         </Typography>
         <Box className={classes.pointLabel}>
-          <Typography component="h4">
+          <Typography component="h5">
             점수 :
           </Typography>
           <Typography className={classes.pointNum}>
@@ -78,11 +78,19 @@ function CardItem(props: Props) {
           </Typography>
         </Box>
         <Box className={classes.pointLabel}>
-          <Typography component="h4">
+          <Typography component="h5">
             인기도 :
           </Typography>
           <Typography className={classes.pointNum}>
             {props.popular}
+          </Typography>
+        </Box>
+        <Box className={classes.pointLabel}>
+          <Typography component="h5">
+            문제수 :
+          </Typography>
+          <Typography className={classes.pointNum}>
+            {props.quizcnt}
           </Typography>
         </Box>
       </CardContent>

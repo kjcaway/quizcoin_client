@@ -10,9 +10,13 @@ interface Props {
   question: string;
   answer: string;
   questionType: 1 | 2;
+  multiAnswerSheet: string;
+  multiAnswerItems: string[];
   handleSubmit: () => void;
   handleInputChange: (e: any) => void;
   handleClose: () => void;
+  handleAddItemClick: () => void;
+  handleDelItemClick: () => void;
 }
 
 function AddQuizDialog(props: Props) {
@@ -31,9 +35,13 @@ function AddQuizDialog(props: Props) {
           question={props.question}
           answer={props.answer}
           questionType={props.questionType}
+          multiAnswerSheet={props.multiAnswerSheet}
+          multiAnswerItems={props.multiAnswerItems}
           handleSubmit={props.handleSubmit}
           handleInputChange={props.handleInputChange}
           handleClose={props.handleClose}
+          handleAddItemClick={props.handleAddItemClick}
+          handleDelItemClick={props.handleDelItemClick}
         />
       </DialogContent>
     </Dialog>

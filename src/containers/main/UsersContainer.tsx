@@ -31,7 +31,7 @@ function UsersContainer() {
           <CardList
             users={userList}
           /> :
-          <div></div>
+          <ProgressCilrcle />
       }
     </>
   )

@@ -22,45 +22,58 @@ function AnswerFormMultiChoice(props: any) {
   const classes = useStyles();
 
   return (
-    <Grid container>
+    <Grid item container>
       <Grid item >
         <TextField
           variant="outlined"
           margin="normal"
           required
           fullWidth
-          id="item"
+          id="multiAnswerSheet"
           label="보기"
-          name="item"
-
+          name="multiAnswerSheet"
+          value={props.multiAnswerSheet}
+          onChange={props.handleInputChange}
         />
         <Button
           type="button"
           variant="outlined"
           color="primary"
+          onClick={props.handleAddItemClick}
         >
           추가
+        </Button>
+        <Button
+          type="button"
+          variant="outlined"
+          color="secondary"
+          onClick={props.handleDelItemClick}
+        >
+          삭제
         </Button>
         <Typography>* 체크한 항목이 정답이 됩니다.</Typography>
       </Grid>
       <Grid item xs={12} sm container>
         <Grid item xs={12} container direction="column">
           <List className={classes.listRoot}>
-            {[0, 1, 2, 3].map(value => {
-              const labelId = `checkbox-list-label-${value}`;
+            {props.multiAnswerItems.map((value:string) => {
+              const labelId = `chk-label-${value}`;
 
               return (
                 <ListItem key={value} role={undefined} dense button onClick={undefined}>
                   <ListItemIcon>
                     <Checkbox
                       edge="start"
-                      //checked={checked.indexOf(value) !== -1}
+                      checked={props.answer === value}
                       tabIndex={-1}
                       disableRipple
                       inputProps={{ 'aria-labelledby': labelId }}
+                      name="chkItem"
+                      value={value}
+                      onChange={props.handleInputChange}
                     />
                   </ListItemIcon>
-                  <ListItemText id={labelId} primary={`Item ${value + 1}`} />
+                  <ListItemText id={labelId} primary={value} />
                 </ListItem>
               );
             })}

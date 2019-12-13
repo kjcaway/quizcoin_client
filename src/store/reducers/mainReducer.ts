@@ -1,6 +1,5 @@
 import * as main from '../actions/mainActions';
 import { produce } from 'immer';
-import _ from 'lodash';
 import {defaultToProfile} from '../../lib/utils';
 
 const initialState = {
@@ -25,7 +24,7 @@ export const reducer = (state = initialState, action: main.ActionType) => {
           user.profile = defaultToProfile(user.profile)
         });
         draft.status = 'SUCCESS'
-        draft.userList = userList
+        draft.userList = userList.filter((user:any) => user.quizcnt > 0)
       })
     case main.GET_USERS_FAIL:
       return {

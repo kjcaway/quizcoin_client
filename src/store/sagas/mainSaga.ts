@@ -3,7 +3,6 @@ import defaultClient from "../../lib/defaultClient";
 import * as main from "../actions/mainActions";
 import * as alertMsg from "../actions/alertMsgActions";
 import * as CONSTANTS from "../../lib/constants";
-import { history } from '../configureStore';
 
 function* fetchUsers(action: main.ActionType) {
   try {
