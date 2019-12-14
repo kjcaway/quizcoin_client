@@ -2,6 +2,7 @@ import React from 'react'
 import AddQuizDialog from '../../components/quiz/AddQuizDialog'
 import { useSelector, shallowEqual, useDispatch } from 'react-redux'
 import * as quiz from '../../store/actions/quizActions'
+import _ from 'lodash';
 
 function AddQuizDialogContainer() {
   const modalOpen = useSelector((store: any) => store.quiz.modalOpen)
@@ -13,12 +14,19 @@ function AddQuizDialogContainer() {
   const dispatch = useDispatch();
 
   const createQuiz = () => {
-    const payload = {
-      question: question,
-      answer: answer,
-      questionType: questionType
+    if (_.isEmpty(question) || _.isEmpty(answer)) {
+      alert('입력값이 올바르지 않습니다.');
+    } else if (questionType === 1 && multiAnswerItems.lengh < 2) {
+      alert('보기는 2개이상 이어야합니다.');
+    } else {
+      const payload = {
+        question: question,
+        answer: answer,
+        questionType: questionType,
+        multiAnswerItems: multiAnswerItems
+      }
+      dispatch({ type: quiz.CREATE_QUIZ, payload: payload });
     }
-    dispatch({ type: quiz.CREATE_QUIZ, payload: payload });
   };
 
   const close = () => {
@@ -52,7 +60,9 @@ function AddQuizDialogContainer() {
   };
 
   const addItem = () => {
-    dispatch({ type: quiz.ADD_QUIZ_ITEM, payload: multiAnswerSheet });
+    if (!_.isEmpty(multiAnswerSheet)) {
+      dispatch({ type: quiz.ADD_QUIZ_ITEM, payload: multiAnswerSheet });
+    }
   }
 
   const deleteItem = () => {

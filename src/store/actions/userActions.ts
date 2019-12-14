@@ -8,6 +8,9 @@ export const ADD_TAG_MODAL_CLOSE = "ADD_TAG_MODAL_CLOSE";
 export const SET_TAG = 'SET_TAG';
 export const SET_TAG_SUCCESS = 'SET_TAG_SUCCESS';
 
+export const DEL_TAG = 'DEL_TAG';
+export const DEL_TAG_SUCCESS = 'DEL_TAG_SUCCESS';
+
 export interface UserInfoPayload {
   userId: string;
 }
@@ -74,6 +77,19 @@ export function setTag(payload: TagPayload) {
 export function setTagSuccess(data: string) {
   return {
     type: SET_TAG_SUCCESS,
+    data
+  }
+}
+
+export function delTag(payload: TagPayload) {
+  return {
+    type: DEL_TAG,
+    payload
+  }
+}
+export function delTagSuccess(data: string) {
+  return {
+    type: DEL_TAG_SUCCESS,
     data
   }
 }

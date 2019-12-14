@@ -58,6 +58,14 @@ export const reducer = (state = initialState, action: user.ActionType) => {
         return produce(state, draft => {
           draft.data.tags.push(_.get(action, 'data', ''))
         })
+    case user.DEL_TAG:
+      return {
+        ...state,
+      }
+    case user.DEL_TAG_SUCCESS:
+        return produce(state, draft => {
+          draft.data.tags = draft.data.tags.filter((str: string) => str !== _.get(action, 'data', ''))
+        })
     default:
       return state
   }

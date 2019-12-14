@@ -112,7 +112,7 @@ function UserInfoActivity(props: any) {
                   key={idx}
                   icon={icon}
                   label={tag}
-                  onDelete={() => null}
+                  onDelete={() => props.handleDeleteTagClick({tagName : tag})}
                   className={classes.chip}
                 />
               );

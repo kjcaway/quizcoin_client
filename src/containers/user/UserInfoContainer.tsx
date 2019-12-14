@@ -14,6 +14,7 @@ interface Props {
   fetchUserInfo: (payload: user.UserInfoPayload) => void;
   openAddTagDlg: () => void;
   openAddQuizDlg: () => void;
+  delTag: (payload: user.TagPayload) => void;
 }
 interface State {
 }
@@ -41,6 +42,7 @@ export class UserInfoContainer extends Component<Props, State> {
           tags={this.props.userInfo.tags}
           handleAddTagClick={this.props.openAddTagDlg}
           handleAddQuizClick={this.props.openAddQuizDlg}
+          handleDeleteTagClick={this.props.delTag}
         />
       </>
     );
@@ -64,6 +66,9 @@ export default connect(
       },
       openAddQuizDlg: () => {
         dispatch({ type: quiz.OPEN_QUIZ_MODAL})
+      },
+      delTag: (payload: user.TagPayload) => {
+        dispatch({ type: user.DEL_TAG, payload : payload })
       }
     }
   }

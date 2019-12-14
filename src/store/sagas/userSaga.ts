@@ -41,7 +41,25 @@ function* fetchSetTag(action: user.ActionType) {
   }
 }
 
+function* fetchDelTag(action: user.ActionType) {
+  try {
+    const { tagName } = action.payload
+    yield call([defaultClient, 'post'], '/api/user/removeTag', {
+      tagName
+    });
+    yield put(user.delTagSuccess(tagName));
+  } catch (error) {
+    yield put(alertMsg.pushMessage({
+      message: CONSTANTS.MSG_NEED_LOGIN,
+      category: 'error'
+    }))
+    yield call(() => { localStorage.removeItem('access_token'); })
+    yield call(() => { history.replace("/signin") })
+  }
+}
+
 export default function* watchUser() {
   yield takeEvery(user.GET_USER_INFO, fetchUserInfo);
   yield takeEvery(user.SET_TAG, fetchSetTag);
+  yield takeEvery(user.DEL_TAG, fetchDelTag);
 }

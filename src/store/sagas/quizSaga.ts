@@ -8,11 +8,12 @@ import * as CONSTANTS from "../../lib/constants";
 
 function* fetchCreateQuiz(action: quiz.ActionType) {
   try {
-    const { question, answer, questionType } = action.payload
+    const { question, answer, questionType, multiAnswerItems } = action.payload
     const response = yield call([defaultClient, 'post'], '/api/quiz/create', {
       question,
       answer,
-      questionType
+      questionType,
+      multiAnswerItems
     });
     const { data } = response;
     yield put(quiz.createQuizSuccess(data));

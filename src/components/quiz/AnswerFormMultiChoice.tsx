@@ -51,7 +51,7 @@ function AnswerFormMultiChoice(props: any) {
         >
           삭제
         </Button>
-        <Typography>* 체크한 항목이 정답이 됩니다.</Typography>
+        <Typography color='textSecondary'>* 체크한 항목이 정답이 됩니다.</Typography>
       </Grid>
       <Grid item xs={12} sm container>
         <Grid item xs={12} container direction="column">

@@ -14,6 +14,7 @@ export interface CreateQuizPayload {
   question: string;
   answer: string;
   questionType: number;
+  multiAnswerItems: string[];
 }
 
 export interface ActionType {

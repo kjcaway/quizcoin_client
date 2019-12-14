@@ -1,7 +1,7 @@
 import React from 'react'
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import { FormControl, InputLabel, Select, MenuItem, FormHelperText, Grid, TextField } from '@material-ui/core';
+import { FormControl, InputLabel, Select, MenuItem, Grid, TextField } from '@material-ui/core';
 import AnswerForm from './AnswerForm';
 import AnswerFormMultiChoice from './AnswerFormMultiChoice';
 
@@ -44,7 +44,6 @@ function AddQuizForm(props: any) {
               <MenuItem value={1}>객관식</MenuItem>
               <MenuItem value={2}>주관식</MenuItem>
             </Select>
-            <FormHelperText>필수입력</FormHelperText>
           </FormControl>
         </Grid>
         <Grid item xs={12}>
