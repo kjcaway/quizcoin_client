@@ -29,7 +29,22 @@ function* fetchCreateQuiz(action: quiz.ActionType) {
   }
 }
 
+function* fetchQuizList(action: quiz.ActionType){
+  try {
+    const { userId } = action.payload;
+    const response = yield call([defaultClient, 'post'], '/api/quiz/list', {
+      userId
+    });
+    const { data } = response;
+    yield put(quiz.getQuizListSuccess(data));
+  } catch (error) {
+    yield put(quiz.getQuizListFail(error));
+    
+  }
+}
+
 
 export default function* watchQuiz() {
   yield takeEvery(quiz.CREATE_QUIZ, fetchCreateQuiz);
+  yield takeEvery(quiz.GET_QUIZ_LIST, fetchQuizList);
 }

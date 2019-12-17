@@ -9,7 +9,7 @@ import {defaultToProfile} from '../../lib/utils';
 
 
 interface Props {
-  userId: any;
+  userId: string;
   userInfo: any;
   fetchUserInfo: (payload: user.UserInfoPayload) => void;
   openAddTagDlg: () => void;
@@ -53,7 +53,8 @@ export class UserInfoContainer extends Component<Props, State> {
 export default connect(
   (state: any) => {
     return {
-      userInfo: state.user.data || {}
+      userInfo: state.user.data || {},
+      userId: state.auth.userId
     }
   },
   (dispatch) => {

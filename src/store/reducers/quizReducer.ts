@@ -7,13 +7,14 @@ interface State {
 }
 
 const initialState: State = {
-  question : '',
+  question: '',
   answer: '',
-  questionType : 1,
+  questionType: 1,
   modalOpen: false,
   multiAnswerSheet: '',
   multiAnswerItems: [],
-  multiChecked : '',
+  multiChecked: '',
+  quizList: []
 }
 
 export const reducer = (state = initialState, action: quiz.ActionType) => {
@@ -33,7 +34,7 @@ export const reducer = (state = initialState, action: quiz.ActionType) => {
         ...state,
       }
     case quiz.UPDATE_INPUT:
-      const {key, value} = action.payload;
+      const { key, value } = action.payload;
       return produce(state, draft => {
         draft[key] = value;
       })
@@ -50,7 +51,7 @@ export const reducer = (state = initialState, action: quiz.ActionType) => {
     case quiz.DEL_QUIZ_ITEM:
       return produce(state, draft => {
         draft.multiAnswerItems.splice(
-          draft.multiAnswerItems.findIndex((value:string) => value === _.get(action, 'payload', '')),
+          draft.multiAnswerItems.findIndex((value: string) => value === _.get(action, 'payload', '')),
           1
         );
         draft.anwser = '';
@@ -61,7 +62,20 @@ export const reducer = (state = initialState, action: quiz.ActionType) => {
         modalOpen: true
       }
     case quiz.CLOSE_QUIZ_MODAL:
-      return initialState
+      return initialState;
+    case quiz.GET_QUIZ_LIST:
+      return {
+        ...state,
+        payload: action.payload
+      }
+    case quiz.GET_QUIZ_LIST_SUCCESS:
+      return produce(state, draft => {
+        draft.quizList = action.data
+      })
+    case quiz.GET_QUIZ_LIST_FAIL:
+      return {
+        ...state,
+      }
     default:
       return state
   }

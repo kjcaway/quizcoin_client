@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     linkM: {
       margin: theme.spacing(1.5),
-      fontSize: '12px',
+      fontSize: '15px',
       fontStyle: 'italic'
     },
   }),
@@ -66,7 +66,7 @@ const MenuBar = (props: any) => {
                 )
               })
             }
-            <Link href={'/@' + props.userId} color="inherit" className={isDesktop?classes.link:classes.linkM}>
+            <Link href="/mypage" color="inherit" className={isDesktop?classes.link:classes.linkM}>
               나의점수
             </Link>
           </div>

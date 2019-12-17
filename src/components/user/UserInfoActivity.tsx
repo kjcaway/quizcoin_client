@@ -57,7 +57,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 function UserInfoActivity(props: any) {
   const classes = useStyles();
-  const preventDefault = (event: React.SyntheticEvent) => event.preventDefault();
+  // const preventDefault = (event: React.SyntheticEvent) => event.preventDefault();
 
 
   return (
@@ -69,7 +69,7 @@ function UserInfoActivity(props: any) {
               나의 문제 수 :
             </Typography>
             <Typography className={classes.textValue}>
-              <Link href="#" onClick={preventDefault} className={classes.linkText}>
+              <Link href="/mypage/quizList" className={classes.linkText}>
                 {props.quizCnt}
               </Link>
             </Typography>

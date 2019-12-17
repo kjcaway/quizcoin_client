@@ -15,10 +15,10 @@ function ProtectedRoute({ component, ...rest }: any) {
     <Route {...rest} render={(props) => {
       if (isCheckingToken) {
         return <ProgressCilrcle />
-      } else if (isLogged && (userId === paramUserId)) {
+      } else if (isLogged) {
         return React.createElement(component, props)
-      } else if (isLogged && (userId !== paramUserId)) {
-        return <Unauthorized />
+      // } else if (isLogged && (userId !== paramUserId)) {
+      //   return <Unauthorized />
       } else {
         return <Redirect to={{ pathname: '/signin' }} />
       }

@@ -1,5 +1,5 @@
-export const PUSH_MESSAGE = 'PUSH_MESSAGE';
-export const HIDE_MESSAGE = 'HIDE_MESSAGE';
+export const PUSH_MESSAGE = 'PUSH_MESSAGE' as const;
+export const HIDE_MESSAGE = 'HIDE_MESSAGE' as const;
 
 interface AlertMessagePayload {
   message: string;

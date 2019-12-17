@@ -4,7 +4,7 @@ import { useSelector, shallowEqual, useDispatch } from 'react-redux'
 import * as main from '../../store/actions/mainActions'
 import ProgressCilrcle from '../../components/common/ProgressCilrcle'
 
-
+// eslint-disable-next-line
 function UsersContainer() {
   const status = useSelector((store: any) => store.main.status, shallowEqual)
   const userList = useSelector((store: any) => store.main.userList, shallowEqual)
@@ -22,6 +22,7 @@ function UsersContainer() {
     return () => {
       console.log('useEffect clean.')
     };
+    // eslint-disable-next-line
   }, [])
 
   return (

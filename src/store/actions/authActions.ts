@@ -1,16 +1,16 @@
-export const SIGNIN = 'SIGNIN';
-export const SIGNIN_SUCCESS = 'SIGNIN_SUCCESS';
-export const SIGNIN_FAIL = 'SIGNIN_FAIL';
-export const TEMP_LOGIN = 'TEMP_LOGIN';
-export const LOGOUT = 'LOGOUT';
+export const SIGNIN = 'SIGNIN' as const;
+export const SIGNIN_SUCCESS = 'SIGNIN_SUCCESS' as const;
+export const SIGNIN_FAIL = 'SIGNIN_FAIL' as const;
+export const TEMP_LOGIN = 'TEMP_LOGIN' as const;
+export const LOGOUT = 'LOGOUT' as const;
 
-export const SIGNUP = 'SIGNUP';
-export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
-export const SIGNUP_FAIL = 'SIGNUP_FAIL';
+export const SIGNUP = 'SIGNUP' as const;
+export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS' as const;
+export const SIGNUP_FAIL = 'SIGNUP_FAIL' as const;
 
-export const CHECK_TOKEN = 'CHECK_TOKEN';
-export const CHECK_TOKEN_SUCCESS = 'CHECK_TOKEN_SUCCESS';
-export const CHECK_TOKEN_FAIL = 'CHECK_TOKEN_FAIL';
+export const CHECK_TOKEN = 'CHECK_TOKEN' as const;
+export const CHECK_TOKEN_SUCCESS = 'CHECK_TOKEN_SUCCESS' as const;
+export const CHECK_TOKEN_FAIL = 'CHECK_TOKEN_FAIL' as const;
 
 export interface SignInPayload {
   userId: string;
@@ -34,7 +34,7 @@ export interface CheckTokenData {
 export interface ActionType {
   type: string;
   payload: SignInPayload & SignUpPayload;
-  data?: SignInData;
+  data?: SignInData & CheckTokenData;
   error?: any;
 }
 
@@ -98,10 +98,10 @@ export function checkToken() {
   }
 }
 
-export function checkTokenSuccess(data: any) {
+export function checkTokenSuccess(data: CheckTokenData) {
   return {
     type: CHECK_TOKEN_SUCCESS,
-    data: data
+    data
   }
 }
 

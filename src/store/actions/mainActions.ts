@@ -1,6 +1,6 @@
-export const GET_USERS = 'GET_USERS';
-export const GET_USERS_SUCCESS = 'GET_USERS_SUCCESS'
-export const GET_USERS_FAIL = 'GET_USERS_FAIL'
+export const GET_USERS = 'GET_USERS' as const;
+export const GET_USERS_SUCCESS = 'GET_USERS_SUCCESS' as const;
+export const GET_USERS_FAIL = 'GET_USERS_FAIL' as const;
 
 export interface GetUsersPayload {
   limit: number;
@@ -18,7 +18,7 @@ export function getUsers(payload: GetUsersPayload) {
   return {
     type: GET_USERS,
     payload
-  }
+  };
 }
 
 export function getUsersSuccess(data: any) {

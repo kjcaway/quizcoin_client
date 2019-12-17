@@ -1,15 +1,15 @@
-export const GET_USER_INFO = 'GET_USER_INFO';
-export const GET_USER_INFO_SUCCESS = 'GET_USER_INFO_SUCCESS';
-export const GET_USER_INFO_FAIL = 'GET_USER_INFO_FAIL';
+export const GET_USER_INFO = 'GET_USER_INFO' as const;
+export const GET_USER_INFO_SUCCESS = 'GET_USER_INFO_SUCCESS' as const;
+export const GET_USER_INFO_FAIL = 'GET_USER_INFO_FAIL' as const;
 
-export const ADD_TAG_MODAL_OPEN = "ADD_TAG_MODAL_OPEN";
-export const ADD_TAG_MODAL_CLOSE = "ADD_TAG_MODAL_CLOSE";
+export const ADD_TAG_MODAL_OPEN = "ADD_TAG_MODAL_OPEN" as const;
+export const ADD_TAG_MODAL_CLOSE = "ADD_TAG_MODAL_CLOSE" as const;
 
-export const SET_TAG = 'SET_TAG';
-export const SET_TAG_SUCCESS = 'SET_TAG_SUCCESS';
+export const SET_TAG = 'SET_TAG' as const;
+export const SET_TAG_SUCCESS = 'SET_TAG_SUCCESS' as const;
 
-export const DEL_TAG = 'DEL_TAG';
-export const DEL_TAG_SUCCESS = 'DEL_TAG_SUCCESS';
+export const DEL_TAG = 'DEL_TAG' as const;
+export const DEL_TAG_SUCCESS = 'DEL_TAG_SUCCESS' as const;
 
 export interface UserInfoPayload {
   userId: string;

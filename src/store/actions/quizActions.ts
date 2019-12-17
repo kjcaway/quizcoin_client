@@ -1,13 +1,17 @@
-export const CREATE_QUIZ = 'CREATE_QUIZ';
-export const CREATE_QUIZ_SUCCESS = 'CREATE_QUIZ_SUCCESS'
-export const CREATE_QUIZ_FAIL = 'CREATE_QUIZ_FAIL'
-export const UPDATE_INPUT = 'UPDATE_INPUT';
-export const INIT_INPUT = 'INIT_INPUT';
-export const ADD_QUIZ_ITEM = 'ADD_QUIZ_ITEM';
-export const DEL_QUIZ_ITEM = 'DEL_QUIZ_ITEM';
+export const CREATE_QUIZ = 'CREATE_QUIZ' as const;
+export const CREATE_QUIZ_SUCCESS = 'CREATE_QUIZ_SUCCESS' as const
+export const CREATE_QUIZ_FAIL = 'CREATE_QUIZ_FAIL' as const
+export const UPDATE_INPUT = 'UPDATE_INPUT' as const;
+export const INIT_INPUT = 'INIT_INPUT' as const;
+export const ADD_QUIZ_ITEM = 'ADD_QUIZ_ITEM' as const;
+export const DEL_QUIZ_ITEM = 'DEL_QUIZ_ITEM' as const;
 
-export const OPEN_QUIZ_MODAL = 'OPEN_QUIZ_MODAL';
-export const CLOSE_QUIZ_MODAL = 'CLOSE_QUIZ_MODAL';
+export const OPEN_QUIZ_MODAL = 'OPEN_QUIZ_MODAL' as const;
+export const CLOSE_QUIZ_MODAL = 'CLOSE_QUIZ_MODAL' as const;
+
+export const GET_QUIZ_LIST = 'GET_QUIZ_LIST' as const;
+export const GET_QUIZ_LIST_SUCCESS = 'GET_QUIZ_LIST_SUCCESS' as const;
+export const GET_QUIZ_LIST_FAIL = 'GET_QUIZ_LIST_FAIL' as const;
 
 
 export interface CreateQuizPayload {
@@ -17,9 +21,18 @@ export interface CreateQuizPayload {
   multiAnswerItems: string[];
 }
 
+export interface CreateFormPayload {
+  key: string;
+  value: string;
+}
+
+export interface GetQuizListPayload {
+  userId: string;
+}
+
 export interface ActionType {
   type: string;
-  payload: CreateQuizPayload & {key: string, value: string};
+  payload: CreateQuizPayload & CreateFormPayload & GetQuizListPayload;
   data?: any;
   error?: any;
 }
@@ -45,7 +58,7 @@ export function createQuizFail(error: any) {
   }
 }
 
-export function updateInput(payload: {key: string, value: string}) {
+export function updateInput(payload: CreateFormPayload) {
   return {
     type: UPDATE_INPUT,
     payload
@@ -80,5 +93,26 @@ export function openQuizModal() {
 export function closeQuizModal() {
   return {
     type: CLOSE_QUIZ_MODAL,
+  }
+}
+
+export function getQuizList(payload: GetQuizListPayload) {
+  return {
+    type: GET_QUIZ_LIST,
+    payload
+  }
+}
+
+export function getQuizListSuccess(data: any) {
+  return {
+    type: GET_QUIZ_LIST_SUCCESS,
+    data
+  }
+}
+
+export function getQuizListFail(error: any) {
+  return {
+    type: GET_QUIZ_LIST_FAIL,
+    error
   }
 }
