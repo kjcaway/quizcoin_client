@@ -4,6 +4,7 @@ import { reducer as alertMsg } from './alertMsgReducer';
 import { reducer as user } from './userReducer';
 import { reducer as main } from './mainReducer';
 import { reducer as quiz } from './quizReducer';
+import { reducer as common } from './commonReducer';
 
 
 const rootReducer = combineReducers({
@@ -11,7 +12,8 @@ const rootReducer = combineReducers({
   alertMsg,
   user,
   main,
-  quiz
+  quiz,
+  common
 })
 
 export default rootReducer

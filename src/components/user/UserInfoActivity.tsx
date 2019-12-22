@@ -69,7 +69,7 @@ function UserInfoActivity(props: any) {
               나의 문제 수 :
             </Typography>
             <Typography className={classes.textValue}>
-              <Link href="/mypage/quizList" className={classes.linkText}>
+              <Link href="#" className={classes.linkText} onClick={props.handleClickMyQuizCnt}>
                 {props.quizCnt}
               </Link>
             </Typography>

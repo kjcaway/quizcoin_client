@@ -1,14 +1,6 @@
 import React from 'react';
 import { Router, Route, Switch } from 'react-router-dom';
 import { history } from './store/configureStore';
-
-import MainPage from './pages/temp/MainPageTemp';
-import SignInPage from './pages/temp/SignInPageTemp';
-import SignUpPage from './pages/temp/SignUpPageTemp';
-import MyPage from './pages/temp/MyPageTemp';
-import MyPageQuizList from './pages/temp/MyPageQuizListTemp';
-import CreateQuiz from './pages/temp/CreateQuizTemp';
-
 import Base from './containers/common/Base';
 import UsersPage from './pages/main/UsersPage'
 import LoginPage from './pages/auth/LoginPage';
@@ -27,13 +19,6 @@ const App: React.FC = () => {
         <Route path="/signup" component={JoinPage}></Route>
         <ProtectedRoute exact path="/mypage" component={UserInfoPage}></ProtectedRoute>
         <ProtectedRoute path="/mypage/quizList" component={UserQuizListPage}></ProtectedRoute>
-
-        <Route exact path="/temp/" component={MainPage}></Route>
-        <Route exact path="/temp/signin" component={SignInPage}></Route>
-        <Route exact path="/temp/signup" component={SignUpPage}></Route>
-        <Route exact path="/temp/:userId" component={MyPage}></Route>
-        <Route exact path="/temp/:userId/list" component={MyPageQuizList}></Route>
-        <Route exact path="/temp/:userId/create" component={CreateQuiz}></Route>
         <Route component={NotFound}></Route>
       </Switch>
       <Base />

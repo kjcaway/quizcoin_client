@@ -6,10 +6,12 @@ import {
   isValidUserId, isValidPassword, isValidName
 } from '../../lib/validation'
 import * as MSG from '../../lib/constants'
+import * as common from '../../store/actions/commonActions';
 
 interface Props {
   isLogged: boolean;
   fetchSignUp: (payload: auth.SignUpPayload) => void;
+  goToUrl: (payload: string) => void;
 }
 interface State {
   [key: string]: any
@@ -94,6 +96,10 @@ class SignUpContainer extends Component<Props, State>  {
     }))
   }
 
+  handleClickSignIn = () => {
+    this.props.goToUrl('/signin');
+  }
+
   render() {
     const { validErrors } = this.state;
     return (
@@ -102,6 +108,7 @@ class SignUpContainer extends Component<Props, State>  {
         handleValidErrorMsg={this.handleValidErrorMsg}
         handleInputChange={this.handleInputChange}
         handleSubmit={this.handleSubmit}
+        handleClickSignIn={this.handleClickSignIn}
       />
     )
   }
@@ -117,6 +124,9 @@ export default connect(
     return {
       fetchSignUp: (payload: auth.SignUpPayload) => {
         dispatch({ type: auth.SIGNUP, payload: payload })
+      },
+      goToUrl: (payload: string) => {
+        dispatch({type: common.GO_TO_URL, payload})
       }
     }
   }

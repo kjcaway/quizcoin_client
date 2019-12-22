@@ -60,15 +60,12 @@ const MenuBar = (props: any) => {
             {
               props.menus.map((obj: {path: string; name: string}, idx: number) => {
                 return (
-                <Link key={idx} href={obj.path} color="inherit" className={isDesktop?classes.link:classes.linkM}>
+                <Link key={idx} href="#" onClick={() => props.handleClickMenu(obj.path)} color="inherit" className={isDesktop?classes.link:classes.linkM}>
                   {obj.name}
                 </Link>
                 )
               })
             }
-            <Link href="/mypage" color="inherit" className={isDesktop?classes.link:classes.linkM}>
-              나의점수
-            </Link>
           </div>
 
           {

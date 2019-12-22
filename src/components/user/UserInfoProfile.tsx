@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, CardContent, Typography, Box, CardMedia } from '@material-ui/core'
+import { Card, CardContent, Typography, Box, CardMedia, Hidden, CardActionArea } from '@material-ui/core'
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     cover: {
       width: 150,
-      height: 150
+      height: 180
     },
     textLabel: {
       display: 'flex',
@@ -41,11 +41,16 @@ function UserInfoProfile(props: any) {
 
   return (
     <Card className={classes.card}>
-      <CardMedia
+      <CardActionArea 
         className={classes.cover}
-        image={props.profile}
-        title="프로필사진"
-      />
+        onClick={props.handleClickProfile}
+      >
+        <CardMedia
+          component="img"
+          title="프로필사진"
+          src={props.profile}
+        />
+      </CardActionArea>
       <div className={classes.details}>
         <CardContent className={classes.content}>
           <Typography component="h5" variant="h5">

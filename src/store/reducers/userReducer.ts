@@ -55,17 +55,21 @@ export const reducer = (state = initialState, action: user.ActionType) => {
         ...state,
       }
     case user.SET_TAG_SUCCESS:
-        return produce(state, draft => {
-          draft.data.tags.push(_.get(action, 'data', ''))
-        })
+      return produce(state, draft => {
+        draft.data.tags.push(_.get(action, 'data', ''))
+      })
     case user.DEL_TAG:
       return {
         ...state,
       }
     case user.DEL_TAG_SUCCESS:
-        return produce(state, draft => {
-          draft.data.tags = draft.data.tags.filter((str: string) => str !== _.get(action, 'data', ''))
-        })
+      return produce(state, draft => {
+        draft.data.tags = draft.data.tags.filter((str: string) => str !== _.get(action, 'data', ''))
+      })
+    case user.PROFILE_PRELOAD:
+      return produce(state, draft => {
+        draft.data.profile = _.get(action, 'payload', '')
+      })
     default:
       return state
   }

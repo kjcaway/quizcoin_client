@@ -54,7 +54,7 @@ export interface Props {
   tags : [];
 }
 
-function CardItem(props: Props) {
+function UserCardItem(props: Props) {
   const classes = useStyles();
 
   return (
@@ -113,4 +113,4 @@ function CardItem(props: Props) {
   )
 }
 
-export default CardItem
+export default UserCardItem

@@ -2,10 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as auth from '../../store/actions/authActions'
 import SignInForm from '../../components/auth/SignInForm';
+import * as common from '../../store/actions/commonActions';
+
 
 interface Props {
   isLogged: boolean;
   fetchSignIn: (payload: auth.SignInPayload) => void;
+  goToUrl: (payload: string) => void;
 }
 interface State {
   [key: string]: string
@@ -38,11 +41,16 @@ class SignInContainer extends Component<Props, State> {
     })
   }
 
+  handleClickSignUp = () => {
+    this.props.goToUrl('/signup');
+  }
+
   render() {
     return (
       <SignInForm
         handleInputChange={this.handleInputChange}
         handleSubmit={this.handleSubmit}
+        handleClickSignUp={this.handleClickSignUp}
       />
     )
   }
@@ -58,6 +66,9 @@ export default connect(
     return {
       fetchSignIn: (payload: auth.SignInPayload) => {
         dispatch({ type: auth.SIGNIN, payload: payload })
+      },
+      goToUrl: (payload: string) => {
+        dispatch({type: common.GO_TO_URL, payload})
       }
     }
   }

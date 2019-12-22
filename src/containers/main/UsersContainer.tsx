@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import CardList from '../../components/main/CardList'
+import UserCardList from '../../components/main/UserCardList'
 import { useSelector, shallowEqual, useDispatch } from 'react-redux'
 import * as main from '../../store/actions/mainActions'
 import ProgressCilrcle from '../../components/common/ProgressCilrcle'
@@ -29,7 +29,7 @@ function UsersContainer() {
     <>
       {
         status === 'SUCCESS' ?
-          <CardList
+          <UserCardList
             users={userList}
           /> :
           <ProgressCilrcle />
