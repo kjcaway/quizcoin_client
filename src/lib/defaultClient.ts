@@ -1,16 +1,5 @@
 import axios from 'axios';
 
-function authHeader() {
-  // return authorization header with jwt token
-  const token = localStorage.getItem('access_token');
-
-  if (token) {
-    return { 'Authorization': token };
-  } else {
-    return {};
-  }
-}
-
 const baseURL = (() => {
   if (process.env.NODE_ENV === 'development') {
     return 'http://localhost:3001/'
@@ -23,12 +12,15 @@ const baseURL = (() => {
 
 const defaultClient = axios.create({
   baseURL,
-  headers: authHeader()
 })
 
 defaultClient.defaults.timeout = 3000;
 
 defaultClient.interceptors.request.use(function (config) {
+  const token = localStorage.getItem('access_token');
+  if (token) {
+    config.headers.Authorization = token;
+  } 
   return config
 }, function (error) {
   return Promise.reject(error);
