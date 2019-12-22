@@ -52,6 +52,7 @@ export interface Props {
   profile : string;
   quizcnt : number;
   tags : [];
+  loggedUserId: string;
 }
 
 function UserCardItem(props: Props) {
@@ -104,7 +105,13 @@ function UserCardItem(props: Props) {
         }
       </div>
       <CardActions>
-        <Button size="large" color="primary">
+        <Button size="large" color="primary" onClick={
+          () => {
+            if(props.userId === props.loggedUserId){
+              alert('자기문제는 자기가 풀수 없습니다.')
+            }
+          }
+        }>
           문제 풀러가기
           <DirectionsRunIcon className={classes.rightIcon} />
         </Button>

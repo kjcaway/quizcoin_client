@@ -14,6 +14,8 @@ const initialState = {
     tags: [] as string[]
   },
   addTagModalOpen: false,
+  preLoadImageBase64 : '',
+  preLoadImageFile : null,
 }
 
 export const reducer = (state = initialState, action: user.ActionType) => {
@@ -68,7 +70,24 @@ export const reducer = (state = initialState, action: user.ActionType) => {
       })
     case user.PROFILE_PRELOAD:
       return produce(state, draft => {
-        draft.data.profile = _.get(action, 'payload', '')
+        draft.preLoadImageBase64 = _.get(action, 'payload', '')
+      })
+    case user.PROFILE_PRELOAD_FILE:
+      return produce(state, draft => {
+        draft.preLoadImageFile = _.get(action, 'payload', null)
+      })
+    case user.INIT_PROFILE_FILE:
+      return produce(state, draft => {
+        draft.preLoadImageFile = null
+        draft.preLoadImageBase64 = ''
+      })
+    case user.SET_USER_PROFILE:
+      return {
+        ...state,
+      }
+    case user.SET_USER_PROFILE_SUCCESS:
+      return produce(state, draft => {
+        draft.preLoadImageFile = null
       })
     default:
       return state

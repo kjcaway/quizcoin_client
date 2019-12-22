@@ -1,4 +1,4 @@
-import { call, put, takeEvery } from "redux-saga/effects";
+import { call, put, takeEvery, select } from "redux-saga/effects";
 import defaultClient from "../../lib/defaultClient";
 import * as user from "../actions/userActions";
 import * as alertMsg from "../actions/alertMsgActions";
@@ -58,8 +58,29 @@ function* fetchDelTag(action: user.ActionType) {
   }
 }
 
+function* fetchUserProfile(action: user.ActionType) {
+  try {
+    const preLoadImageFile = yield select((state) => state.user.preLoadImageFile)
+
+    const formData = new FormData();
+    formData.append('file', preLoadImageFile);
+    yield call([defaultClient, 'post'], '/api/user/profile', formData);
+    yield put(user.setUserProfileSuccess())
+    yield put(alertMsg.pushMessage({
+      message: CONSTANTS.MSG_SUCCESS_UPDATE_PROFILE,
+      category: 'success'
+    }))
+  } catch (error) {
+    yield put(alertMsg.pushMessage({
+      message: CONSTANTS.MSG_API_FAIL,
+      category: 'error'
+    }))
+  }
+}
+
 export default function* watchUser() {
   yield takeEvery(user.GET_USER_INFO, fetchUserInfo);
   yield takeEvery(user.SET_TAG, fetchSetTag);
   yield takeEvery(user.DEL_TAG, fetchDelTag);
+  yield takeEvery(user.SET_USER_PROFILE, fetchUserProfile);
 }

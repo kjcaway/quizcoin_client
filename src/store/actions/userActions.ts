@@ -12,6 +12,10 @@ export const DEL_TAG = 'DEL_TAG' as const;
 export const DEL_TAG_SUCCESS = 'DEL_TAG_SUCCESS' as const;
 
 export const PROFILE_PRELOAD = 'PROFILE_PRELOAD' as const;
+export const PROFILE_PRELOAD_FILE = 'PROFILE_PRELOAD_FILE' as const;
+export const INIT_PROFILE_FILE = 'INIT_PROFILE_FILE' as const;
+export const SET_USER_PROFILE = 'SET_USER_PROFILE' as const;
+export const SET_USER_PROFILE_SUCCESS = 'SET_USER_PROFILE_SUCCESS' as const;
 
 export interface UserInfoPayload {
   userId: string;
@@ -96,9 +100,34 @@ export function delTagSuccess(data: string) {
   }
 }
 
-export function profilePreLoad(payload: any){
+export function profilePreLoad(payload: string){
   return {
     type: PROFILE_PRELOAD,
     payload
+  }
+}
+
+export function profilePreLoadFile(payload: any){
+  return {
+    type: PROFILE_PRELOAD_FILE,
+    payload
+  }
+}
+
+export function initProfileFile(){
+  return {
+    type: INIT_PROFILE_FILE,
+  }
+}
+
+export function setUserProfile(payload: any) {
+  return {
+    type: SET_USER_PROFILE,
+    payload
+  }
+}
+export function setUserProfileSuccess() {
+  return {
+    type: SET_USER_PROFILE_SUCCESS,
   }
 }

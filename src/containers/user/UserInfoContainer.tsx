@@ -12,12 +12,17 @@ import _ from 'lodash';
 interface Props {
   userId: string;
   userInfo: any;
+  preLoadImageBase64: string;
+  preLoadImageFile: any;
   fetchUserInfo: (payload: user.UserInfoPayload) => void;
   openAddTagDlg: () => void;
   openAddQuizDlg: () => void;
   delTag: (payload: user.TagPayload) => void;
   goToUrl: (payload: string) => void;
   preLoadImage: (payload: string) => void;
+  preLoadImageInput: (payload: any) => void;
+  initProfileFile: () => void;
+  setUserProfile: (payload: any) => void;
 }
 interface State {
 }
@@ -43,13 +48,28 @@ export class UserInfoContainer extends Component<Props, State> {
 
     reader.onloadend = () => {
       const base64 = reader.result;
-      if(base64){
-        this.props.preLoadImage(base64.toString())
+      if (base64) {
+        this.props.preLoadImage(base64.toString());
       }
     }
-    if(event.target.files[0]){
-      reader.readAsDataURL(event.target.files[0])
+    if (event.target.files[0]) {
+      reader.readAsDataURL(event.target.files[0]);
+      this.props.preLoadImageInput(event.target.files[0]);
     }
+  }
+
+  handleClickCancel = () => {
+    this.props.initProfileFile();
+  }
+
+  handleClickSave = () => {
+    this.props.setUserProfile({});
+  }
+  getProfileImage = () => {
+    if (this.props.preLoadImageBase64) {
+      return this.props.preLoadImageBase64
+    }
+    return defaultToProfile(this.props.userInfo.profile)
   }
 
   render() {
@@ -61,9 +81,12 @@ export class UserInfoContainer extends Component<Props, State> {
         <UserInfoProfile
           userId={this.props.userInfo.user_id}
           name={this.props.userInfo.name}
-          profile={defaultToProfile(this.props.userInfo.profile)}
+          profile={this.getProfileImage()}
           createdTime={convertToFromNow(this.props.userInfo.created_time)}
           handleClickProfile={this.handleClickProfile}
+          isPreLoadImage={this.props.preLoadImageFile === null?false:true}
+          handleClickCancel={this.handleClickCancel}
+          handleClickSave={this.handleClickSave}
         />
         <UserInfoActivity
           quizCnt={this.props.userInfo.quizcnt}
@@ -85,7 +108,9 @@ export default connect(
   (state: any) => {
     return {
       userInfo: state.user.data || {},
-      userId: state.auth.userId
+      userId: state.auth.userId,
+      preLoadImageBase64: state.user.preLoadImageBase64,
+      preLoadImageFile: state.user.preLoadImageFile
     }
   },
   (dispatch) => {
@@ -105,9 +130,18 @@ export default connect(
       goToUrl: (payload: string) => {
         dispatch({ type: common.GO_TO_URL, payload })
       },
-      preLoadImage: (payload: any) => {
+      preLoadImage: (payload: string) => {
         dispatch({ type: user.PROFILE_PRELOAD, payload })
-      }
+      },
+      preLoadImageInput: (payload: any) => {
+        dispatch({ type: user.PROFILE_PRELOAD_FILE, payload })
+      },
+      initProfileFile: () => {
+        dispatch({ type: user.INIT_PROFILE_FILE })
+      },
+      setUserProfile: (payload: any) => {
+        dispatch({ type: user.SET_USER_PROFILE, payload })
+      },
     }
   }
 )(UserInfoContainer);

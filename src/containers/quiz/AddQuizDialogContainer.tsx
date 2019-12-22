@@ -60,8 +60,12 @@ function AddQuizDialogContainer() {
   };
 
   const addItem = () => {
-    if (!_.isEmpty(multiAnswerSheet)) {
-      dispatch({ type: quiz.ADD_QUIZ_ITEM, payload: multiAnswerSheet });
+    if(multiAnswerItems.length >= 4){
+      alert('4개 이하로 설정하세요.')
+    } else{
+      if (!_.isEmpty(multiAnswerSheet)) {
+        dispatch({ type: quiz.ADD_QUIZ_ITEM, payload: multiAnswerSheet });
+      }
     }
   }
 

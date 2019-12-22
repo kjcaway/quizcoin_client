@@ -6,7 +6,7 @@ export interface ActionType {
 }
 
 
-export function goToUrl(payload: string){
+export function goToUrl(payload: string) {
   return {
     type: GO_TO_URL,
     payload

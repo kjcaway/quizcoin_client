@@ -14,6 +14,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 interface Props {
   users : ItemProps[];
+  loggedUserId: string;
 }
 
 function UserCardList(props: Props) {
@@ -30,6 +31,7 @@ function UserCardList(props: Props) {
             popular={user.popular}
             quizcnt={user.quizcnt}
             tags={user.tags}
+            loggedUserId={props.loggedUserId}
           />
         </Grid>
       ))}

@@ -1,6 +1,8 @@
 import React from 'react'
-import { Card, CardContent, Typography, Box, CardMedia, Hidden, CardActionArea } from '@material-ui/core'
+import { Card, CardContent, Typography, Box, CardMedia, CardActionArea } from '@material-ui/core'
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import WallpaperIcon from '@material-ui/icons/Wallpaper';
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -41,7 +43,7 @@ function UserInfoProfile(props: any) {
 
   return (
     <Card className={classes.card}>
-      <CardActionArea 
+      <CardActionArea
         className={classes.cover}
         onClick={props.handleClickProfile}
       >
@@ -80,6 +82,29 @@ function UserInfoProfile(props: any) {
               {props.createdTime}
             </Typography>
           </Box>
+          {
+            props.isPreLoadImage &&
+            <Box>
+              <Button
+                type="button"
+                variant="contained"
+                color="primary"
+                size="small"
+                onClick={props.handleClickSave}
+              >
+                사진 변경
+              </Button>
+              <Button
+                type="button"
+                variant="outlined"
+                color="secondary"
+                size="small"
+                onClick={props.handleClickCancel}
+              >
+                취소
+              </Button>
+            </Box>
+          }
         </CardContent>
       </div>
     </Card>

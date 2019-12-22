@@ -8,6 +8,7 @@ import ProgressCilrcle from '../../components/common/ProgressCilrcle'
 function UsersContainer() {
   const status = useSelector((store: any) => store.main.status, shallowEqual)
   const userList = useSelector((store: any) => store.main.userList, shallowEqual)
+  const loggedUserId = useSelector((store: any) => store.auth.userId)
   const dispatch = useDispatch();
 
   const getUsers = (payload: main.GetUsersPayload) => {
@@ -31,6 +32,7 @@ function UsersContainer() {
         status === 'SUCCESS' ?
           <UserCardList
             users={userList}
+            loggedUserId={loggedUserId}
           /> :
           <ProgressCilrcle />
       }
