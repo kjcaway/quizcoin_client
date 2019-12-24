@@ -5,8 +5,7 @@ import * as quiz from '../../store/actions/quizActions'
 import * as common from '../../store/actions/commonActions';
 import UserInfoProfile from '../../components/user/UserInfoProfile'
 import UserInfoActivity from '../../components/user/UserInfoActivity'
-import { convertToFromNow } from '../../lib/utils';
-import { defaultToProfile } from '../../lib/utils';
+import { convertToFromNow, defaultToProfile } from '../../lib/utils';
 
 interface Props {
   userId: string;

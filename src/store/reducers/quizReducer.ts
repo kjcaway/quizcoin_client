@@ -63,16 +63,15 @@ export const reducer = (state = initialState, action: quiz.ActionType) => {
       }
     case quiz.CLOSE_QUIZ_MODAL:
       return initialState;
-    case quiz.GET_QUIZ_LIST:
+    case quiz.GET_MY_QUIZ_LIST:
       return {
         ...state,
-        payload: action.payload
       }
-    case quiz.GET_QUIZ_LIST_SUCCESS:
+    case quiz.GET_MY_QUIZ_LIST_SUCCESS:
       return produce(state, draft => {
         draft.quizList = action.data
       })
-    case quiz.GET_QUIZ_LIST_FAIL:
+    case quiz.GET_MY_QUIZ_LIST_FAIL:
       return {
         ...state,
       }

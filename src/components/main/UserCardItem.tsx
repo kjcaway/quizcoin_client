@@ -4,6 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import { Box, Card, CardMedia, CardContent, CardActions, Chip } from '@material-ui/core';
 import DirectionsRunIcon from '@material-ui/icons/DirectionsRun';
+import EmojiPeopleIcon from '@material-ui/icons/EmojiPeople';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -53,6 +54,7 @@ export interface Props {
   quizcnt : number;
   tags : [];
   loggedUserId: string;
+  handleClickGoUserQuizList: (payload: string) => void;
 }
 
 function UserCardItem(props: Props) {
@@ -104,18 +106,24 @@ function UserCardItem(props: Props) {
           })
         }
       </div>
-      <CardActions>
-        <Button size="large" color="primary" onClick={
-          () => {
-            if(props.userId === props.loggedUserId){
-              alert('자기문제는 자기가 풀수 없습니다.')
-            }
-          }
-        }>
-          문제 풀러가기
-          <DirectionsRunIcon className={classes.rightIcon} />
-        </Button>
-      </CardActions>
+      {
+        props.userId !== props.loggedUserId ?
+        <CardActions>
+          <Button size="large" color="primary" onClick={() => {
+            props.handleClickGoUserQuizList(props.userId)
+          }}>
+            문제 풀러가기
+            <DirectionsRunIcon className={classes.rightIcon} />
+          </Button>
+        </CardActions>
+        :
+        <CardActions>
+          <Button size="large" color="inherit" onClick={undefined}>
+            내 계정
+            <EmojiPeopleIcon className={classes.rightIcon} />
+          </Button>
+        </CardActions>
+      }
     </Card>
   )
 }

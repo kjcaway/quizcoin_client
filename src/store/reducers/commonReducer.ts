@@ -1,7 +1,6 @@
 import * as common from '../actions/commonActions'
 
 const initialState = {
-  nowUrl : ''
 }
 
 export const reducer = (state = initialState, action: common.ActionType) => {

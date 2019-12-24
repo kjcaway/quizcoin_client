@@ -82,7 +82,7 @@ function UserInfoProfile(props: any) {
             </Typography>
           </Box>
           {
-            props.isPreLoadImage &&
+            props.isPreLoadImage ?
             <Box>
               <Button
                 type="button"
@@ -102,6 +102,11 @@ function UserInfoProfile(props: any) {
               >
                 취소
               </Button>
+            </Box>:
+            <Box>
+              <Typography color="textSecondary" variant="body2">
+                프로필 사진을 변경하려면 왼쪽을 클릭하세요.
+              </Typography>
             </Box>
           }
         </CardContent>

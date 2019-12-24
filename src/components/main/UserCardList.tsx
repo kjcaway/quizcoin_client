@@ -6,7 +6,7 @@ import UserCardItem, {Props as ItemProps} from './UserCardItem';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     cardGrid: {
-      paddingTop: theme.spacing(8),
+      paddingTop: theme.spacing(4),
       paddingBottom: theme.spacing(8),
     },
   }),
@@ -15,6 +15,7 @@ const useStyles = makeStyles((theme: Theme) =>
 interface Props {
   users : ItemProps[];
   loggedUserId: string;
+  handleClickGoUserQuizList: (payload: string) => void;
 }
 
 function UserCardList(props: Props) {
@@ -32,6 +33,7 @@ function UserCardList(props: Props) {
             quizcnt={user.quizcnt}
             tags={user.tags}
             loggedUserId={props.loggedUserId}
+            handleClickGoUserQuizList={props.handleClickGoUserQuizList}
           />
         </Grid>
       ))}

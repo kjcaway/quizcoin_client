@@ -9,10 +9,9 @@ export const DEL_QUIZ_ITEM = 'DEL_QUIZ_ITEM' as const;
 export const OPEN_QUIZ_MODAL = 'OPEN_QUIZ_MODAL' as const;
 export const CLOSE_QUIZ_MODAL = 'CLOSE_QUIZ_MODAL' as const;
 
-export const GET_QUIZ_LIST = 'GET_QUIZ_LIST' as const;
-export const GET_QUIZ_LIST_SUCCESS = 'GET_QUIZ_LIST_SUCCESS' as const;
-export const GET_QUIZ_LIST_FAIL = 'GET_QUIZ_LIST_FAIL' as const;
-
+export const GET_MY_QUIZ_LIST = 'GET_MY_QUIZ_LIST' as const;
+export const GET_MY_QUIZ_LIST_SUCCESS = 'GET_MY_QUIZ_LIST_SUCCESS' as const;
+export const GET_MY_QUIZ_LIST_FAIL = 'GET_MY_QUIZ_LIST_FAIL' as const;
 
 export interface CreateQuizPayload {
   question: string;
@@ -26,13 +25,10 @@ export interface CreateFormPayload {
   value: string;
 }
 
-export interface GetQuizListPayload {
-  userId: string;
-}
 
 export interface ActionType {
   type: string;
-  payload: CreateQuizPayload & CreateFormPayload & GetQuizListPayload;
+  payload: CreateQuizPayload & CreateFormPayload ;
   data?: any;
   error?: any;
 }
@@ -96,23 +92,22 @@ export function closeQuizModal() {
   }
 }
 
-export function getQuizList(payload: GetQuizListPayload) {
+export function getMyQuizList() {
   return {
-    type: GET_QUIZ_LIST,
-    payload
+    type: GET_MY_QUIZ_LIST,
   }
 }
 
-export function getQuizListSuccess(data: any) {
+export function getMyQuizListSuccess(data: any) {
   return {
-    type: GET_QUIZ_LIST_SUCCESS,
+    type: GET_MY_QUIZ_LIST_SUCCESS,
     data
   }
 }
 
-export function getQuizListFail(error: any) {
+export function getMyQuizListFail(error: any) {
   return {
-    type: GET_QUIZ_LIST_FAIL,
+    type: GET_MY_QUIZ_LIST_FAIL,
     error
   }
 }

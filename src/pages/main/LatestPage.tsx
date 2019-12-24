@@ -1,19 +1,19 @@
 import React from 'react'
 
-import UsersContainer from '../../containers/main/UsersContainer';
-import CommonTemplate from '../../components/CommonTemplate';
+import LatestContainer from '../../containers/main/LatestContainer';
 import TitleContainer from '../../containers/common/TitleContainer';
+import CommonTemplate from '../../components/CommonTemplate';
 
 
-const UsersPage = () => {
+const LatestPage = () => {
   return (
     <CommonTemplate maxWidth='lg'>
       <>
         <TitleContainer />
-        <UsersContainer />
+        <LatestContainer />
       </>
     </CommonTemplate>
   )
 }
 
-export default UsersPage
+export default LatestPage

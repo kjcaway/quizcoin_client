@@ -22,7 +22,23 @@ function* fetchUsers(action: main.ActionType) {
   }
 }
 
+function* fetchQuizList(action: main.ActionType) {
+  try {
+    const { userId, limit, offset } = action.payload;
+    const response = yield call([defaultClient, 'post'], '/api/quiz/list', {
+      userId,
+      limit,
+      offset
+    });
+    const { data } = response;
+    yield put(main.getQuizListSuccess(data));
+  } catch (error) {
+    yield put(main.getQuizListFail(error));
+
+  }
+}
 
 export default function* watchMain() {
   yield takeEvery(main.GET_USERS, fetchUsers);
+  yield takeEvery(main.GET_QUIZ_LIST, fetchQuizList);
 }

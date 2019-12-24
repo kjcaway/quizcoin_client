@@ -1,10 +1,11 @@
 import * as main from '../actions/mainActions';
 import { produce } from 'immer';
-import {defaultToProfile} from '../../lib/utils';
+import { defaultToProfile } from '../../lib/utils';
 
 const initialState = {
-  status : 'INIT',
-  userList: []
+  status: 'INIT',
+  userList: [],
+  quizList: []
 }
 
 export const reducer = (state = initialState, action: main.ActionType) => {
@@ -24,9 +25,28 @@ export const reducer = (state = initialState, action: main.ActionType) => {
           user.profile = defaultToProfile(user.profile)
         });
         draft.status = 'SUCCESS'
-        draft.userList = userList.filter((user:any) => user.quizcnt > 0)
+        draft.userList = userList.filter((user: any) => user.quizcnt > 0)
       })
     case main.GET_USERS_FAIL:
+      return {
+        ...state,
+        status: 'FAIL',
+      }
+    case main.GET_QUIZ_LIST:
+      return {
+        ...state,
+        payload: action.payload
+      }
+    case main.GET_QUIZ_LIST_SUCCESS:
+      return produce(state, draft => {
+        const quizList = action.data;
+        quizList.forEach((quiz: any) => {
+          quiz.items = quiz.items.split(',').filter((str: string) => str !== '');
+        });
+        draft.status = 'SUCCESS'
+        draft.quizList = quizList
+      })
+    case main.GET_QUIZ_LIST_FAIL:
       return {
         ...state,
         status: 'FAIL',

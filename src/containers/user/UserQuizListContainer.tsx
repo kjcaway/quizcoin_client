@@ -9,15 +9,12 @@ function UserQuizListContainer() {
   const quizList = useSelector((store: any) => store.quiz.quizList, shallowEqual)
   const dispatch = useDispatch();
 
-  const getQuizList = () => {
-    const payload = {
-      userId: userId
-    }
-    dispatch({ type: quiz.GET_QUIZ_LIST, payload: payload });
+  const getMyQuizList = () => {
+    dispatch({ type: quiz.GET_MY_QUIZ_LIST });
   }
 
   useEffect(() => {
-    getQuizList();
+    getMyQuizList();
     return () => {
       console.log('useEffect clean.')
     };

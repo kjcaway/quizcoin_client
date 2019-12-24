@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import UserCardList from '../../components/main/UserCardList'
 import { useSelector, shallowEqual, useDispatch } from 'react-redux'
 import * as main from '../../store/actions/mainActions'
+import * as common from '../../store/actions/commonActions'
 import ProgressCilrcle from '../../components/common/ProgressCilrcle'
 
 // eslint-disable-next-line
@@ -15,9 +16,15 @@ function UsersContainer() {
     dispatch({ type: main.GET_USERS, payload: payload });
   };
 
+  const handleClickGoUserQuizList = (payload: string) => {
+    const userId = payload;
+    const url = `/latest/@${userId}`
+    dispatch({type: common.GO_TO_URL, payload: url})
+  }
+
   useEffect(() => {
     getUsers({
-      limit: 9,
+      limit: 27,
       offset: 0
     })
     return () => {
@@ -33,6 +40,7 @@ function UsersContainer() {
           <UserCardList
             users={userList}
             loggedUserId={loggedUserId}
+            handleClickGoUserQuizList={handleClickGoUserQuizList}
           /> :
           <ProgressCilrcle />
       }
