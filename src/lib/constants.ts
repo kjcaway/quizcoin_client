@@ -15,3 +15,7 @@ export const MSG_NO_USER = "존재하지않는 사용자입니다."
 export const MSG_NEED_LOGIN = "로그인이 필요합니다."
 
 export const MSG_SUCCESS_UPDATE_PROFILE = "프로필 수정 성공"
+
+export const MSG_ERROR_INVALID_INPUT = "입력값이 올바르지 않습니다."
+export const MSG_ERROR_INVALID_INPUT_MULTI_ITEM = "보기는 2개 이상 필요합니다."
+export const MSG_ERROR_INVALID_INPUT_MULTI_ITEM_4DOWN = "보기는 4개 이하로 하세요."

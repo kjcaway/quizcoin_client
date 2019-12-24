@@ -2,6 +2,8 @@ import React from 'react'
 import AddQuizDialog from '../../components/quiz/AddQuizDialog'
 import { useSelector, shallowEqual, useDispatch } from 'react-redux'
 import * as quiz from '../../store/actions/quizActions'
+import * as alertMsg from '../../store/actions/alertMsgActions'
+import * as CONSTANTS from "../../lib/constants";
 import _ from 'lodash';
 
 function AddQuizDialogContainer() {
@@ -15,9 +17,15 @@ function AddQuizDialogContainer() {
 
   const createQuiz = () => {
     if (_.isEmpty(question) || _.isEmpty(answer)) {
-      alert('입력값이 올바르지 않습니다.');
+      dispatch({type: alertMsg.PUSH_MESSAGE, payload: {
+        message: CONSTANTS.MSG_ERROR_INVALID_INPUT,
+        category: "error"
+      }});
     } else if (questionType === 1 && multiAnswerItems.lengh < 2) {
-      alert('보기는 2개이상 이어야합니다.');
+      dispatch({type: alertMsg.PUSH_MESSAGE, payload: {
+        message: CONSTANTS.MSG_ERROR_INVALID_INPUT_MULTI_ITEM,
+        category: "error"
+      }});
     } else {
       const payload = {
         question: question,
@@ -61,7 +69,10 @@ function AddQuizDialogContainer() {
 
   const addItem = () => {
     if(multiAnswerItems.length >= 4){
-      alert('4개 이하로 설정하세요.')
+      dispatch({type: alertMsg.PUSH_MESSAGE, payload: {
+        message: CONSTANTS.MSG_ERROR_INVALID_INPUT_MULTI_ITEM_4DOWN,
+        category: "warning"
+      }});
     } else{
       if (!_.isEmpty(multiAnswerSheet)) {
         dispatch({ type: quiz.ADD_QUIZ_ITEM, payload: multiAnswerSheet });

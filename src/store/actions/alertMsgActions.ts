@@ -1,9 +1,9 @@
 export const PUSH_MESSAGE = 'PUSH_MESSAGE' as const;
 export const HIDE_MESSAGE = 'HIDE_MESSAGE' as const;
 
-interface AlertMessagePayload {
+export interface AlertMessagePayload {
   message: string;
-  category: string;
+  category: "success" | "warning" | "error" | "info";
 }
 
 export interface AlertMessageAction {

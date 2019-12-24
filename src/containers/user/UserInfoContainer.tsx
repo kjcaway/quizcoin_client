@@ -7,7 +7,6 @@ import UserInfoProfile from '../../components/user/UserInfoProfile'
 import UserInfoActivity from '../../components/user/UserInfoActivity'
 import { convertToFromNow } from '../../lib/utils';
 import { defaultToProfile } from '../../lib/utils';
-import _ from 'lodash';
 
 interface Props {
   userId: string;

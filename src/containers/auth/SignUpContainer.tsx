@@ -1,17 +1,19 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import * as auth from '../../store/actions/authActions'
+import * as alertMsg from '../../store/actions/alertMsgActions'
+import * as common from '../../store/actions/commonActions';
 import SignUpForm from '../../components/auth/SignUpForm';
 import {
   isValidUserId, isValidPassword, isValidName
 } from '../../lib/validation'
-import * as MSG from '../../lib/constants'
-import * as common from '../../store/actions/commonActions';
+import * as CONSTANTS from '../../lib/constants'
 
 interface Props {
   isLogged: boolean;
   fetchSignUp: (payload: auth.SignUpPayload) => void;
   goToUrl: (payload: string) => void;
+  pushAlert: (payload: alertMsg.AlertMessagePayload) => void;
 }
 interface State {
   [key: string]: any
@@ -57,7 +59,10 @@ class SignUpContainer extends Component<Props, State>  {
         userName: this.state.userName
       })
     } else {
-      alert('입력 폼이 유효하지않습니다.')
+      this.props.pushAlert({
+        message: CONSTANTS.MSG_ERROR_INVALID_INPUT,
+        category: "error"
+      })
     }
   }
 
@@ -69,21 +74,21 @@ class SignUpContainer extends Component<Props, State>  {
 
     switch (name) {
       case 'userId':
-        message.userId = !isValidUserId(value) && MSG.MSG_HELP_USERID
+        message.userId = !isValidUserId(value) && CONSTANTS.MSG_HELP_USERID
         break;
       case 'password':
-        message.password = !isValidPassword(value) && MSG.MSG_HELP_PASSWORD
+        message.password = !isValidPassword(value) && CONSTANTS.MSG_HELP_PASSWORD
         break;
       case 'passwordAgain':
         const { password, passwordAgain } = this.state;
         if (password !== passwordAgain) {
-          message.passwordAgain = MSG.MSG_HELP_PASSWORD_AGAIN;
+          message.passwordAgain = CONSTANTS.MSG_HELP_PASSWORD_AGAIN;
         } else {
           message.passwordAgain = false;
         }
         break;
       case 'userName':
-        message.userName = !isValidName(value) && MSG.MSG_HELP_NAME
+        message.userName = !isValidName(value) && CONSTANTS.MSG_HELP_NAME
         break;
       default:
         break;
@@ -127,6 +132,9 @@ export default connect(
       },
       goToUrl: (payload: string) => {
         dispatch({type: common.GO_TO_URL, payload})
+      },
+      pushAlert: (payload: alertMsg.AlertMessagePayload) => {
+        dispatch({ type: alertMsg.PUSH_MESSAGE, payload: payload})
       }
     }
   }

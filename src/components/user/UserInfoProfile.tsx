@@ -1,7 +1,6 @@
 import React from 'react'
 import { Card, CardContent, Typography, Box, CardMedia, CardActionArea } from '@material-ui/core'
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import WallpaperIcon from '@material-ui/icons/Wallpaper';
 import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme: Theme) =>

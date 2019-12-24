@@ -2,15 +2,17 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import AddTagDialog from '../../components/user/AddTagDialog'
 import * as user from '../../store/actions/userActions'
+import * as alertMsg from '../../store/actions/alertMsgActions'
 import {
   isValidName
 } from '../../lib/validation'
-import * as MSG from '../../lib/constants'
+import * as CONSTANTS from '../../lib/constants'
 
 interface Props {
   modalOpen: boolean;
   closeAddTagDlg: () => void;
   setTag: (payload: user.TagPayload) => void;
+  pushAlert: (payload: alertMsg.AlertMessagePayload) => void;
 }
 interface State {
   [key: string]: any
@@ -44,7 +46,7 @@ export class AddTagDialogContainer extends Component<Props, State> {
     const name = target.name;
     let message = this.state.validErrors;
 
-    message[name] = !isValidName(value) && MSG.MSG_HELP_TAG
+    message[name] = !isValidName(value) && CONSTANTS.MSG_HELP_TAG
 
     this.setState(prevState => ({
       validErrors: {
@@ -59,7 +61,10 @@ export class AddTagDialogContainer extends Component<Props, State> {
     if (!this.state.validErrors.inputTag) {
       this.props.setTag({tagName : this.state.inputTag})
     } else {
-      alert('입력 폼이 유효하지않습니다.')
+      this.props.pushAlert({
+        message: CONSTANTS.MSG_ERROR_INVALID_INPUT,
+        category: "error"
+      })
     }
   }
 
@@ -91,6 +96,9 @@ export default connect(
       },
       setTag: (payload: user.TagPayload) => {
         dispatch({ type: user.SET_TAG, payload : payload })
+      },
+      pushAlert: (payload: alertMsg.AlertMessagePayload) => {
+        dispatch({ type: alertMsg.PUSH_MESSAGE, payload: payload})
       }
     }
   }
