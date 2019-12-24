@@ -46,6 +46,7 @@ const useStyles = makeStyles((theme: Theme) =>
       margin: theme.spacing(0.5),
     },
     linkText: {
+      cursor: "pointer",
       color: '#ec1b1b',
       fontSize: '24px',
     },
@@ -69,7 +70,7 @@ function UserInfoActivity(props: any) {
               나의 문제 수 :
             </Typography>
             <Typography className={classes.textValue}>
-              <Link href="#" className={classes.linkText} onClick={props.handleClickMyQuizCnt}>
+              <Link className={classes.linkText} onClick={props.handleClickMyQuizCnt}>
                 {props.quizCnt}
               </Link>
             </Typography>

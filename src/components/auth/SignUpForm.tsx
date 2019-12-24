@@ -108,7 +108,7 @@ const SignUpForm = (props: any) => {
             </Button>
         <Grid container>
           <Grid item>
-            <Link href="#" variant="body2" onMouseDown={props.handleClickSignIn}>
+            <Link variant="body2" onMouseDown={props.handleClickSignIn}>
               {"이미 계정이 있습니까? 로그인 페이지로 이동"}
             </Link>
           </Grid>

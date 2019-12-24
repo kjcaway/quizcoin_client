@@ -30,6 +30,7 @@ const useStyles = makeStyles((theme: Theme) =>
       marginRight: theme.spacing(1),
     },
     link: {
+      cursor: "pointer",
       margin: theme.spacing(1.5),
       fontSize: '18px',
       fontStyle: 'italic'
@@ -60,7 +61,7 @@ const MenuBar = (props: any) => {
             {
               props.menus.map((obj: {path: string; name: string}, idx: number) => {
                 return (
-                <Link key={idx} href="#" onClick={() => props.handleClickMenu(obj.path)} color="inherit" className={isDesktop?classes.link:classes.linkM}>
+                <Link key={idx} onClick={() => props.handleClickMenu(obj.path)} color="inherit" className={isDesktop?classes.link:classes.linkM}>
                   {obj.name}
                 </Link>
                 )

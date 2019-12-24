@@ -77,7 +77,7 @@ const SignInForm = (props: any) => {
             </Button>
         <Grid container>
           <Grid item>
-            <Link href="#" variant="body2" onClick={props.handleClickSignUp}>
+            <Link  variant="body2" onClick={props.handleClickSignUp}>
               {"회원가입 하러가기"}
             </Link>
           </Grid>
