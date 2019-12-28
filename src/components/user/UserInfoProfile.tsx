@@ -9,7 +9,6 @@ const useStyles = makeStyles((theme: Theme) =>
     card: {
       display: 'flex',
       marginTop: theme.spacing(8),
-
     },
     content: {
       flex: '1 0 auto',

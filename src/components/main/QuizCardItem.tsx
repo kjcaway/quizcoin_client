@@ -2,7 +2,6 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { CardHeader, Avatar, CardActions } from '@material-ui/core';
 import { blueGrey } from '@material-ui/core/colors';
@@ -62,7 +61,7 @@ function QuizCardItem(props : any) {
               props.items.map((item: string, idx: number) => {
                 const num = idx + 1;
                 return (
-                  <Typography className={classes.items} color="textSecondary">
+                  <Typography key={idx} className={classes.items} color="textSecondary">
                     {num + ". " + item}
                   </Typography>
                 )
@@ -72,7 +71,10 @@ function QuizCardItem(props : any) {
         }
       </CardContent>
       <CardActions className={classes.cardActionDiv}>
-        <Fab variant="extended" className={classes.cardActionBtn}>
+        <Fab 
+          variant="extended" 
+          className={classes.cardActionBtn}
+          onClick={() => props.handleClickChallenge(props.quizId)}>
           도전
         </Fab>
       </CardActions>

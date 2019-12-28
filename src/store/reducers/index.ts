@@ -5,6 +5,7 @@ import { reducer as user } from './userReducer';
 import { reducer as main } from './mainReducer';
 import { reducer as quiz } from './quizReducer';
 import { reducer as common } from './commonReducer';
+import { reducer as answer } from './answerReducer';
 
 
 const rootReducer = combineReducers({
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
   user,
   main,
   quiz,
-  common
+  common,
+  answer
 })
 
 export default rootReducer

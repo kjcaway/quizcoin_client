@@ -22,7 +22,8 @@ interface Quiz {
 }
 
 interface Props {
-  quizList : []
+  quizList : [];
+  handleClickChallenge: (quizId: number) => void;
 }
 
 function QuizCardList(props : Props) {
@@ -40,6 +41,7 @@ function QuizCardList(props : Props) {
               questionTypeName={quiz.question_type_name}
               createdTime={convertToFromNow(quiz.created_time)}
               items={quiz.items}
+              handleClickChallenge={props.handleClickChallenge}
             />
           </Grid>
         )
