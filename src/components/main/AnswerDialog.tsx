@@ -6,7 +6,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
 import { TransitionProps } from '@material-ui/core/transitions';
-import { List, ListItem, ListItemIcon, Checkbox, ListItemText } from '@material-ui/core';
+import { List, ListItem, ListItemIcon, Checkbox, ListItemText, TextField } from '@material-ui/core';
 
 const Transition = React.forwardRef<unknown, TransitionProps>(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -55,7 +55,15 @@ function AnswerDialog(props: any) {
             <CheckboxForm 
               items={props.items}
             />:
-            <div>input</div>
+            <TextField
+              variant="outlined"
+              margin="normal"
+              fullWidth
+              id="question"
+              name="question"
+              value={undefined}
+              autoComplete="question"
+            />
           }
       </DialogContent>
       <DialogActions>
