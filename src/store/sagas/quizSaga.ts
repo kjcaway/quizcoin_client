@@ -40,7 +40,27 @@ function* fetchMyQuizList(action: quiz.ActionType) {
   }
 }
 
+function* fetchDeleteQuiz(action: quiz.ActionType) {
+  try {
+    const { quizId } = action.payload
+    yield call([defaultClient, 'post'], '/api/quiz/remove', {
+      quizId: quizId
+    });
+
+    yield put(quiz.reqDeleteQuizSuccess({
+      quizId: quizId
+    }));
+  } catch (error) {
+    yield put(quiz.reqDeleteQuizFail(error))
+    yield put(alertMsg.pushMessage({
+      message: CONSTANTS.MSG_API_FAIL,
+      category: 'error'
+    }))
+  }
+}
+
 export default function* watchQuiz() {
   yield takeEvery(quiz.CREATE_QUIZ, fetchCreateQuiz);
   yield takeEvery(quiz.GET_MY_QUIZ_LIST, fetchMyQuizList);
+  yield takeEvery(quiz.REQ_DELETE_QUIZ, fetchDeleteQuiz);
 }

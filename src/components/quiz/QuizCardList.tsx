@@ -24,7 +24,8 @@ interface Quiz {
 }
 
 interface Props {
-  quizList : []
+  quizList : [];
+  handleDeleteClick: (quizId: number) => void;
 }
 function QuizCardList(props: Props) {
   const classes = useStyles();
@@ -42,6 +43,7 @@ function QuizCardList(props: Props) {
               questionTypeName={quiz.question_type_name}
               createdTime={convertToFromNow(quiz.created_time)}
               items={quiz.items}
+              handleDeleteClick={props.handleDeleteClick}
             />
           </Grid>
         )

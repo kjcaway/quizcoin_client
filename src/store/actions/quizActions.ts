@@ -13,6 +13,10 @@ export const GET_MY_QUIZ_LIST = 'GET_MY_QUIZ_LIST' as const;
 export const GET_MY_QUIZ_LIST_SUCCESS = 'GET_MY_QUIZ_LIST_SUCCESS' as const;
 export const GET_MY_QUIZ_LIST_FAIL = 'GET_MY_QUIZ_LIST_FAIL' as const;
 
+export const REQ_DELETE_QUIZ = 'REQ_DELETE_QUIZ' as const;
+export const REQ_DELETE_QUIZ_SUCCESS = 'REQ_DELETE_QUIZ_SUCCESS' as const;
+export const REQ_DELETE_QUIZ_FAIL = 'REQ_DELETE_QUIZ_FAIL' as const;
+
 export interface CreateQuizPayload {
   question: string;
   answer: string;
@@ -25,10 +29,14 @@ export interface CreateFormPayload {
   value: string;
 }
 
+export interface ReqDeleteQuizPayload {
+  quizId: number;
+}
+
 
 export interface ActionType {
   type: string;
-  payload: CreateQuizPayload & CreateFormPayload ;
+  payload: CreateQuizPayload & CreateFormPayload & ReqDeleteQuizPayload;
   data?: any;
   error?: any;
 }
@@ -108,6 +116,27 @@ export function getMyQuizListSuccess(data: any) {
 export function getMyQuizListFail(error: any) {
   return {
     type: GET_MY_QUIZ_LIST_FAIL,
+    error
+  }
+}
+
+export function reqDeleteQuiz(payload: ReqDeleteQuizPayload) {
+  return {
+    type: REQ_DELETE_QUIZ,
+    payload
+  }
+}
+
+export function reqDeleteQuizSuccess(data: any) {
+  return {
+    type: REQ_DELETE_QUIZ_SUCCESS,
+    data
+  }
+}
+
+export function reqDeleteQuizFail(error: any) {
+  return {
+    type: REQ_DELETE_QUIZ_FAIL,
     error
   }
 }

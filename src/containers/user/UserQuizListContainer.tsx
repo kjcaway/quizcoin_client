@@ -13,6 +13,10 @@ function UserQuizListContainer() {
     dispatch({ type: quiz.GET_MY_QUIZ_LIST });
   }
 
+  const deleteQuiz = (quizId: number) => {
+    dispatch({ type: quiz.REQ_DELETE_QUIZ, payload: { quizId: quizId } });
+  }
+
   useEffect(() => {
     getMyQuizList();
     return () => {
@@ -20,10 +24,13 @@ function UserQuizListContainer() {
     };
     // eslint-disable-next-line
   }, [userId])
-  
+
   return (
     <div>
-      <QuizCardList quizList={quizList}/>
+      <QuizCardList
+        quizList={quizList}
+        handleDeleteClick={deleteQuiz}
+      />
     </div>
   )
 }

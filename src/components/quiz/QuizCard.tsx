@@ -40,7 +40,9 @@ export default function QuizCard(props: any) {
         action={
           <>
             <Button size="small" color="primary" variant="contained">정답자확인</Button>
-            <Button size="small" color="secondary" variant="contained" className={classes.delBtn}>삭제</Button>
+            <Button 
+              onClick={() => props.handleDeleteClick(props.quizId)}
+              size="small" color="secondary" variant="contained" className={classes.delBtn}>삭제</Button>
           </>
         }
       />

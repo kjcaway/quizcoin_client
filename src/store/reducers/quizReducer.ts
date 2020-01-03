@@ -14,7 +14,7 @@ const initialState: State = {
   multiAnswerSheet: '',
   multiAnswerItems: [],
   multiChecked: '',
-  quizList: []
+  quizList: [] // 나의 퀴즈 리스트
 }
 
 export const reducer = (state = initialState, action: quiz.ActionType) => {
@@ -72,6 +72,22 @@ export const reducer = (state = initialState, action: quiz.ActionType) => {
         draft.quizList = action.data
       })
     case quiz.GET_MY_QUIZ_LIST_FAIL:
+      return {
+        ...state,
+      }
+    case quiz.REQ_DELETE_QUIZ:
+      return {
+        ...state,
+        payload: action.payload
+      }
+    case quiz.REQ_DELETE_QUIZ_SUCCESS:
+      return produce(state, draft => {
+        draft.quizList.splice(
+          draft.quizList.findIndex((value: any) => value.quiz_id === _.get(action, 'data.quizId', '')),
+          1
+        );
+      })
+    case quiz.REQ_DELETE_QUIZ_FAIL:
       return {
         ...state,
       }
