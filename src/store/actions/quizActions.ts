@@ -2,7 +2,6 @@ export const CREATE_QUIZ = 'CREATE_QUIZ' as const;
 export const CREATE_QUIZ_SUCCESS = 'CREATE_QUIZ_SUCCESS' as const
 export const CREATE_QUIZ_FAIL = 'CREATE_QUIZ_FAIL' as const
 export const UPDATE_INPUT = 'UPDATE_INPUT' as const;
-export const INIT_INPUT = 'INIT_INPUT' as const;
 export const ADD_QUIZ_ITEM = 'ADD_QUIZ_ITEM' as const;
 export const DEL_QUIZ_ITEM = 'DEL_QUIZ_ITEM' as const;
 
@@ -66,12 +65,6 @@ export function updateInput(payload: CreateFormPayload) {
   return {
     type: UPDATE_INPUT,
     payload
-  }
-}
-
-export function initInput() {
-  return {
-    type: INIT_INPUT,
   }
 }
 

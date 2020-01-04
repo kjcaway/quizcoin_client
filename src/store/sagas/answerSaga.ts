@@ -32,6 +32,37 @@ function* fetchChallengeQuiz(action: answer.ActionType) {
   }
 }
 
+function* fetchAnswer(action: answer.ActionType) {
+  try {
+    const { quizId, answerSheet } = action.payload
+    const response = yield call([defaultClient, 'post'], `/api/quiz/answer`, {
+      quizId,
+      answerSheet
+    });
+    if (response.status === 200) {
+      yield put(answer.reqAnswerSuccess({}));
+
+      const { isRight, gettingScore, rightAnswer } = response.data;
+      const message = `
+        ${isRight?CONSTANTS.MSG_RIGHT_ANSWER:CONSTANTS.MSG_WRONG_ANSWER}
+        정답 : ${rightAnswer}
+        획득점수 : ${gettingScore}
+      `
+      yield put(alertMsg.pushMessage({
+        message: message,
+        category: 'success'
+      }))
+    }
+  } catch (error) {
+    yield put(answer.reqAnswerFail(error));
+    yield put(alertMsg.pushMessage({
+      message: CONSTANTS.MSG_API_FAIL,
+      category: 'error'
+    }))
+  }
+}
+
 export default function* watchAnswer() {
   yield takeLatest(answer.CHALLENGE_QUIZ, fetchChallengeQuiz);
+  yield takeLatest(answer.REQ_ANSWER, fetchAnswer);
 }

@@ -10,20 +10,45 @@ function AnswerDialogContainer() {
   const question = useSelector((store: any) => store.answer.question)
   const questionTypeName = useSelector((store: any) => store.answer.questionTypeName)
   const items = useSelector((store: any) => store.answer.items, shallowEqual)
+  const answerSheet = useSelector((store: any) => store.answer.answerSheet)
   const dispatch = useDispatch();
 
-  const handleClickClose = () => {
+  const closeModal = () => {
     dispatch({ type: answer.CLOSE_ANSWER_MODAL });
   };
 
+  const updateInput = (event: any) => {
+    const target = event.target;
+    const { value } = target;
+    dispatch({
+      type: answer.UPDATE_ANSWERSHEET,
+      payload: {
+        key: "answerSheet",
+        value: value
+      }
+    });
+  }
+
+  const submitAnswer = () => {
+    dispatch({
+      type: answer.REQ_ANSWER,
+      payload: {
+        quizId: quizId,
+        answerSheet: answerSheet
+      }
+    })
+  }
   return (
-    <AnswerDialog 
+    <AnswerDialog
       isOpen={modalOpen}
       quizId={quizId}
       question={question}
       questionTypeName={questionTypeName}
       items={items}
-      handleClickClose={handleClickClose}
+      answerSheet={answerSheet}
+      handleClickClose={closeModal}
+      handleChangeInput={updateInput}
+      handleClickSubmit={submitAnswer}
     />
   )
 }

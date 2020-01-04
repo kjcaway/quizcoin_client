@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
+import Chip from '@material-ui/core/Chip';
 import Typography from '@material-ui/core/Typography';
 import { CardHeader, Avatar, CardActions } from '@material-ui/core';
 import { blueGrey } from '@material-ui/core/colors';
@@ -49,6 +50,11 @@ function QuizCardItem(props : any) {
           </Avatar>
         }
         title={'생성일: ' + props.createdTime}
+        action={
+          <>
+            <Chip size="small" label={props.userId + '님의 퀴즈'} />
+          </>
+        }
       />
       <CardContent>
         <Typography className={classes.question} color="textPrimary" gutterBottom>

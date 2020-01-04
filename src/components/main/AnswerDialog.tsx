@@ -27,7 +27,8 @@ function CheckboxForm(props: any) {
               inputProps={{ 'aria-labelledby': labelId }}
               name="chkItem"
               value={value}
-              onChange={props.handleInputChange}
+              checked={props.answerSheet === value}
+              onChange={props.handleChangeInput}
             />
           </ListItemIcon>
           <ListItemText id={labelId} primary={value} />
@@ -44,7 +45,6 @@ function AnswerDialog(props: any) {
       TransitionComponent={Transition}
       keepMounted
       fullWidth={true}
-      onClose={undefined}
       aria-labelledby="alert-dialog-slide-title"
       aria-describedby="alert-dialog-slide-description"
     >
@@ -54,20 +54,22 @@ function AnswerDialog(props: any) {
           props.questionTypeName === '객관식' ?
             <CheckboxForm 
               items={props.items}
+              handleChangeInput={props.handleChangeInput}
+              answerSheet={props.answerSheet}
             />:
             <TextField
               variant="outlined"
               margin="normal"
               fullWidth
-              id="question"
-              name="question"
-              value={undefined}
-              autoComplete="question"
+              id="answerSheet"
+              name="answerSheet"
+              value={props.answerSheet}
+              onChange={props.handleChangeInput}
             />
           }
       </DialogContent>
       <DialogActions>
-        <Button onClick={undefined} variant="contained" color="primary">
+        <Button onClick={props.handleClickSubmit} variant="contained" color="primary">
           제출
           </Button>
         <Button onClick={props.handleClickClose} variant="contained" color="default">

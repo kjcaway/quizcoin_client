@@ -15,14 +15,10 @@ function* fetchSignInSaga(action: auth.ActionType) {
     if (data.token) {
       /**
        * 로그인 성공 시
-       * 토큰저장 -> 메시지 출력 -> 1초 대기 -> index 라우팅
+       * 토큰저장 -> 1초 대기 -> index 라우팅
        */
       localStorage.setItem('access_token', data.token);
       yield put(auth.signInSuccess(data));
-      yield put(alertMsg.pushMessage({
-        message: CONSTANTS.MSG_SIGNIN_SUCCESS,
-        category: 'success'
-      }))
       yield delay(1000);
       yield call(() => history.push("/"))
     } else {

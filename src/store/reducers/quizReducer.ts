@@ -13,7 +13,6 @@ const initialState: State = {
   modalOpen: false,
   multiAnswerSheet: '',
   multiAnswerItems: [],
-  multiChecked: '',
   quizList: [] // 나의 퀴즈 리스트
 }
 
@@ -38,11 +37,6 @@ export const reducer = (state = initialState, action: quiz.ActionType) => {
       return produce(state, draft => {
         draft[key] = value;
       })
-    case quiz.INIT_INPUT:
-      return {
-        ...initialState,
-        modalOpen: true
-      }
     case quiz.ADD_QUIZ_ITEM:
       return produce(state, draft => {
         draft.multiAnswerItems.push(action.payload);

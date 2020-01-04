@@ -14,6 +14,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 interface Quiz {
+  user_id: string;
   quiz_id: number;
   question: string;
   question_type_name: string;
@@ -36,6 +37,7 @@ function QuizCardList(props : Props) {
           <Grid item key={idx} xs={12} sm={6} md={4}>
             <QuizCardItem 
               num={idx+1}
+              userId={quiz.user_id}
               quizId={quiz.quiz_id}
               question={quiz.question}
               questionTypeName={quiz.question_type_name}
