@@ -10,6 +10,7 @@ import { withRouter } from 'react-router-dom'
 function LatestContainer(props: any) {
   const status = useSelector((store: any) => store.main.status, shallowEqual)
   const quizList = useSelector((store: any) => store.main.quizList, shallowEqual)
+  const loggedUserId = useSelector((store: any) => store.auth.userId)
   const dispatch = useDispatch();
   const { userId } = props.match.params;
 
@@ -41,6 +42,7 @@ function LatestContainer(props: any) {
           <QuizCardList
             quizList={quizList}
             handleClickChallenge={handleClickChallenge}
+            loggedUserId={loggedUserId}
           /> :
           <ProgressCilrcle />
       }

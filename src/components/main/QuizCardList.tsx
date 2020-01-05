@@ -20,10 +20,13 @@ interface Quiz {
   question_type_name: string;
   created_time: string;
   items: string;
+  loggedUserId: string;
+  isCompleted: boolean;
 }
 
 interface Props {
   quizList : [];
+  loggedUserId: string;
   handleClickChallenge: (quizId: number) => void;
 }
 
@@ -44,6 +47,8 @@ function QuizCardList(props : Props) {
               createdTime={convertToFromNow(quiz.created_time)}
               items={quiz.items}
               handleClickChallenge={props.handleClickChallenge}
+              loggedUserId={props.loggedUserId}
+              isCompleted={quiz.isCompleted}
             />
           </Grid>
         )

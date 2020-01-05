@@ -25,7 +25,7 @@ const useStyles = makeStyles({
   }
 });
 
-export default function QuizCard(props: any) {
+export default function MyQuizCardItem(props: any) {
   const classes = useStyles();
 
   return (

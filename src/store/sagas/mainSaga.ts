@@ -1,4 +1,4 @@
-import { call, put, takeEvery } from "redux-saga/effects";
+import { call, put, takeEvery, select } from "redux-saga/effects";
 import defaultClient from "../../lib/defaultClient";
 import * as main from "../actions/mainActions";
 import * as alertMsg from "../actions/alertMsgActions";
@@ -30,8 +30,25 @@ function* fetchQuizList(action: main.ActionType) {
       limit,
       offset
     });
-    const { data } = response;
-    yield put(main.getQuizListSuccess(data));
+    let quizListData = response.data;
+    const loggedUserId = yield select((state) => state.auth.userId)
+    if(loggedUserId){
+      const responseMyQuizAnswer = yield call([defaultClient, 'post'], '/api/quiz/myQuizAnswer');
+      const myQuizAnswerData = responseMyQuizAnswer.data;
+      quizListData.forEach((quiz: any) => {
+        const quiz_id = quiz.quiz_id;
+        myQuizAnswerData.every((answer: any) => {
+          quiz.isCompleted = false;
+          if(quiz_id === answer.quiz_id && answer.score > 0){
+            // 정답을 맞힌 퀴즈
+            quiz.isCompleted = true;
+            return false;
+          }
+          return true;
+        })
+      })
+    }
+    yield put(main.getQuizListSuccess(quizListData));
   } catch (error) {
     yield put(main.getQuizListFail(error));
 

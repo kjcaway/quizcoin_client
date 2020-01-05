@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useSelector, shallowEqual, useDispatch } from 'react-redux'
 import * as quiz from '../../store/actions/quizActions'
-import QuizCardList from '../../components/quiz/QuizCardList'
+import MyQuizCardList from '../../components/quiz/MyQuizCardList'
 
 
 function UserQuizListContainer() {
@@ -27,7 +27,7 @@ function UserQuizListContainer() {
 
   return (
     <div>
-      <QuizCardList
+      <MyQuizCardList
         quizList={quizList}
         handleDeleteClick={deleteQuiz}
       />

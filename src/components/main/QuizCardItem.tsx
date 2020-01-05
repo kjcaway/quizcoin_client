@@ -4,14 +4,15 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Chip from '@material-ui/core/Chip';
 import Typography from '@material-ui/core/Typography';
-import { CardHeader, Avatar, CardActions } from '@material-ui/core';
+import { CardHeader, Avatar, CardActions, Badge } from '@material-ui/core';
 import { blueGrey } from '@material-ui/core/colors';
 import Fab from '@material-ui/core/Fab';
+import DoneIcon from '@material-ui/icons/Done';
 
 const useStyles = makeStyles({
   card: {
     minWidth: 275,
-    minHeight: 180
+    minHeight: 180,
   },
   question: {
     fontSize: 14,
@@ -36,9 +37,19 @@ const useStyles = makeStyles({
       boxShadow: 'none',
     },
   },
+  cardActionBtnDone: {
+    minWidth: '100px',
+    backgroundColor: blueGrey[500],
+    color: '#fefefe',
+    '&:hover': {
+      backgroundColor: blueGrey[500],
+      borderColor: blueGrey[500],
+      boxShadow: 'none',
+    },
+  },
 });
 
-function QuizCardItem(props : any) {
+function QuizCardItem(props: any) {
   const classes = useStyles();
 
   return (
@@ -52,7 +63,9 @@ function QuizCardItem(props : any) {
         title={'생성일: ' + props.createdTime}
         action={
           <>
-            <Chip size="small" label={props.userId + '님의 퀴즈'} />
+            <Badge color="primary" variant="dot" invisible={props.loggedUserId === props.userId ? false : true} >
+              <Chip size="small" label={props.userId + '님의 퀴즈'} />
+            </Badge>
           </>
         }
       />
@@ -77,12 +90,25 @@ function QuizCardItem(props : any) {
         }
       </CardContent>
       <CardActions className={classes.cardActionDiv}>
-        <Fab 
-          variant="extended" 
-          className={classes.cardActionBtn}
-          onClick={() => props.handleClickChallenge(props.quizId)}>
-          도전
-        </Fab>
+        {
+          props.loggedUserId !== props.userId &&
+          (
+            props.isCompleted ?
+              <Fab
+                variant="extended"
+                className={classes.cardActionBtnDone}
+              >
+                완료<DoneIcon />
+              </Fab>
+              :
+              <Fab
+                variant="extended"
+                className={classes.cardActionBtn}
+                onClick={() => props.handleClickChallenge(props.quizId)}>
+                도전
+              </Fab>
+          )
+        }
       </CardActions>
     </Card>
   )

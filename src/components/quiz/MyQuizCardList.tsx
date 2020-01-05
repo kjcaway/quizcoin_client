@@ -1,5 +1,5 @@
 import React from 'react'
-import QuizCard from './QuizCard'
+import MyQuizCardItem from './MyQuizCardItem'
 import { Grid } from '@material-ui/core'
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { convertToFromNow } from '../../lib/utils';
@@ -27,7 +27,7 @@ interface Props {
   quizList : [];
   handleDeleteClick: (quizId: number) => void;
 }
-function QuizCardList(props: Props) {
+function MyQuizCardList(props: Props) {
   const classes = useStyles();
 
   return (
@@ -35,7 +35,7 @@ function QuizCardList(props: Props) {
       {props.quizList.map((quiz: Quiz, idx) => {
         return (
           <Grid item key={idx} xs={12} sm={6} md={4}>
-            <QuizCard 
+            <MyQuizCardItem 
               num={idx+1}
               quizId={quiz.quiz_id}
               question={quiz.question}
@@ -52,4 +52,4 @@ function QuizCardList(props: Props) {
   )
 }
 
-export default QuizCardList
+export default MyQuizCardList

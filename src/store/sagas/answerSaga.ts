@@ -42,10 +42,10 @@ function* fetchAnswer(action: answer.ActionType) {
     if (response.status === 200) {
       yield put(answer.reqAnswerSuccess({}));
 
-      const { isRight, gettingScore, rightAnswer } = response.data;
+      const { isRight, tryCnt, gettingScore } = response.data;
       const message = `
-        ${isRight?CONSTANTS.MSG_RIGHT_ANSWER:CONSTANTS.MSG_WRONG_ANSWER}
-        정답 : ${rightAnswer}
+        ${isRight ? CONSTANTS.MSG_RIGHT_ANSWER : CONSTANTS.MSG_WRONG_ANSWER}
+        도전횟수 : ${tryCnt},
         획득점수 : ${gettingScore}
       `
       yield put(alertMsg.pushMessage({
