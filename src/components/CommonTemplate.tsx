@@ -2,7 +2,8 @@ import React, { ReactChild } from 'react'
 import { Container, CssBaseline, Box } from '@material-ui/core';
 
 import MenuBarContainer from '../containers/common/MenuBarContainer';
-import AlertMessageContainer from '../containers/common/AlertMessageContainer';
+import AlertMessageBoxContainer from '../containers/common/AlertMessageBoxContainer';
+import ConfirmBoxContainer from '../containers/common/ConfirmBoxContainer';
 import Footer from './common/Footer';
 
 interface Props {
@@ -18,7 +19,8 @@ const CommonTemplate = ({ children, maxWidth }: Props) => {
     >
       <CssBaseline />
       <MenuBarContainer />
-      <AlertMessageContainer />
+      <AlertMessageBoxContainer />
+      <ConfirmBoxContainer />
       <Container component="main" maxWidth={maxWidth}>
         {children}
         <Box mt={8}>

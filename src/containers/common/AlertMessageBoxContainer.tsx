@@ -12,7 +12,7 @@ interface Props {
 interface State {
 }
 
-class AlertMessageContainer extends Component<Props, State> {
+class AlertMessageBoxContainer extends Component<Props, State> {
   render() {
     return (
       <AlertMessageBox
@@ -40,4 +40,4 @@ export default connect(
       }
     }
   }
-)(AlertMessageContainer);
+)(AlertMessageBoxContainer);

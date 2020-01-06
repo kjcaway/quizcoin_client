@@ -22,3 +22,6 @@ export const MSG_ERROR_INVALID_INPUT_MULTI_ITEM_4DOWN = "보기는 4개 이하�
 
 export const MSG_RIGHT_ANSWER = "축하합니다. 정답입니다."
 export const MSG_WRONG_ANSWER = "아쉽네요. 오답입니다."
+
+export const MSG_CONFIRM_SUBMIT_ANSWER_SHEET = "제출하시겠습니까?"
+export const MSG_CONFIRM_DELETE_QUIZ = "삭제하시겠습니까?"

@@ -4,7 +4,7 @@ import * as quiz from "../actions/quizActions";
 import * as user from "../actions/userActions";
 import * as alertMsg from "../actions/alertMsgActions";
 import * as CONSTANTS from "../../lib/constants";
-
+import { confirm } from "./commonSaga"
 
 function* fetchCreateQuiz(action: quiz.ActionType) {
   try {
@@ -41,21 +41,28 @@ function* fetchMyQuizList(action: quiz.ActionType) {
 }
 
 function* fetchDeleteQuiz(action: quiz.ActionType) {
-  try {
-    const { quizId } = action.payload
-    yield call([defaultClient, 'post'], '/api/quiz/remove', {
-      quizId: quizId
-    });
+  const confirmPayload = {
+    title: CONSTANTS.MSG_CONFIRM_DELETE_QUIZ,
+    contents: ""
+  }
+  const isOk = yield call(confirm, confirmPayload);
+  if (isOk) {
+    try {
+      const { quizId } = action.payload
+      yield call([defaultClient, 'post'], '/api/quiz/remove', {
+        quizId: quizId
+      });
 
-    yield put(quiz.reqDeleteQuizSuccess({
-      quizId: quizId
-    }));
-  } catch (error) {
-    yield put(quiz.reqDeleteQuizFail(error))
-    yield put(alertMsg.pushMessage({
-      message: CONSTANTS.MSG_API_FAIL,
-      category: 'error'
-    }))
+      yield put(quiz.reqDeleteQuizSuccess({
+        quizId: quizId
+      }));
+    } catch (error) {
+      yield put(quiz.reqDeleteQuizFail(error))
+      yield put(alertMsg.pushMessage({
+        message: CONSTANTS.MSG_API_FAIL,
+        category: 'error'
+      }))
+    }
   }
 }
 

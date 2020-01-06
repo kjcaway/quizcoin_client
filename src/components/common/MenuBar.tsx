@@ -31,14 +31,14 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     link: {
       cursor: "pointer",
-      margin: theme.spacing(1.5),
+      marginLeft: theme.spacing(3.5),
       fontSize: '18px',
       fontStyle: 'italic'
     },
     linkM: {
-      margin: theme.spacing(1.5),
+      marginRight: theme.spacing(1.5),
       fontSize: '15px',
-      fontStyle: 'italic'
+      fontStyle: 'italic',
     },
   }),
 );
@@ -59,11 +59,11 @@ const MenuBar = (props: any) => {
           </Typography>
           <div className={classes.linkRoot}>
             {
-              props.menus.map((obj: {path: string; name: string}, idx: number) => {
+              props.menus.map((obj: { path: string; name: string }, idx: number) => {
                 return (
-                <Link key={idx} onClick={() => props.handleClickMenu(obj.path)} color="inherit" className={isDesktop?classes.link:classes.linkM}>
-                  {obj.name}
-                </Link>
+                  <Link key={idx} onClick={() => props.handleClickMenu(obj.path)} color="inherit" className={isDesktop ? classes.link : classes.linkM}>
+                    {obj.name}
+                  </Link>
                 )
               })
             }
@@ -72,14 +72,24 @@ const MenuBar = (props: any) => {
           {
             props.isLogged ?
               <Button color="inherit" onClick={props.handleLogout}>
-                <ExitToAppIcon className={classes.leftIcon} />
-                {isDesktop && '로그아웃'}
-            </Button>
+                {isDesktop ?
+                  <>
+                    <ExitToAppIcon className={classes.leftIcon} />
+                    로그아웃
+                  </> :
+                  <ExitToAppIcon />
+                }
+              </Button>
               :
               <Button color="inherit" onClick={props.handleLogin}>
-                <VpnKeyOutlinedIcon className={classes.leftIcon} />
-                {isDesktop && '로그인'}
-            </Button>
+                {isDesktop ?
+                  <>
+                    <VpnKeyOutlinedIcon className={classes.leftIcon} />
+                    로그인
+                  </> :
+                  <VpnKeyOutlinedIcon />
+                }
+              </Button>
           }
         </Toolbar>
       </AppBar>

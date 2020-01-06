@@ -3,6 +3,7 @@ import defaultClient from "../../lib/defaultClient";
 import * as answer from "../actions/answerActions";
 import * as alertMsg from "../actions/alertMsgActions";
 import * as CONSTANTS from "../../lib/constants";
+import { confirm } from "./commonSaga"
 
 function* fetchChallengeQuiz(action: answer.ActionType) {
   try {
@@ -33,32 +34,39 @@ function* fetchChallengeQuiz(action: answer.ActionType) {
 }
 
 function* fetchAnswer(action: answer.ActionType) {
-  try {
-    const { quizId, answerSheet } = action.payload
-    const response = yield call([defaultClient, 'post'], `/api/quiz/answer`, {
-      quizId,
-      answerSheet
-    });
-    if (response.status === 200) {
-      yield put(answer.reqAnswerSuccess({}));
+  const confirmPayload = {
+    title: CONSTANTS.MSG_CONFIRM_SUBMIT_ANSWER_SHEET,
+    contents: ""
+  }
+  const isOk = yield call(confirm, confirmPayload);
+  if (isOk) {
+    try {
+      const { quizId, answerSheet } = action.payload
+      const response = yield call([defaultClient, 'post'], `/api/quiz/answer`, {
+        quizId,
+        answerSheet
+      });
+      if (response.status === 200) {
+        yield put(answer.reqAnswerSuccess({}));
 
-      const { isRight, tryCnt, gettingScore } = response.data;
-      const message = `
-        ${isRight ? CONSTANTS.MSG_RIGHT_ANSWER : CONSTANTS.MSG_WRONG_ANSWER}
-        도전횟수 : ${tryCnt},
-        획득점수 : ${gettingScore}
-      `
+        const { isRight, tryCnt, gettingScore } = response.data;
+        const message = `
+          ${isRight ? CONSTANTS.MSG_RIGHT_ANSWER : CONSTANTS.MSG_WRONG_ANSWER}
+          도전횟수 : ${tryCnt},
+          획득점수 : ${gettingScore}
+        `
+        yield put(alertMsg.pushMessage({
+          message: message,
+          category: 'success'
+        }))
+      }
+    } catch (error) {
+      yield put(answer.reqAnswerFail(error));
       yield put(alertMsg.pushMessage({
-        message: message,
-        category: 'success'
+        message: CONSTANTS.MSG_API_FAIL,
+        category: 'error'
       }))
     }
-  } catch (error) {
-    yield put(answer.reqAnswerFail(error));
-    yield put(alertMsg.pushMessage({
-      message: CONSTANTS.MSG_API_FAIL,
-      category: 'error'
-    }))
   }
 }
 
