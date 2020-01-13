@@ -4,7 +4,7 @@ const baseURL = (() => {
   if (process.env.NODE_ENV === 'development') {
     return 'http://localhost:3001/'
   } else if (process.env.NODE_ENV === 'production') {
-    return '/'
+    return 'http://ec2-13-125-33-180.ap-northeast-2.compute.amazonaws.com:8080'
   } else {
     return '/'
   }
