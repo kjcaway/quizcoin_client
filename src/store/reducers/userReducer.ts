@@ -20,12 +20,12 @@ const initialState = {
 
 export const reducer = (state = initialState, action: user.ActionType) => {
   switch (action.type) {
-    case user.GET_USER_INFO:
+    case user.REQ_GET_USER_INFO:
       return {
         ...state,
         payload: action.payload
       }
-    case user.GET_USER_INFO_SUCCESS:
+    case user.REQ_GET_USER_INFO_SUCCESS:
       return produce(state, draft => {
 
         draft.data.user_id = _.get(action, 'data.user_id', '');
@@ -37,7 +37,7 @@ export const reducer = (state = initialState, action: user.ActionType) => {
         draft.data.quizcnt = _.get(action, 'data.quizcnt', -1);
         draft.data.tags = _.get(action, 'data.tags', '').split(',').filter((str: string) => str !== '')
       })
-    case user.GET_USER_INFO_FAIL:
+    case user.REQ_GET_USER_INFO_FAIL:
       return {
         ...state,
         error: action.error
@@ -52,19 +52,19 @@ export const reducer = (state = initialState, action: user.ActionType) => {
         ...state,
         addTagModalOpen: false
       }
-    case user.SET_TAG:
+    case user.REQ_SET_TAG:
       return {
         ...state,
       }
-    case user.SET_TAG_SUCCESS:
+    case user.REQ_SET_TAG_SUCCESS:
       return produce(state, draft => {
         draft.data.tags.push(_.get(action, 'data', ''))
       })
-    case user.DEL_TAG:
+    case user.REQ_DEL_TAG:
       return {
         ...state,
       }
-    case user.DEL_TAG_SUCCESS:
+    case user.REQ_DEL_TAG_SUCCESS:
       return produce(state, draft => {
         draft.data.tags = draft.data.tags.filter((str: string) => str !== _.get(action, 'data', ''))
       })
@@ -81,11 +81,11 @@ export const reducer = (state = initialState, action: user.ActionType) => {
         draft.preLoadImageFile = null
         draft.preLoadImageBase64 = ''
       })
-    case user.SET_USER_PROFILE:
+    case user.REQ_SET_USER_PROFILE:
       return {
         ...state,
       }
-    case user.SET_USER_PROFILE_SUCCESS:
+    case user.REQ_SET_USER_PROFILE_SUCCESS:
       return produce(state, draft => {
         draft.preLoadImageFile = null
       })

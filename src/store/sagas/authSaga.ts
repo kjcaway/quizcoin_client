@@ -24,14 +24,14 @@ function* fetchSignInSaga(action: auth.ActionType) {
     } else {
       yield put(auth.signInFail('No Access Token.'));
       yield put(alertMsg.pushMessage({
-        message: CONSTANTS.MSG_SIGNIN_FAIL,
+        message: CONSTANTS.MSG_REQ_SIGNIN_FAIL,
         category: 'error'
       }))
     }
   } catch (error) {
     yield put(auth.signInFail(error));
     yield put(alertMsg.pushMessage({
-      message: CONSTANTS.MSG_SIGNIN_FAIL,
+      message: CONSTANTS.MSG_REQ_SIGNIN_FAIL,
       category: 'error'
     }))
   }
@@ -48,15 +48,14 @@ function* fetchSignUpSaga(action: auth.ActionType) {
 
     yield put(auth.signUpSuccess(data));
     yield put(alertMsg.pushMessage({
-      message: CONSTANTS.MSG_SIGNUP_SUCCESS,
+      message: CONSTANTS.MSG_REQ_SIGNUP_SUCCESS,
       category: 'success'
     }))
-    yield delay(2000);
     yield call(() => history.push("/signin"))
   } catch (error) {
     yield put(auth.signUpFail(error));
     yield put(alertMsg.pushMessage({
-      message: CONSTANTS.MSG_SIGNUP_FAIL,
+      message: CONSTANTS.MSG_REQ_SIGNUP_FAIL,
       category: 'error'
     }))
   }
@@ -87,7 +86,7 @@ function* fetchCheckTokenSaga(action: auth.ActionType) {
 }
 
 export default function* watchAuth() {
-  yield takeEvery(auth.SIGNIN, fetchSignInSaga);
-  yield takeEvery(auth.SIGNUP, fetchSignUpSaga);
-  yield takeEvery(auth.CHECK_TOKEN, fetchCheckTokenSaga);
+  yield takeEvery(auth.REQ_SIGNIN, fetchSignInSaga);
+  yield takeEvery(auth.REQ_SIGNUP, fetchSignUpSaga);
+  yield takeEvery(auth.REQ_CHECK_TOKEN, fetchCheckTokenSaga);
 }

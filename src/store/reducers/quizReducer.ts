@@ -18,17 +18,17 @@ const initialState: State = {
 
 export const reducer = (state = initialState, action: quiz.ActionType) => {
   switch (action.type) {
-    case quiz.CREATE_QUIZ:
+    case quiz.REQ_CREATE_QUIZ:
       return {
         ...state,
         payload: action.payload
       }
-    case quiz.CREATE_QUIZ_SUCCESS:
+    case quiz.REQ_CREATE_QUIZ_SUCCESS:
       return {
         ...state,
         modalOpen: false
       }
-    case quiz.CREATE_QUIZ_FAIL:
+    case quiz.REQ_CREATE_QUIZ_FAIL:
       return {
         ...state,
       }
@@ -57,15 +57,15 @@ export const reducer = (state = initialState, action: quiz.ActionType) => {
       }
     case quiz.CLOSE_QUIZ_MODAL:
       return initialState;
-    case quiz.GET_MY_QUIZ_LIST:
+    case quiz.REQ_GET_MY_QUIZ_LIST:
       return {
         ...state,
       }
-    case quiz.GET_MY_QUIZ_LIST_SUCCESS:
+    case quiz.REQ_GET_MY_QUIZ_LIST_SUCCESS:
       return produce(state, draft => {
         draft.quizList = action.data
       })
-    case quiz.GET_MY_QUIZ_LIST_FAIL:
+    case quiz.REQ_GET_MY_QUIZ_LIST_FAIL:
       return {
         ...state,
       }

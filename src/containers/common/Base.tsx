@@ -34,7 +34,7 @@ export default connect(
         dispatch({ type: auth.TEMP_LOGIN })
       },
       checkToken: () => {
-        dispatch({ type: auth.CHECK_TOKEN })
+        dispatch({ type: auth.REQ_CHECK_TOKEN })
       }
     }
   }

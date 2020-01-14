@@ -65,7 +65,7 @@ export default connect(
   (dispatch) => {
     return {
       fetchSignIn: (payload: auth.SignInPayload) => {
-        dispatch({ type: auth.SIGNIN, payload: payload })
+        dispatch({ type: auth.REQ_SIGNIN, payload: payload })
       },
       goToUrl: (payload: string) => {
         dispatch({type: common.GO_TO_URL, payload})

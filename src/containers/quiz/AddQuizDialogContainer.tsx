@@ -33,7 +33,7 @@ function AddQuizDialogContainer() {
         questionType: questionType,
         multiAnswerItems: multiAnswerItems
       }
-      dispatch({ type: quiz.CREATE_QUIZ, payload: payload });
+      dispatch({ type: quiz.REQ_CREATE_QUIZ, payload: payload });
     }
   };
 

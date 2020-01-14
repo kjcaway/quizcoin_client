@@ -16,7 +16,7 @@ function LatestContainer(props: any) {
 
 
   const getQuizList = (payload: main.GetQuizListPayload) => {
-    dispatch({ type: main.GET_QUIZ_LIST, payload: payload });
+    dispatch({ type: main.REQ_GET_QUIZ_LIST, payload: payload });
   };
 
   useEffect(() => {

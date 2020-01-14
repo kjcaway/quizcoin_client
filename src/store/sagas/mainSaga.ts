@@ -56,6 +56,6 @@ function* fetchQuizList(action: main.ActionType) {
 }
 
 export default function* watchMain() {
-  yield takeEvery(main.GET_USERS, fetchUsers);
-  yield takeEvery(main.GET_QUIZ_LIST, fetchQuizList);
+  yield takeEvery(main.REQ_GET_USERS, fetchUsers);
+  yield takeEvery(main.REQ_GET_QUIZ_LIST, fetchQuizList);
 }

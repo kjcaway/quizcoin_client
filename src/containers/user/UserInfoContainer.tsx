@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import * as user from '../../store/actions/userActions'
 import * as quiz from '../../store/actions/quizActions'
 import * as common from '../../store/actions/commonActions';
+import * as alertMsg from '../../store/actions/alertMsgActions'
+import * as CONSTANTS from "../../lib/constants";
 import UserInfoProfile from '../../components/user/UserInfoProfile'
 import UserInfoActivity from '../../components/user/UserInfoActivity'
 import { convertToFromNow, defaultToProfile } from '../../lib/utils';
@@ -21,6 +23,7 @@ interface Props {
   preLoadImageInput: (payload: any) => void;
   initProfileFile: () => void;
   setUserProfile: (payload: any) => void;
+  alertMsg: (payload: alertMsg.AlertMessagePayload) => void;
 }
 interface State {
 }
@@ -33,6 +36,13 @@ export class UserInfoContainer extends Component<Props, State> {
   }
 
   handleClickMyQuizCnt = () => {
+    if(this.props.userInfo.quizcnt === 0){
+      this.props.alertMsg({
+        message: CONSTANTS.MSG_NEED_MAKE_QUIZ,
+        category: 'warning'
+      })
+      return false;
+    }
     this.props.goToUrl('/mypage/quizList');
   }
 
@@ -114,7 +124,7 @@ export default connect(
   (dispatch) => {
     return {
       fetchUserInfo: (payload: user.UserInfoPayload) => {
-        dispatch({ type: user.GET_USER_INFO, payload: payload })
+        dispatch({ type: user.REQ_GET_USER_INFO, payload: payload })
       },
       openAddTagDlg: () => {
         dispatch({ type: user.ADD_TAG_MODAL_OPEN })
@@ -123,7 +133,7 @@ export default connect(
         dispatch({ type: quiz.OPEN_QUIZ_MODAL })
       },
       delTag: (payload: user.TagPayload) => {
-        dispatch({ type: user.DEL_TAG, payload: payload })
+        dispatch({ type: user.REQ_DEL_TAG, payload: payload })
       },
       goToUrl: (payload: string) => {
         dispatch({ type: common.GO_TO_URL, payload })
@@ -138,7 +148,10 @@ export default connect(
         dispatch({ type: user.INIT_PROFILE_FILE })
       },
       setUserProfile: (payload: any) => {
-        dispatch({ type: user.SET_USER_PROFILE, payload })
+        dispatch({ type: user.REQ_SET_USER_PROFILE, payload })
+      },
+      alertMsg: (payload: alertMsg.AlertMessagePayload) => {
+        dispatch({ type: alertMsg.PUSH_MESSAGE, payload : payload })
       },
     }
   }

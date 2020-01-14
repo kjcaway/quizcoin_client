@@ -1,16 +1,16 @@
-export const SIGNIN = 'SIGNIN' as const;
-export const SIGNIN_SUCCESS = 'SIGNIN_SUCCESS' as const;
-export const SIGNIN_FAIL = 'SIGNIN_FAIL' as const;
+export const REQ_SIGNIN = 'REQ_SIGNIN' as const;
+export const REQ_SIGNIN_SUCCESS = 'REQ_SIGNIN_SUCCESS' as const;
+export const REQ_SIGNIN_FAIL = 'REQ_SIGNIN_FAIL' as const;
 export const TEMP_LOGIN = 'TEMP_LOGIN' as const;
 export const LOGOUT = 'LOGOUT' as const;
 
-export const SIGNUP = 'SIGNUP' as const;
-export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS' as const;
-export const SIGNUP_FAIL = 'SIGNUP_FAIL' as const;
+export const REQ_SIGNUP = 'REQ_SIGNUP' as const;
+export const REQ_SIGNUP_SUCCESS = 'REQ_SIGNUP_SUCCESS' as const;
+export const REQ_SIGNUP_FAIL = 'REQ_SIGNUP_FAIL' as const;
 
-export const CHECK_TOKEN = 'CHECK_TOKEN' as const;
-export const CHECK_TOKEN_SUCCESS = 'CHECK_TOKEN_SUCCESS' as const;
-export const CHECK_TOKEN_FAIL = 'CHECK_TOKEN_FAIL' as const;
+export const REQ_CHECK_TOKEN = 'REQ_CHECK_TOKEN' as const;
+export const REQ_CHECK_TOKEN_SUCCESS = 'REQ_CHECK_TOKEN_SUCCESS' as const;
+export const REQ_CHECK_TOKEN_FAIL = 'REQ_CHECK_TOKEN_FAIL' as const;
 
 export interface SignInPayload {
   userId: string;
@@ -40,21 +40,21 @@ export interface ActionType {
 
 export function signIn(payload: SignInPayload) {
   return {
-    type: SIGNIN,
+    type: REQ_SIGNIN,
     payload
   }
 }
 
 export function signInSuccess(data: SignInData) {
   return {
-    type: SIGNIN_SUCCESS,
+    type: REQ_SIGNIN_SUCCESS,
     data
   }
 }
 
 export function signInFail(error: any) {
   return {
-    type: SIGNIN_FAIL,
+    type: REQ_SIGNIN_FAIL,
     error
   }
 }
@@ -73,40 +73,40 @@ export function logout() {
 
 export function signUp(payload: SignUpPayload) {
   return {
-    type: SIGNIN,
+    type: REQ_SIGNUP,
     payload
   }
 }
 
 export function signUpSuccess(data: any) {
   return {
-    type: SIGNIN_SUCCESS,
+    type: REQ_SIGNUP_SUCCESS,
     data
   }
 }
 
 export function signUpFail(error: any) {
   return {
-    type: SIGNIN_FAIL,
+    type: REQ_SIGNUP_FAIL,
     error
   }
 }
 
 export function checkToken() {
   return {
-    type: CHECK_TOKEN,
+    type: REQ_CHECK_TOKEN,
   }
 }
 
 export function checkTokenSuccess(data: CheckTokenData) {
   return {
-    type: CHECK_TOKEN_SUCCESS,
+    type: REQ_CHECK_TOKEN_SUCCESS,
     data
   }
 }
 
 export function checkTokenFail() {
   return {
-    type: CHECK_TOKEN_FAIL
+    type: REQ_CHECK_TOKEN_FAIL
   }
 }

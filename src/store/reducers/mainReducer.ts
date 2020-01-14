@@ -10,13 +10,13 @@ const initialState = {
 
 export const reducer = (state = initialState, action: main.ActionType) => {
   switch (action.type) {
-    case main.GET_USERS:
+    case main.REQ_GET_USERS:
       return {
         ...state,
         status: 'LOADING',
         payload: action.payload
       }
-    case main.GET_USERS_SUCCESS:
+    case main.REQ_GET_USERS_SUCCESS:
       return produce(state, draft => {
         let userList = action.data;
         userList.forEach((user: any) => {
@@ -27,17 +27,17 @@ export const reducer = (state = initialState, action: main.ActionType) => {
         draft.status = 'SUCCESS'
         draft.userList = userList.filter((user: any) => user.quizcnt > 0)
       })
-    case main.GET_USERS_FAIL:
+    case main.REQ_GET_USERS_FAIL:
       return {
         ...state,
         status: 'FAIL',
       }
-    case main.GET_QUIZ_LIST:
+    case main.REQ_GET_QUIZ_LIST:
       return {
         ...state,
         payload: action.payload
       }
-    case main.GET_QUIZ_LIST_SUCCESS:
+    case main.REQ_GET_QUIZ_LIST_SUCCESS:
       return produce(state, draft => {
         const quizList = action.data;
         quizList.forEach((quiz: any) => {
@@ -46,7 +46,7 @@ export const reducer = (state = initialState, action: main.ActionType) => {
         draft.status = 'SUCCESS'
         draft.quizList = quizList
       })
-    case main.GET_QUIZ_LIST_FAIL:
+    case main.REQ_GET_QUIZ_LIST_FAIL:
       return {
         ...state,
         status: 'FAIL',

@@ -13,7 +13,7 @@ function UsersContainer() {
   const dispatch = useDispatch();
 
   const getUsers = (payload: main.GetUsersPayload) => {
-    dispatch({ type: main.GET_USERS, payload: payload });
+    dispatch({ type: main.REQ_GET_USERS, payload: payload });
   };
 
   const handleClickGoUserQuizList = (payload: string) => {

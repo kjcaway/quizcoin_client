@@ -79,8 +79,8 @@ function* fetchUserProfile(action: user.ActionType) {
 }
 
 export default function* watchUser() {
-  yield takeEvery(user.GET_USER_INFO, fetchUserInfo);
-  yield takeEvery(user.SET_TAG, fetchSetTag);
-  yield takeEvery(user.DEL_TAG, fetchDelTag);
-  yield takeEvery(user.SET_USER_PROFILE, fetchUserProfile);
+  yield takeEvery(user.REQ_GET_USER_INFO, fetchUserInfo);
+  yield takeEvery(user.REQ_SET_TAG, fetchSetTag);
+  yield takeEvery(user.REQ_DEL_TAG, fetchDelTag);
+  yield takeEvery(user.REQ_SET_USER_PROFILE, fetchUserProfile);
 }

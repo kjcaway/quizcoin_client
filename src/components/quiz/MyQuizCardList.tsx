@@ -26,6 +26,7 @@ interface Quiz {
 interface Props {
   quizList : [];
   handleDeleteClick: (quizId: number) => void;
+  handleClickConfirmAnswerUser: (quizId: number) => void;
 }
 function MyQuizCardList(props: Props) {
   const classes = useStyles();
@@ -44,6 +45,7 @@ function MyQuizCardList(props: Props) {
               createdTime={convertToFromNow(quiz.created_time)}
               items={quiz.items}
               handleDeleteClick={props.handleDeleteClick}
+              handleClickConfirmAnswerUser={props.handleClickConfirmAnswerUser}
             />
           </Grid>
         )

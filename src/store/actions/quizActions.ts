@@ -1,6 +1,7 @@
-export const CREATE_QUIZ = 'CREATE_QUIZ' as const;
-export const CREATE_QUIZ_SUCCESS = 'CREATE_QUIZ_SUCCESS' as const
-export const CREATE_QUIZ_FAIL = 'CREATE_QUIZ_FAIL' as const
+export const REQ_CREATE_QUIZ = 'REQ_CREATE_QUIZ' as const;
+export const REQ_CREATE_QUIZ_SUCCESS = 'REQ_CREATE_QUIZ_SUCCESS' as const;
+export const REQ_CREATE_QUIZ_FAIL = 'REQ_CREATE_QUIZ_FAIL' as const;
+
 export const UPDATE_INPUT = 'UPDATE_INPUT' as const;
 export const ADD_QUIZ_ITEM = 'ADD_QUIZ_ITEM' as const;
 export const DEL_QUIZ_ITEM = 'DEL_QUIZ_ITEM' as const;
@@ -8,9 +9,9 @@ export const DEL_QUIZ_ITEM = 'DEL_QUIZ_ITEM' as const;
 export const OPEN_QUIZ_MODAL = 'OPEN_QUIZ_MODAL' as const;
 export const CLOSE_QUIZ_MODAL = 'CLOSE_QUIZ_MODAL' as const;
 
-export const GET_MY_QUIZ_LIST = 'GET_MY_QUIZ_LIST' as const;
-export const GET_MY_QUIZ_LIST_SUCCESS = 'GET_MY_QUIZ_LIST_SUCCESS' as const;
-export const GET_MY_QUIZ_LIST_FAIL = 'GET_MY_QUIZ_LIST_FAIL' as const;
+export const REQ_GET_MY_QUIZ_LIST = 'REQ_GET_MY_QUIZ_LIST' as const;
+export const REQ_GET_MY_QUIZ_LIST_SUCCESS = 'REQ_GET_MY_QUIZ_LIST_SUCCESS' as const;
+export const REQ_GET_MY_QUIZ_LIST_FAIL = 'REQ_GET_MY_QUIZ_LIST_FAIL' as const;
 
 export const REQ_DELETE_QUIZ = 'REQ_DELETE_QUIZ' as const;
 export const REQ_DELETE_QUIZ_SUCCESS = 'REQ_DELETE_QUIZ_SUCCESS' as const;
@@ -42,21 +43,21 @@ export interface ActionType {
 
 export function createQuiz(payload: CreateQuizPayload) {
   return {
-    type: CREATE_QUIZ,
+    type: REQ_CREATE_QUIZ,
     payload
   }
 }
 
 export function createQuizSuccess(data: any) {
   return {
-    type: CREATE_QUIZ_SUCCESS,
+    type: REQ_CREATE_QUIZ_SUCCESS,
     data
   }
 }
 
 export function createQuizFail(error: any) {
   return {
-    type: CREATE_QUIZ_FAIL,
+    type: REQ_CREATE_QUIZ_FAIL,
     error
   }
 }
@@ -95,20 +96,20 @@ export function closeQuizModal() {
 
 export function getMyQuizList() {
   return {
-    type: GET_MY_QUIZ_LIST,
+    type: REQ_GET_MY_QUIZ_LIST,
   }
 }
 
 export function getMyQuizListSuccess(data: any) {
   return {
-    type: GET_MY_QUIZ_LIST_SUCCESS,
+    type: REQ_GET_MY_QUIZ_LIST_SUCCESS,
     data
   }
 }
 
 export function getMyQuizListFail(error: any) {
   return {
-    type: GET_MY_QUIZ_LIST_FAIL,
+    type: REQ_GET_MY_QUIZ_LIST_FAIL,
     error
   }
 }

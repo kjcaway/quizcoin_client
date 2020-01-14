@@ -67,7 +67,7 @@ function* fetchDeleteQuiz(action: quiz.ActionType) {
 }
 
 export default function* watchQuiz() {
-  yield takeEvery(quiz.CREATE_QUIZ, fetchCreateQuiz);
-  yield takeEvery(quiz.GET_MY_QUIZ_LIST, fetchMyQuizList);
+  yield takeEvery(quiz.REQ_CREATE_QUIZ, fetchCreateQuiz);
+  yield takeEvery(quiz.REQ_GET_MY_QUIZ_LIST, fetchMyQuizList);
   yield takeEvery(quiz.REQ_DELETE_QUIZ, fetchDeleteQuiz);
 }

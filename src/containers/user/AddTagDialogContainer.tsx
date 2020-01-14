@@ -95,7 +95,7 @@ export default connect(
         dispatch({ type: user.ADD_TAG_MODAL_CLOSE })
       },
       setTag: (payload: user.TagPayload) => {
-        dispatch({ type: user.SET_TAG, payload : payload })
+        dispatch({ type: user.REQ_SET_TAG, payload : payload })
       },
       pushAlert: (payload: alertMsg.AlertMessagePayload) => {
         dispatch({ type: alertMsg.PUSH_MESSAGE, payload: payload})
