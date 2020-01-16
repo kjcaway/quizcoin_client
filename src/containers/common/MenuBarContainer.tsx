@@ -32,7 +32,6 @@ class MenuBarContainer extends Component<Props>{
     history.push('/signin')
   }
   handleLogout = () => {
-    localStorage.removeItem('access_token');
     this.props.logout();
   }
 

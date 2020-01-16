@@ -1,3 +1,5 @@
+import { UPDATE_ANSWERSHEET } from "./answerActions";
+
 export const REQ_GET_USERS = 'REQ_GET_USERS' as const;
 export const REQ_GET_USERS_SUCCESS = 'REQ_GET_USERS_SUCCESS' as const;
 export const REQ_GET_USERS_FAIL = 'REQ_GET_USERS_FAIL' as const;
@@ -5,6 +7,8 @@ export const REQ_GET_USERS_FAIL = 'REQ_GET_USERS_FAIL' as const;
 export const REQ_GET_QUIZ_LIST = 'REQ_GET_QUIZ_LIST' as const;
 export const REQ_GET_QUIZ_LIST_SUCCESS = 'REQ_GET_QUIZ_LIST_SUCCESS' as const;
 export const REQ_GET_QUIZ_LIST_FAIL = 'REQ_GET_QUIZ_LIST_FAIL' as const;
+
+export const UPDATE_COMPLETED_STATUS = 'UPDATE_COMPLETED_STATUS' as const;
 
 export interface GetUsersPayload {
   limit: number;
@@ -17,9 +21,14 @@ export interface GetQuizListPayload {
   offset: number;
 }
 
+export interface UpdateCompletedStatusPayload {
+  quizId: number;
+  isCompleted: boolean;
+}
+
 export interface ActionType {
   type: string;
-  payload: GetUsersPayload & GetQuizListPayload;
+  payload: GetUsersPayload & GetQuizListPayload & UpdateCompletedStatusPayload;
   data?: any;
   error?: any;
 }
@@ -63,5 +72,12 @@ export function getQuizListFail(error: any) {
   return {
     type: REQ_GET_QUIZ_LIST_FAIL,
     error
+  }
+}
+
+export function updateCompletedStatus(payload: UpdateCompletedStatusPayload){
+  return {
+    type: UPDATE_COMPLETED_STATUS,
+    payload
   }
 }

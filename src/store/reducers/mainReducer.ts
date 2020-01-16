@@ -51,6 +51,15 @@ export const reducer = (state = initialState, action: main.ActionType) => {
         ...state,
         status: 'FAIL',
       }
+    case main.UPDATE_COMPLETED_STATUS:
+      return produce(state, draft => {
+        const { quizId, isCompleted } = action.payload;
+        draft.quizList.forEach((quiz: any) => {
+          if (quiz.quiz_id === quizId) {
+            quiz.isCompleted = isCompleted;
+          }
+        });
+      })
     default:
       return state
   }

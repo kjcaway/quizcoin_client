@@ -2,7 +2,9 @@ export const REQ_SIGNIN = 'REQ_SIGNIN' as const;
 export const REQ_SIGNIN_SUCCESS = 'REQ_SIGNIN_SUCCESS' as const;
 export const REQ_SIGNIN_FAIL = 'REQ_SIGNIN_FAIL' as const;
 export const TEMP_LOGIN = 'TEMP_LOGIN' as const;
+
 export const LOGOUT = 'LOGOUT' as const;
+export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS' as const;
 
 export const REQ_SIGNUP = 'REQ_SIGNUP' as const;
 export const REQ_SIGNUP_SUCCESS = 'REQ_SIGNUP_SUCCESS' as const;
@@ -68,6 +70,12 @@ export function tempLogin() {
 export function logout() {
   return {
     type: LOGOUT,
+  }
+}
+
+export function logoutSuccess() {
+  return {
+    type: LOGOUT_SUCCESS,
   }
 }
 

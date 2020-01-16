@@ -2,6 +2,7 @@ import { call, put, takeEvery, delay } from "redux-saga/effects";
 import defaultClient from "../../lib/defaultClient";
 import * as auth from "../actions/authActions";
 import * as alertMsg from "../actions/alertMsgActions";
+import * as common from "../actions/commonActions";
 import * as CONSTANTS from "../../lib/constants";
 import { history } from '../configureStore';
 
@@ -85,8 +86,15 @@ function* fetchCheckTokenSaga(action: auth.ActionType) {
   }
 }
 
+function* logoutSaga(){
+  localStorage.removeItem('access_token');
+  yield put(auth.logoutSuccess());
+  yield put(common.goToUrl('/'))
+}
+
 export default function* watchAuth() {
   yield takeEvery(auth.REQ_SIGNIN, fetchSignInSaga);
   yield takeEvery(auth.REQ_SIGNUP, fetchSignUpSaga);
   yield takeEvery(auth.REQ_CHECK_TOKEN, fetchCheckTokenSaga);
+  yield takeEvery(auth.LOGOUT, logoutSaga);
 }

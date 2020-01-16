@@ -34,6 +34,10 @@ export const reducer = (state = initialState, action: auth.ActionType) => {
     case auth.LOGOUT:
       return {
         ...state,
+      }
+    case auth.LOGOUT_SUCCESS:
+      return {
+        ...state,
         isLogged: false,
         userId: ''
       }

@@ -2,6 +2,7 @@ import { call, put, takeLatest } from "redux-saga/effects";
 import defaultClient from "../../lib/defaultClient";
 import * as answer from "../actions/answerActions";
 import * as alertMsg from "../actions/alertMsgActions";
+import * as main from "../actions/mainActions";
 import * as CONSTANTS from "../../lib/constants";
 import { confirm } from "./commonSaga"
 
@@ -55,6 +56,14 @@ function* fetchAnswer(action: answer.ActionType) {
           도전횟수 : ${tryCnt},
           획득점수 : ${gettingScore}
         `
+
+        if (isRight) {
+          // 정답을 맞췄을 경우
+          yield put(main.updateCompletedStatus({
+            quizId: quizId,
+            isCompleted: isRight
+          }))
+        }
         yield put(alertMsg.pushMessage({
           message: message,
           category: 'success'
