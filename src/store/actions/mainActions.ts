@@ -1,5 +1,3 @@
-import { UPDATE_ANSWERSHEET } from "./answerActions";
-
 export const REQ_GET_USERS = 'REQ_GET_USERS' as const;
 export const REQ_GET_USERS_SUCCESS = 'REQ_GET_USERS_SUCCESS' as const;
 export const REQ_GET_USERS_FAIL = 'REQ_GET_USERS_FAIL' as const;
