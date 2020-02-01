@@ -22,7 +22,7 @@ function UserQuizListContainer() {
   const handleClickConfirmAnswerUser = (quizId: number) => {
     dispatch({ type: alertMsg.PUSH_MESSAGE, payload: {
       message: CONSTANTS.MSG_READY_TO,
-      category: "info"
+      category: "warning"
     }})
   }
   useEffect(() => {

@@ -4,6 +4,7 @@ import { history } from '../configureStore';
 
 function* goToUrl(action: common.ActionType) {
   const url = action.payload;
+
   yield call(() => history.push(url));
 }
 

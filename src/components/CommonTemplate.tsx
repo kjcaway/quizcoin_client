@@ -23,9 +23,9 @@ const CommonTemplate = ({ children, maxWidth }: Props) => {
       <ConfirmBoxContainer />
       <Container component="main" maxWidth={maxWidth}>
         {children}
-        <Box mt={8}>
+        {/* <Box mt={8}>
           <Footer />
-        </Box>
+        </Box> */}
       </Container>
     </Container>
   )

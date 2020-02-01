@@ -43,6 +43,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
+
 const MenuBar = (props: any) => {
   const classes = useStyles();
   const isDesktop = useMediaQuery('(min-width:600px)');
@@ -59,9 +60,9 @@ const MenuBar = (props: any) => {
           </Typography>
           <div className={classes.linkRoot}>
             {
-              props.menus.map((obj: { path: string; name: string }, idx: number) => {
+              props.menus.map((obj: { path: string; name: string, isActive: boolean }, idx: number) => {
                 return (
-                  <Link key={idx} onClick={() => props.handleClickMenu(obj.path)} color="inherit" className={isDesktop ? classes.link : classes.linkM}>
+                  <Link key={idx} onClick={() => props.handleClickMenu(obj.path)} color={obj.isActive?"textPrimary":"inherit"} className={isDesktop ? classes.link : classes.linkM}>
                     {obj.name}
                   </Link>
                 )

@@ -6,6 +6,8 @@ export const CLOSE_CONFIRM_MODAL = 'CLOSE_CONFIRM_MODAL' as const;
 export const OK_CONFIRM_MODAL = 'OK_CONFIRM_MODAL' as const;
 export const CANCEL_CONFIRM_MODAL = 'CLOSE_CONFIRM_MODAL' as const;
 
+export const CHANGE_ACTIVE_MENU = 'CHANGE_ACTIVE_MENU' as const;
+
 export interface ConfirmModalPayload {
   title: string;
   contents?: string;
@@ -46,5 +48,12 @@ export function okConfirmModal(){
 export function cancelConfirmModal(){
   return {
     type: CANCEL_CONFIRM_MODAL
+  }
+}
+
+export function changeActiveMenu(payload: string){
+  return {
+    type: CHANGE_ACTIVE_MENU,
+    payload
   }
 }

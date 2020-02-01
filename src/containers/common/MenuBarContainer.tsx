@@ -8,24 +8,10 @@ import * as common from '../../store/actions/commonActions';
 interface Props {
   isLogged: boolean;
   userId: string;
+  menus: Array<Object>;
   logout: () => void;
   goToUrl: (payload: string) => void;
 }
-
-const menus = [
-  {
-    name: '출제자들',
-    path: '/'
-  },
-  {
-    name: '최근퀴즈',
-    path: '/latest'
-  },
-  {
-    name: '나의점수',
-    path: '/mypage'
-  },
-]
 
 class MenuBarContainer extends Component<Props>{
   handleLogin = () => {
@@ -40,15 +26,15 @@ class MenuBarContainer extends Component<Props>{
   }
 
   render() {
-    const { isLogged } = this.props;
+    const { isLogged, userId, menus } = this.props;
     return (
       <MenuBar
         handleLogin={this.handleLogin}
         handleLogout={this.handleLogout}
+        handleClickMenu={this.handleClickMenu}
         isLogged={isLogged}
         menus={menus}
-        userId={this.props.userId}
-        handleClickMenu={this.handleClickMenu}
+        userId={userId}
       />
     )
   }
@@ -58,7 +44,8 @@ export default connect(
   (state: any) => {
     return {
       isLogged: state.auth.isLogged,
-      userId: state.auth.userId || 'anonymous'
+      userId: state.auth.userId || 'anonymous',
+      menus: state.common.menus
     }
   },
   (dispatch: any) => {
