@@ -11,7 +11,14 @@ const initialState: State = {
   question: '',
   questionTypeName: '',
   items: [] as string[],
-  answerSheet: ''
+  answerSheet: '',
+  result: {
+    modalOpen: false,
+    message: '',
+    isSuccess: false,
+    tryCnt: -1,
+    gettingScore: -1
+  }
 }
 
 export const reducer = (state = initialState, action: answer.ActionType) => {
@@ -46,6 +53,18 @@ export const reducer = (state = initialState, action: answer.ActionType) => {
       return {
         ...state,
       }
+    case answer.OPEN_RESULT_MODAL:
+      return produce(state, draft => {
+        draft.result.modalOpen = true;
+        draft.result.message = action.payload.message;
+        draft.result.isSuccess = action.payload.isSuccess;
+        draft.result.tryCnt = action.payload.tryCnt;
+        draft.result.gettingScore = action.payload.gettingScore;
+      })
+    case answer.CLOSE_RESULT_MODAL:
+      return produce(state, draft => {
+        draft.result = initialState.result;
+      })
     default:
       return state
   }

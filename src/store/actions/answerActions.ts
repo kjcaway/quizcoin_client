@@ -8,6 +8,9 @@ export const REQ_ANSWER = 'REQ_ANSWER' as const;
 export const REQ_ANSWER_SUCCESS = 'REQ_ANSWER_SUCCESS' as const;
 export const REQ_ANSWER_FAIL = 'REQ_ANSWER_FAIL' as const;
 
+export const OPEN_RESULT_MODAL = 'OPEN_RESULT_MODAL' as const;
+export const CLOSE_RESULT_MODAL = 'CLOSE_RESULT_MODAL' as const;
+
 export interface ChallengeQuizPayload {
   quizId: number;
   answerSheet?: string;
@@ -25,9 +28,16 @@ export interface AnswerModalPayload {
   items: string;
 }
 
+export interface ResultModalPayload {
+  isSuccess: boolean;
+  message: string;
+  tryCnt: number;
+  gettingScore: number;
+}
+
 export interface ActionType {
   type: string;
-  payload: ChallengeQuizPayload & AnswerModalPayload & AnswerFormPayload;
+  payload: ChallengeQuizPayload & AnswerModalPayload & AnswerFormPayload & ResultModalPayload;
   data?: any;
   error?: any;
 }
@@ -71,5 +81,16 @@ export function reqAnswerFail(error: any){
   return {
     type: REQ_ANSWER_FAIL,
     error
+  }
+}
+export function openResultModal(payload: ResultModalPayload) {
+  return {
+    type: OPEN_RESULT_MODAL,
+    payload
+  }
+}
+export function closeResultModal() {
+  return {
+    type: CLOSE_RESULT_MODAL,
   }
 }

@@ -51,11 +51,8 @@ function* fetchAnswer(action: answer.ActionType) {
         yield put(answer.reqAnswerSuccess({}));
 
         const { isRight, tryCnt, gettingScore } = response.data;
-        const message = `
-          ${isRight ? CONSTANTS.MSG_RIGHT_ANSWER : CONSTANTS.MSG_WRONG_ANSWER}
-          도전횟수 : ${tryCnt},
-          획득점수 : ${gettingScore}
-        `
+        const isSuccess = Boolean(isRight);
+        const message = isSuccess ? CONSTANTS.MSG_RIGHT_ANSWER : CONSTANTS.MSG_WRONG_ANSWER;
 
         if (isRight) {
           // 정답을 맞췄을 경우
@@ -64,10 +61,12 @@ function* fetchAnswer(action: answer.ActionType) {
             isCompleted: isRight
           }))
         }
-        yield put(alertMsg.pushMessage({
+        yield put(answer.openResultModal({
+          isSuccess: isSuccess,
           message: message,
-          category: 'success'
-        }))
+          tryCnt: tryCnt,
+          gettingScore: gettingScore
+        }));
       }
     } catch (error) {
       yield put(answer.reqAnswerFail(error));
