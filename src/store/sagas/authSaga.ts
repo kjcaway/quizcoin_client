@@ -1,4 +1,4 @@
-import { call, put, takeEvery, delay } from "redux-saga/effects";
+import { call, put, takeEvery } from "redux-saga/effects";
 import defaultClient from "../../lib/defaultClient";
 import * as auth from "../actions/authActions";
 import * as alertMsg from "../actions/alertMsgActions";
@@ -13,28 +13,31 @@ function* fetchSignInSaga(action: auth.ActionType) {
       userId,
       password
     });
-    if (data.token) {
-      /**
-       * 로그인 성공 시
-       * 토큰저장 -> 1초 대기 -> index 라우팅
-       */
-      localStorage.setItem('access_token', data.token);
-      yield put(auth.signInSuccess(data));
-      yield delay(1000);
-      yield call(() => history.push("/"))
-    } else {
-      yield put(auth.signInFail('No Access Token.'));
+
+    localStorage.setItem('access_token', data.token);
+
+    yield put(auth.signInSuccess(data));
+    yield call(() => history.push("/"));
+  } catch (error) {
+    if (error.response.status === 404) {
+      yield put(auth.signUpFail(error));
       yield put(alertMsg.pushMessage({
-        message: CONSTANTS.MSG_REQ_SIGNIN_FAIL,
+        message: CONSTANTS.MSG_NO_USER,
+        category: 'error'
+      }))
+    } else if (error.response.status === 401) {
+      yield put(auth.signUpFail(error));
+      yield put(alertMsg.pushMessage({
+        message: CONSTANTS.MSG_WRONG_PASSWORD,
+        category: 'error'
+      }))
+    } else {
+      yield put(auth.signUpFail(error));
+      yield put(alertMsg.pushMessage({
+        message: CONSTANTS.MSG_API_FAIL,
         category: 'error'
       }))
     }
-  } catch (error) {
-    yield put(auth.signInFail(error));
-    yield put(alertMsg.pushMessage({
-      message: CONSTANTS.MSG_REQ_SIGNIN_FAIL,
-      category: 'error'
-    }))
   }
 }
 
@@ -54,11 +57,19 @@ function* fetchSignUpSaga(action: auth.ActionType) {
     }))
     yield call(() => history.push("/signin"))
   } catch (error) {
-    yield put(auth.signUpFail(error));
-    yield put(alertMsg.pushMessage({
-      message: CONSTANTS.MSG_REQ_SIGNUP_FAIL,
-      category: 'error'
-    }))
+    if (error.response.status === 409) {
+      yield put(auth.signUpFail(error));
+      yield put(alertMsg.pushMessage({
+        message: CONSTANTS.MSG_ID_CONFLICT,
+        category: 'error'
+      }))
+    } else {
+      yield put(auth.signUpFail(error));
+      yield put(alertMsg.pushMessage({
+        message: CONSTANTS.MSG_API_FAIL,
+        category: 'error'
+      }))
+    }
   }
 }
 
@@ -72,7 +83,7 @@ function* fetchCheckTokenSaga(action: auth.ActionType) {
         //todo 로그인 상태에서 로그인페이지 또는 회원가입 페이지 접근시 index로 라우팅
         const pathname = history.location.pathname;
 
-        if(pathname === '/signin' || pathname === '/signup'){
+        if (pathname === '/signin' || pathname === '/signup') {
           history.push("/");
         }
       })
@@ -86,7 +97,7 @@ function* fetchCheckTokenSaga(action: auth.ActionType) {
   }
 }
 
-function* logoutSaga(){
+function* logoutSaga() {
   localStorage.removeItem('access_token');
   yield put(auth.logoutSuccess());
   yield put(common.goToUrl('/'))
