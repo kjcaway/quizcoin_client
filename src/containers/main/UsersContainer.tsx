@@ -3,7 +3,7 @@ import UserCardList from '../../components/main/UserCardList'
 import { useSelector, shallowEqual, useDispatch } from 'react-redux'
 import * as main from '../../store/actions/mainActions'
 import * as common from '../../store/actions/commonActions'
-import ProgressCilrcle from '../../components/common/ProgressCilrcle'
+import ProgressCircle from '../../components/common/ProgressCircle'
 
 // eslint-disable-next-line
 function UsersContainer() {
@@ -42,7 +42,7 @@ function UsersContainer() {
             loggedUserId={loggedUserId}
             handleClickGoUserQuizList={handleClickGoUserQuizList}
           /> :
-          <ProgressCilrcle />
+          <ProgressCircle />
       }
     </>
   )

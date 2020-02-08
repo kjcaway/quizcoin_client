@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route, Redirect } from 'react-router'
 import { useSelector, shallowEqual } from 'react-redux'
-import ProgressCilrcle from '../common/ProgressCilrcle'
+import ProgressCircle from '../common/ProgressCircle'
 
 function ProtectedRoute({ component, ...rest }: any) {
   const isLogged = useSelector((store: any) => store.auth.isLogged, shallowEqual);
@@ -13,7 +13,7 @@ function ProtectedRoute({ component, ...rest }: any) {
   return (
     <Route {...rest} render={(props) => {
       if (isCheckingToken) {
-        return <ProgressCilrcle />
+        return <ProgressCircle />
       } else if (isLogged) {
         return React.createElement(component, props)
       // } else if (isLogged && (userId !== paramUserId)) {

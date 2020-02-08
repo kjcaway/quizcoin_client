@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useSelector, shallowEqual, useDispatch } from 'react-redux'
 import * as main from '../../store/actions/mainActions'
 import * as answer from '../../store/actions/answerActions'
-import ProgressCilrcle from '../../components/common/ProgressCilrcle'
+import ProgressCircle from '../../components/common/ProgressCircle'
 import QuizCardList from '../../components/main/QuizCardList'
 import { withRouter } from 'react-router-dom'
 
@@ -44,7 +44,7 @@ function LatestContainer(props: any) {
             handleClickChallenge={handleClickChallenge}
             loggedUserId={loggedUserId}
           /> :
-          <ProgressCilrcle />
+          <ProgressCircle />
       }
     </>
   )

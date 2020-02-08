@@ -51,7 +51,10 @@ function* fetchQuizList(action: main.ActionType) {
     yield put(main.getQuizListSuccess(quizListData));
   } catch (error) {
     yield put(main.getQuizListFail(error));
-
+    yield put(alertMsg.pushMessage({
+      message: CONSTANTS.MSG_API_FAIL,
+      category: 'error'
+    }))
   }
 }
 

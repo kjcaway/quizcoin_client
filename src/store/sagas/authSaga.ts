@@ -5,6 +5,7 @@ import * as alertMsg from "../actions/alertMsgActions";
 import * as common from "../actions/commonActions";
 import * as CONSTANTS from "../../lib/constants";
 import { history } from '../configureStore';
+import _ from "lodash";
 
 function* fetchSignInSaga(action: auth.ActionType) {
   try {
@@ -19,13 +20,15 @@ function* fetchSignInSaga(action: auth.ActionType) {
     yield put(auth.signInSuccess(data));
     yield call(() => history.push("/"));
   } catch (error) {
-    if (error.response.status === 404) {
+    const httpStatus = _.get(error, 'response.status', 500);
+
+    if (httpStatus === 404) {
       yield put(auth.signUpFail(error));
       yield put(alertMsg.pushMessage({
         message: CONSTANTS.MSG_NO_USER,
         category: 'error'
       }))
-    } else if (error.response.status === 401) {
+    } else if (httpStatus === 401) {
       yield put(auth.signUpFail(error));
       yield put(alertMsg.pushMessage({
         message: CONSTANTS.MSG_WRONG_PASSWORD,
@@ -57,7 +60,9 @@ function* fetchSignUpSaga(action: auth.ActionType) {
     }))
     yield call(() => history.push("/signin"))
   } catch (error) {
-    if (error.response.status === 409) {
+    const httpStatus = _.get(error, 'response.status', 500);
+
+    if (httpStatus === 409) {
       yield put(auth.signUpFail(error));
       yield put(alertMsg.pushMessage({
         message: CONSTANTS.MSG_ID_CONFLICT,
